@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { StatsBar } from "@/components/games/shared"
+import { useGameState } from "@/hooks/use-game-state"
 
 interface Stick {
   id: number
@@ -15,7 +16,9 @@ export default function PickUpSticks() {
   const [picked, setPicked] = useState(0)
   const [score, setScore] = useState(0)
   const [level, setLevel] = useState(1)
-  const [gameOver, setGameOver] = useState(false)
+  const { isPlaying, isGameOver, pause, resume, reset, start } = useGameState({
+    initialState: "playing",
+  })
   const [message, setMessage] = useState("")
 
   const initializeSticks = (count: number) => {
@@ -38,7 +41,7 @@ export default function PickUpSticks() {
   }, [])
 
   const handleStickClick = (id: number) => {
-    if (gameOver) return
+    if (isGameOver || !isPlaying) return
 
     const newPicked = picked + 1
     setPicked(newPicked)
@@ -70,9 +73,26 @@ export default function PickUpSticks() {
     setPicked(0)
     setScore(0)
     setLevel(1)
-    setGameOver(false)
+    reset()
+    start()
     setMessage("")
   }
+
+  // Add pause/resume keyboard handler
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "p" || e.key === "P" || e.key === "Escape") {
+        if (isPlaying) {
+          pause()
+        } else {
+          resume()
+        }
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [isPlaying, pause, resume])
 
   return (
     <div className="w-full h-full bg-gradient-to-br from-emerald-950 to-zinc-950 flex flex-col items-center justify-between p-6 relative overflow-hidden">

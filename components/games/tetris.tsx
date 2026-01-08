@@ -5,6 +5,7 @@ import type React from "react"
 import { useState, useEffect, useCallback, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { StatsBar, GameOverModal } from "@/components/games/shared"
+import { useGameState } from "@/hooks/use-game-state"
 
 // Tetromino shapes (4x4 grid representation)
 const SHAPES = {
@@ -78,7 +79,6 @@ const BOARD_HEIGHT = 20
 const INITIAL_FALL_SPEED = 1000
 
 type ShapeKey = keyof typeof SHAPES
-type GameState = "playing" | "paused" | "gameOver"
 
 interface Piece {
   shape: number[][]
@@ -114,7 +114,9 @@ export default function Tetris() {
   const [score, setScore] = useState(0)
   const [level, setLevel] = useState(1)
   const [linesCleared, setLinesCleared] = useState(0)
-  const [gameState, setGameState] = useState<GameState>("playing")
+  const { state: gameState, isPlaying, isPaused, isGameOver, pause, resume, gameOver, reset, start } = useGameState({
+    initialState: "playing",
+  })
   const [fallSpeed, setFallSpeed] = useState(INITIAL_FALL_SPEED)
   const [showLevelUp, setShowLevelUp] = useState(false)
 
@@ -196,7 +198,7 @@ export default function Tetris() {
 
     // Check game over
     if (checkCollision(nextPiece, newBoard)) {
-      setGameState("gameOver")
+      gameOver()
       return
     }
 
@@ -206,30 +208,30 @@ export default function Tetris() {
 
   // Move piece down
   const moveDown = useCallback(() => {
-    if (gameState !== "playing") return
+    if (!isPlaying) return
 
     if (!checkCollision(currentPiece, board, 0, 1)) {
       setCurrentPiece((prev) => ({ ...prev, y: prev.y + 1 }))
     } else {
       lockPiece()
     }
-  }, [currentPiece, board, gameState, checkCollision, lockPiece])
+  }, [currentPiece, board, isPlaying, checkCollision, lockPiece])
 
   // Move piece left/right
   const moveHorizontal = useCallback(
     (direction: number) => {
-      if (gameState !== "playing") return
+      if (!isPlaying) return
 
       if (!checkCollision(currentPiece, board, direction, 0)) {
         setCurrentPiece((prev) => ({ ...prev, x: prev.x + direction }))
       }
     },
-    [currentPiece, board, gameState, checkCollision],
+    [currentPiece, board, isPlaying, checkCollision],
   )
 
   // Rotate
   const handleRotate = useCallback(() => {
-    if (gameState !== "playing") return
+    if (!isPlaying) return
 
     const rotated = rotatePiece(currentPiece)
     const newPiece = { ...currentPiece, shape: rotated }
@@ -237,11 +239,11 @@ export default function Tetris() {
     if (!checkCollision(newPiece, board)) {
       setCurrentPiece(newPiece)
     }
-  }, [currentPiece, board, gameState, checkCollision, rotatePiece])
+  }, [currentPiece, board, isPlaying, checkCollision, rotatePiece])
 
   // Hard drop
   const hardDrop = useCallback(() => {
-    if (gameState !== "playing") return
+    if (!isPlaying) return
 
     let dropDistance = 0
     while (!checkCollision(currentPiece, board, 0, dropDistance + 1)) {
@@ -251,7 +253,7 @@ export default function Tetris() {
     setCurrentPiece((prev) => ({ ...prev, y: prev.y + dropDistance }))
     setScore((prev) => prev + dropDistance * 2)
     setTimeout(lockPiece, 50)
-  }, [currentPiece, board, gameState, checkCollision, lockPiece])
+  }, [currentPiece, board, isPlaying, checkCollision, lockPiece])
 
   const handleRestart = useCallback(() => {
     setBoard(createEmptyBoard())
@@ -260,22 +262,28 @@ export default function Tetris() {
     setScore(0)
     setLevel(1)
     setLinesCleared(0)
-    setGameState("playing")
+    reset()
+    // Start game immediately after reset
+    start()
     setFallSpeed(INITIAL_FALL_SPEED)
-  }, [])
+  }, [reset, start])
 
   const togglePause = useCallback(() => {
-    setGameState((prev) => (prev === "playing" ? "paused" : "playing"))
-  }, [])
+    if (isPlaying) {
+      pause()
+    } else if (isPaused) {
+      resume()
+    }
+  }, [isPlaying, isPaused, pause, resume])
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (gameState !== "playing") {
-        if (e.key === "Enter" && gameState === "gameOver") {
+      if (!isPlaying) {
+        if (e.key === "Enter" && isGameOver) {
           handleRestart()
         }
         if (e.key === "p" || e.key === "P" || e.key === "Escape") {
-          if (gameState === "paused") setGameState("playing")
+          if (isPaused) resume()
         }
         return
       }
@@ -321,7 +329,7 @@ export default function Tetris() {
 
     window.addEventListener("keydown", handleKeyDown)
     return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [gameState, moveHorizontal, moveDown, handleRotate, hardDrop, handleRestart, togglePause])
+  }, [isPlaying, isPaused, isGameOver, moveHorizontal, moveDown, handleRotate, hardDrop, handleRestart, togglePause, resume])
 
   // Touch handlers
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -358,13 +366,13 @@ export default function Tetris() {
 
   // Game loop
   useEffect(() => {
-    if (gameState === "playing") {
+    if (isPlaying) {
       gameLoopRef.current = setInterval(moveDown, fallSpeed)
       return () => {
         if (gameLoopRef.current) clearInterval(gameLoopRef.current)
       }
     }
-  }, [moveDown, fallSpeed, gameState])
+  }, [moveDown, fallSpeed, isPlaying])
 
   // Render board with current piece
   const renderBoard = () => {
@@ -475,7 +483,7 @@ export default function Tetris() {
             onClick={togglePause}
             className="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg text-sm font-medium border border-zinc-700"
           >
-            {gameState === "playing" ? "Pause" : "Resume"}
+            {isPlaying ? "Pause" : "Resume"}
           </button>
         </div>
       </div>
@@ -505,7 +513,7 @@ export default function Tetris() {
 
       {/* Pause Overlay */}
       <AnimatePresence>
-        {gameState === "paused" && (
+        {isPaused && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -519,7 +527,7 @@ export default function Tetris() {
 
       {/* Game Over Overlay */}
       <GameOverModal
-        isOpen={gameState === "gameOver"}
+        isOpen={isGameOver}
         title="Game Over"
         score={score}
         accentColor="red"

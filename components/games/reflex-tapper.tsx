@@ -3,15 +3,18 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { StatsBar, GameOverModal } from "@/components/games/shared"
+import { useGameState } from "@/hooks/use-game-state"
 
 export default function ReflexTapper() {
   const [targets, setTargets] = useState<Array<{ id: number; x: number; y: number }>>([])
   const [score, setScore] = useState(0)
   const [timeLeft, setTimeLeft] = useState(20)
-  const [gameActive, setGameActive] = useState(true)
+  const { isPlaying, isGameOver, pause, resume, gameOver, reset, start } = useGameState({
+    initialState: "playing",
+  })
 
   useEffect(() => {
-    if (!gameActive) return
+    if (!isPlaying) return
 
     const spawnInterval = setInterval(() => {
       const newTarget = {
@@ -27,16 +30,16 @@ export default function ReflexTapper() {
     }, 800)
 
     return () => clearInterval(spawnInterval)
-  }, [gameActive])
+  }, [isPlaying])
 
   useEffect(() => {
-    if (timeLeft > 0 && gameActive) {
+    if (timeLeft > 0 && isPlaying) {
       const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000)
       return () => clearTimeout(timer)
     } else if (timeLeft === 0) {
-      setGameActive(false)
+      gameOver()
     }
-  }, [timeLeft, gameActive])
+  }, [timeLeft, isPlaying, gameOver])
 
   const handleTargetClick = (id: number) => {
     setTargets(targets.filter((t) => t.id !== id))
@@ -47,8 +50,25 @@ export default function ReflexTapper() {
     setTargets([])
     setScore(0)
     setTimeLeft(20)
-    setGameActive(true)
+    reset()
+    start()
   }
+
+  // Add pause/resume keyboard handler
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "p" || e.key === "P" || e.key === "Escape") {
+        if (isPlaying) {
+          pause()
+        } else if (!isGameOver) {
+          resume()
+        }
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [isPlaying, isGameOver, pause, resume])
 
   return (
     <div className="w-full h-full bg-gradient-to-br from-orange-950 to-zinc-950 flex flex-col items-center justify-center relative overflow-hidden">
@@ -88,7 +108,7 @@ export default function ReflexTapper() {
 
       {/* Game Over */}
       <GameOverModal
-        isOpen={!gameActive}
+        isOpen={isGameOver}
         title="Time Up!"
         score={score}
         scoreLabel="Final Score"
