@@ -4,6 +4,7 @@ import type React from "react"
 
 import { useState, useEffect, useCallback, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { StatsBar, GameOverModal } from "@/components/games/shared"
 
 // Tetromino shapes (4x4 grid representation)
 const SHAPES = {
@@ -446,20 +447,15 @@ export default function Tetris() {
       onTouchEnd={handleTouchEnd}
     >
       {/* Stats Bar */}
-      <div className="w-full max-w-md mb-4 flex justify-between items-center text-white">
-        <div className="text-center">
-          <div className="text-xs text-zinc-400">Score</div>
-          <div className="text-xl font-bold text-emerald-400">{score}</div>
-        </div>
-        <div className="text-center">
-          <div className="text-xs text-zinc-400">Level</div>
-          <div className="text-xl font-bold text-purple-400">{level}</div>
-        </div>
-        <div className="text-center">
-          <div className="text-xs text-zinc-400">Lines</div>
-          <div className="text-xl font-bold text-cyan-400">{linesCleared}</div>
-        </div>
-      </div>
+      <StatsBar
+        stats={[
+          { label: "Score", value: score, color: "emerald", size: "simple" },
+          { label: "Level", value: level, color: "purple", size: "simple" },
+          { label: "Lines", value: linesCleared, color: "cyan", size: "simple" },
+        ]}
+        layout="inline"
+        className="w-full max-w-md mb-4 text-white"
+      />
 
       {/* Main Game Area */}
       <div className="flex gap-4 items-start">
@@ -522,29 +518,19 @@ export default function Tetris() {
       </AnimatePresence>
 
       {/* Game Over Overlay */}
-      <AnimatePresence>
-        {gameState === "gameOver" && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="fixed inset-0 bg-black/90 flex items-center justify-center"
-          >
-            <div className="bg-zinc-900 p-8 rounded-xl border border-zinc-700 text-center">
-              <div className="text-red-500 text-3xl font-bold mb-4">Game Over</div>
-              <div className="text-white mb-2">Final Score: {score}</div>
-              <div className="text-zinc-400 mb-6">
-                Level {level} • {linesCleared} lines
-              </div>
-              <button
-                onClick={handleRestart}
-                className="px-6 py-3 bg-purple-600 hover:bg-purple-500 text-white rounded-lg font-medium"
-              >
-                Play Again
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <GameOverModal
+        isOpen={gameState === "gameOver"}
+        title="Game Over"
+        score={score}
+        accentColor="red"
+        onPlayAgain={handleRestart}
+        additionalContent={
+          <div className="text-zinc-400 mb-6">
+            Level {level} • {linesCleared} lines
+          </div>
+        }
+        buttonText="Play Again"
+      />
     </div>
   )
 }

@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
+import { StatsBar, GameOverModal } from "@/components/games/shared"
 
 const EMOJIS = ["🎮", "🎯", "🎲", "🎪", "🎨", "🎭", "🎸", "🎺"]
 
@@ -66,12 +67,11 @@ export default function MemoryMatch() {
   return (
     <div className="w-full h-full bg-gradient-to-br from-purple-950 to-zinc-950 flex flex-col items-center justify-center p-8 relative overflow-hidden">
       {/* Stats */}
-      <div className="absolute top-6 left-0 right-0 flex justify-center z-10">
-        <div className="bg-zinc-900/90 backdrop-blur-sm border border-zinc-800 rounded-2xl px-6 py-3">
-          <div className="text-xs text-zinc-500 uppercase font-bold tracking-wider">Moves</div>
-          <div className="text-3xl font-black text-purple-400">{moves}</div>
-        </div>
-      </div>
+      <StatsBar
+        stats={[{ label: "Moves", value: moves, color: "purple" }]}
+        layout="absolute"
+        position="top"
+      />
 
       {/* Card Grid */}
       <div className="grid grid-cols-4 gap-4 max-w-lg">
@@ -93,31 +93,14 @@ export default function MemoryMatch() {
       </div>
 
       {/* Win Modal */}
-      <AnimatePresence>
-        {gameWon && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="absolute inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-20"
-          >
-            <motion.div
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              className="bg-zinc-900 border-2 border-purple-500 rounded-3xl p-10 text-center"
-            >
-              <h2 className="text-5xl font-black text-purple-400 mb-4">Victory!</h2>
-              <div className="text-6xl font-black text-white mb-6">{moves}</div>
-              <p className="text-zinc-400 mb-8">Moves to complete</p>
-              <button
-                onClick={initializeGame}
-                className="bg-purple-500 hover:bg-purple-600 text-white font-black py-4 px-8 rounded-xl text-lg transition-colors"
-              >
-                Play Again
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <GameOverModal
+        isOpen={gameWon}
+        title="Victory!"
+        score={moves}
+        scoreLabel="Moves to complete"
+        accentColor="purple"
+        onPlayAgain={initializeGame}
+      />
     </div>
   )
 }

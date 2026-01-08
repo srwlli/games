@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { StatsBar } from "@/components/games/shared"
 
 interface Stick {
   id: number
@@ -75,22 +76,15 @@ export default function PickUpSticks() {
 
   return (
     <div className="w-full h-full bg-gradient-to-br from-emerald-950 to-zinc-950 flex flex-col items-center justify-between p-6 relative overflow-hidden">
-      <div className="w-full flex justify-between items-start z-10 gap-4">
-        <div className="bg-zinc-900/90 backdrop-blur-sm border border-zinc-800 rounded-2xl px-4 py-2 flex-1">
-          <div className="text-xs text-zinc-500 uppercase font-bold tracking-wider">Level</div>
-          <div className="text-2xl font-black text-emerald-400">{level}</div>
-        </div>
-        <div className="bg-zinc-900/90 backdrop-blur-sm border border-zinc-800 rounded-2xl px-4 py-2 flex-1">
-          <div className="text-xs text-zinc-500 uppercase font-bold tracking-wider">Score</div>
-          <div className="text-2xl font-black text-white">{score}</div>
-        </div>
-        <div className="bg-zinc-900/90 backdrop-blur-sm border border-zinc-800 rounded-2xl px-4 py-2 flex-1">
-          <div className="text-xs text-zinc-500 uppercase font-bold tracking-wider">Target</div>
-          <div className="text-2xl font-black text-amber-400">
-            {picked}/{targetCount}
-          </div>
-        </div>
-      </div>
+      <StatsBar
+        stats={[
+          { label: "Level", value: level, color: "emerald", size: "compact" },
+          { label: "Score", value: score, color: "white", size: "compact" },
+          { label: "Target", value: `${picked}/${targetCount}`, color: "amber", size: "compact" },
+        ]}
+        layout="flex"
+        className="w-full flex justify-between items-start z-10 gap-4"
+      />
 
       <div className="absolute top-32 left-0 right-0 flex justify-center z-20">
         <AnimatePresence mode="wait">
