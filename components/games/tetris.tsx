@@ -117,7 +117,7 @@ export default function Tetris() {
   const [level, setLevel] = useState(1)
   const [linesCleared, setLinesCleared] = useState(0)
   const { state: gameState, isPlaying, isPaused, isGameOver, pause, resume, gameOver, reset, start } = useGameState({
-    initialState: "playing",
+    initialState: "idle",
   })
   const [fallSpeed, setFallSpeed] = useState(INITIAL_FALL_SPEED)
   const [showLevelUp, setShowLevelUp] = useState(false)
@@ -279,6 +279,15 @@ export default function Tetris() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Handle idle state - allow Enter or Space to start
+      if (gameState === "idle") {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault()
+          start()
+        }
+        return
+      }
+
       if (!isPlaying) {
         if (e.key === "Enter" && isGameOver) {
           handleRestart()
@@ -330,7 +339,7 @@ export default function Tetris() {
 
     window.addEventListener("keydown", handleKeyDown)
     return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [isPlaying, isPaused, isGameOver, moveHorizontal, moveDown, handleRotate, hardDrop, handleRestart, togglePause, resume])
+  }, [gameState, isPlaying, isPaused, isGameOver, moveHorizontal, moveDown, handleRotate, hardDrop, handleRestart, togglePause, resume, start])
 
   // Touch handlers
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -506,6 +515,38 @@ export default function Tetris() {
             className="fixed inset-0 flex items-center justify-center pointer-events-none"
           >
             <div className="bg-purple-500 text-white px-8 py-4 rounded-xl text-2xl font-bold">Level {level}!</div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Start Screen (Idle State) */}
+      <AnimatePresence>
+        {gameState === "idle" && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 rounded-2xl"
+          >
+            <div className="text-center p-8 bg-zinc-900 border-2 border-purple-500/50 rounded-3xl max-w-sm w-full">
+              <h2 className="text-4xl font-black text-white mb-2 tracking-tighter">TETRIS</h2>
+              <p className="text-zinc-400 mb-8">Ready to clear some lines?</p>
+
+              <button
+                onClick={start}
+                className="w-full py-4 bg-purple-500 hover:bg-purple-600 text-white font-black rounded-xl transition-all mb-6 shadow-lg shadow-purple-500/20"
+              >
+                START GAME
+              </button>
+
+              <div className="text-xs text-zinc-500 uppercase tracking-widest font-bold border-t border-zinc-800 pt-6">
+                Controls
+              </div>
+              <div className="mt-2 text-xs text-zinc-400 space-y-1">
+                <div>Arrows / WASD to Move & Rotate</div>
+                <div>Space for Hard Drop • P to Pause</div>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
