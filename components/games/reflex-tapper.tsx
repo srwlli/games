@@ -1,45 +1,38 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { StatsBar, GameOverModal } from "@/components/games/shared"
 import { useGameState } from "@/hooks/use-game-state"
+import { useInterval } from "@/hooks/use-interval"
+import { useCountdown } from "@/hooks/use-countdown"
 
 export default function ReflexTapper() {
   const [targets, setTargets] = useState<Array<{ id: number; x: number; y: number }>>([])
   const [score, setScore] = useState(0)
-  const [timeLeft, setTimeLeft] = useState(20)
   const { isPlaying, isGameOver, pause, resume, gameOver, reset, start } = useGameState({
     initialState: "playing",
   })
 
-  useEffect(() => {
-    if (!isPlaying) return
+  // Countdown timer - automatically pauses/resumes with game state
+  const { timeLeft, reset: resetTimer } = useCountdown(20, () => gameOver(), isPlaying)
 
-    const spawnInterval = setInterval(() => {
-      const newTarget = {
-        id: Date.now(),
-        x: Math.random() * 80 + 10,
-        y: Math.random() * 70 + 15,
-      }
-      setTargets((prev) => [...prev, newTarget])
-
-      setTimeout(() => {
-        setTargets((prev) => prev.filter((t) => t.id !== newTarget.id))
-      }, 1500)
-    }, 800)
-
-    return () => clearInterval(spawnInterval)
-  }, [isPlaying])
-
-  useEffect(() => {
-    if (timeLeft > 0 && isPlaying) {
-      const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000)
-      return () => clearTimeout(timer)
-    } else if (timeLeft === 0) {
-      gameOver()
+  // Spawn targets at interval - automatically pauses/resumes with game state
+  const spawnTarget = useCallback(() => {
+    const newTarget = {
+      id: Date.now(),
+      x: Math.random() * 80 + 10,
+      y: Math.random() * 70 + 15,
     }
-  }, [timeLeft, isPlaying, gameOver])
+    setTargets((prev) => [...prev, newTarget])
+
+    // Target lifetime - remove after 1500ms (kept as setTimeout since it's per-target)
+    setTimeout(() => {
+      setTargets((prev) => prev.filter((t) => t.id !== newTarget.id))
+    }, 1500)
+  }, [])
+
+  useInterval(spawnTarget, 800, isPlaying)
 
   const handleTargetClick = (id: number) => {
     setTargets(targets.filter((t) => t.id !== id))
@@ -49,7 +42,7 @@ export default function ReflexTapper() {
   const resetGame = () => {
     setTargets([])
     setScore(0)
-    setTimeLeft(20)
+    resetTimer(20) // Reset countdown to 20 seconds
     reset()
     start()
   }

@@ -6,6 +6,8 @@ import { useState, useEffect, useCallback, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { StatsBar, GameOverModal } from "@/components/games/shared"
 import { useGameState } from "@/hooks/use-game-state"
+import { useInterval } from "@/hooks/use-interval"
+import { useDelayedAction } from "@/hooks/use-delayed-action"
 
 // Tetromino shapes (4x4 grid representation)
 const SHAPES = {
@@ -188,7 +190,6 @@ export default function Tetris() {
           setLevel(newLevel)
           setFallSpeed(Math.max(100, INITIAL_FALL_SPEED - (newLevel - 1) * 100))
           setShowLevelUp(true)
-          setTimeout(() => setShowLevelUp(false), 2000)
         }
         return newTotal
       })
@@ -364,15 +365,13 @@ export default function Tetris() {
     touchStartRef.current = null
   }
 
-  // Game loop
-  useEffect(() => {
-    if (isPlaying) {
-      gameLoopRef.current = setInterval(moveDown, fallSpeed)
-      return () => {
-        if (gameLoopRef.current) clearInterval(gameLoopRef.current)
-      }
-    }
-  }, [moveDown, fallSpeed, isPlaying])
+  // Game loop - automatically pauses/resumes with game state
+  useInterval(moveDown, fallSpeed, isPlaying)
+
+  // Level up animation - hide after 2 seconds
+  useDelayedAction(() => {
+    setShowLevelUp(false)
+  }, 2000, showLevelUp)
 
   // Render board with current piece
   const renderBoard = () => {

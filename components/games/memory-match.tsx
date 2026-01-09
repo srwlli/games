@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react"
 import { motion } from "framer-motion"
 import { StatsBar, GameOverModal } from "@/components/games/shared"
 import { useGameState } from "@/hooks/use-game-state"
+import { useDelayedAction } from "@/hooks/use-delayed-action"
 
 const EMOJIS = ["🎮", "🎯", "🎲", "🎪", "🎨", "🎭", "🎸", "🎺"]
 
@@ -11,6 +12,7 @@ export default function MemoryMatch() {
   const [cards, setCards] = useState<Array<{ id: number; emoji: string; flipped: boolean; matched: boolean }>>([])
   const [flippedCards, setFlippedCards] = useState<number[]>([])
   const [moves, setMoves] = useState(0)
+  const [shouldCheckMatch, setShouldCheckMatch] = useState(false)
   const { isPlaying, isGameOver, pause, resume, reset, start, gameOver } = useGameState({
     initialState: "playing",
   })
@@ -48,25 +50,35 @@ export default function MemoryMatch() {
 
     if (newFlipped.length === 2) {
       setMoves(moves + 1)
-
-      setTimeout(() => {
-        const [first, second] = newFlipped
-        if (cards[first].emoji === cards[second].emoji) {
-          newCards[first].matched = true
-          newCards[second].matched = true
-
-          if (newCards.every((card) => card.matched)) {
-            gameOver()
-          }
-        } else {
-          newCards[first].flipped = false
-          newCards[second].flipped = false
-        }
-        setCards([...newCards])
-        setFlippedCards([])
-      }, 800)
+      setShouldCheckMatch(true) // Trigger delayed match check
     }
   }
+
+  // Delayed match check - automatically handles cleanup
+  useDelayedAction(
+    () => {
+      const [first, second] = flippedCards
+      const newCards = [...cards]
+      
+      if (cards[first]?.emoji === cards[second]?.emoji) {
+        newCards[first].matched = true
+        newCards[second].matched = true
+
+        if (newCards.every((card) => card.matched)) {
+          gameOver()
+        }
+      } else {
+        newCards[first].flipped = false
+        newCards[second].flipped = false
+      }
+      
+      setCards(newCards)
+      setFlippedCards([])
+      setShouldCheckMatch(false)
+    },
+    800,
+    shouldCheckMatch,
+  )
 
   // Add pause/resume keyboard handler
   useEffect(() => {

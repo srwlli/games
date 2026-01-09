@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { StatsBar } from "@/components/games/shared"
 import { useGameState } from "@/hooks/use-game-state"
+import { useDelayedAction } from "@/hooks/use-delayed-action"
 
 interface Stick {
   id: number
@@ -20,6 +21,7 @@ export default function PickUpSticks() {
     initialState: "playing",
   })
   const [message, setMessage] = useState("")
+  const [shouldLevelUp, setShouldLevelUp] = useState(false)
 
   const initializeSticks = (count: number) => {
     const colors = [
@@ -51,20 +53,28 @@ export default function PickUpSticks() {
       const pointsEarned = level * 50
       setScore(score + pointsEarned)
       setMessage(`+${pointsEarned} points!`)
-
-      setTimeout(() => {
-        const nextLevel = level + 1
-        setLevel(nextLevel)
-        const nextStickCount = 12 + nextLevel * 2
-        const nextTarget = Math.min(5 + nextLevel, nextStickCount - 2)
-        setSticks(initializeSticks(nextStickCount))
-        setTargetCount(nextTarget)
-        setPicked(0)
-        setMessage("")
-      }, 1500)
+      setShouldLevelUp(true) // Trigger delayed level up
     } else if (newPicked < targetCount) {
       setMessage(`${targetCount - newPicked} more to go!`)
     }
+  }
+
+  // Delayed level up - automatically handles cleanup
+  useDelayedAction(
+    () => {
+      const nextLevel = level + 1
+      setLevel(nextLevel)
+      const nextStickCount = 12 + nextLevel * 2
+      const nextTarget = Math.min(5 + nextLevel, nextStickCount - 2)
+      setSticks(initializeSticks(nextStickCount))
+      setTargetCount(nextTarget)
+      setPicked(0)
+      setMessage("")
+      setShouldLevelUp(false)
+    },
+    1500,
+    shouldLevelUp,
+  )
   }
 
   const resetGame = () => {
