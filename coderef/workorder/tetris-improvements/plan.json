@@ -1,0 +1,296 @@
+{
+  "META_DOCUMENTATION": {
+    "feature_name": "tetris-improvements",
+    "workorder_id": "WO-TETRIS-IMPROVEMENTS-001",
+    "version": "1.0.0",
+    "status": "planning",
+    "generated_by": "PlanningGenerator",
+    "has_context": true,
+    "has_analysis": true,
+    "uds": {
+      "generated_by": "coderef-workflow v2.0.0",
+      "document_type": "Implementation Plan",
+      "last_updated": "2026-01-11",
+      "ai_assistance": true,
+      "next_review": "2026-02-10"
+    }
+  },
+  "UNIVERSAL_PLANNING_STRUCTURE": {
+    "0_preparation": {},
+    "1_executive_summary": {
+      "purpose": "Comprehensive Tetris game improvements addressing 18 prioritized enhancements including lock delay (Infinity mechanic), engine extraction, wall kicks, memoized rendering, semantic models, interval stabilization, deterministic locking, visual feedback, accessibility, mobile controls, and various polish features.",
+      "value_proposition": "Transform the existing Tetris implementation into a modern, performant, accessible, and polished game by implementing all 18 prioritized improvements from the consolidated analysis, with focus on engine architecture, rendering optimization, and modern Tetris mechanics.",
+      "real_world_analogy": "Similar to building tetris-improvements - systematically implementing each requirement to deliver complete functionality",
+      "use_case": "User requests tetris-improvements \u2192 System implements: Implement Lock Delay (Infinity mechanic) - 300-700ms grace period before locking, Extract game engine from UI into dedicated hook/module (useTetrisEngine/tetrisEngine.ts), Implement Wall Kicks (SRS-Lite rotation) with offset attempts on collision \u2192 Feature is functional",
+      "output": "Implemented 18 requirements: Implement Lock Delay (Infinity mechanic) - 300-700ms grace period before locking, Extract game engine from UI into dedicated hook/module (useTetrisEngine/tetrisEngine.ts), Implement Wall Kicks (SRS-Lite rotation) with offset attempts on collision"
+    },
+    "2_risk_assessment": {
+      "overall_risk": "medium",
+      "complexity": "high (estimated 15+ files, 1000+ lines)",
+      "scope": "Estimated 18 requirements affecting multiple components",
+      "file_system_risk": "low (standard code changes only)",
+      "dependencies": [
+        "Must maintain existing game functionality during refactoring",
+        "No breaking changes to game API or component interfaces",
+        "Must preserve all existing features (hybrid input controls, ghost piece, core loop, difficulty system, UX overlays)",
+        "Performance optimizations must not degrade user experience",
+        "Accessibility improvements must follow WCAG guidelines"
+      ],
+      "performance_concerns": [
+        "No significant performance concerns identified - monitor during implementation"
+      ],
+      "security_considerations": [
+        "Follow existing security patterns - review during implementation"
+      ],
+      "breaking_changes": "none (extending existing functionality)"
+    },
+    "3_current_state_analysis": {
+      "affected_files": [
+        "Identify during implementation based on feature scope"
+      ],
+      "dependencies": {
+        "existing_internal": [
+          "Existing modules and components - identify during implementation"
+        ],
+        "existing_external": [],
+        "new_external": [],
+        "new_internal": []
+      },
+      "architecture_context": "Follows existing patterns: Standard implementation patterns"
+    },
+    "4_key_features": {
+      "primary_features": [
+        "Implement Lock Delay (Infinity mechanic) - 300-700ms grace period before locking",
+        "Extract game engine from UI into dedicated hook/module (useTetrisEngine/tetrisEngine.ts)",
+        "Implement Wall Kicks (SRS-Lite rotation) with offset attempts on collision",
+        "Memoize and componentize board rendering with React.memo for cells/rows",
+        "Strengthen TypeScript models - use semantic cell values (IDs/enums) instead of CSS strings"
+      ],
+      "secondary_features": [
+        "Stabilize interval/input logic using refs or reducer to avoid stale closures",
+        "Replace setTimeout in hardDrop with deterministic locking",
+        "Add line-clear and hard-drop visual feedback animations",
+        "Accessibility improvements: ARIA labels, focus trap, prefers-reduced-motion support",
+        "On-screen controls for mobile (D-pad/buttons) for precision alongside gestures",
+        "Optimize ghost piece computation with memoization",
+        "Centralize configuration and scoring rules in single config",
+        "Touch responsiveness enhancements with continuous touchmove handling",
+        "Add gameplay depth: hold piece and score popups",
+        "Sound effects for key actions (rotate, lock, clear, level up, game over)",
+        "Visual clarity tweaks: improve ghost contrast/borders and next-piece preview centering",
+        "Collision and data micro-optimizations: precompute bounds/occupied cells",
+        "Remove dead code and tighten imports"
+      ],
+      "edge_case_handling": [
+        "Empty or null input validation",
+        "Invalid input error handling",
+        "Boundary conditions and limits"
+      ],
+      "configuration_options": [
+        "None"
+      ]
+    },
+    "5_task_id_system": {
+      "tasks": [
+        "SETUP-001: Create initial project structure and setup development environment with required dependencies",
+        "LOGIC-001: Implement Implement Lock Delay (Infinity mechanic) - 300-700ms grace period before locking following existing project patterns and architecture",
+        "LOGIC-002: Implement Extract game engine from UI into dedicated hook/module (useTetrisEngine/tetrisEngine.ts) following existing project patterns and architecture",
+        "LOGIC-003: Implement Implement Wall Kicks (SRS-Lite rotation) with offset attempts on collision following existing project patterns and architecture",
+        "LOGIC-004: Implement Memoize and componentize board rendering with React.memo for cells/rows following existing project patterns and architecture",
+        "LOGIC-005: Implement Strengthen TypeScript models - use semantic cell values (IDs/enums) instead of CSS strings following existing project patterns and architecture",
+        "TEST-001: Write unit tests for all new functionality with minimum 80% code coverage",
+        "TEST-002: Write integration tests to verify end-to-end functionality and component interactions",
+        "DOC-001: Update documentation including README, API docs, and inline code comments for all public interfaces"
+      ]
+    },
+    "6_implementation_phases": {
+      "phases": [
+        {
+          "phase": 1,
+          "name": "Phase 1: Foundation",
+          "description": "Setup and scaffolding - create initial structure, install dependencies, configure environment",
+          "tasks": [
+            "SETUP-001"
+          ],
+          "deliverables": [
+            "All files exist",
+            "Dependencies installed",
+            "Environment configured"
+          ]
+        },
+        {
+          "phase": 2,
+          "name": "Phase 2: Core Implementation",
+          "description": "Implement primary features and business logic following existing patterns",
+          "tasks": [
+            "LOGIC-001"
+          ],
+          "deliverables": [
+            "Happy path works end-to-end",
+            "Core functionality complete"
+          ]
+        },
+        {
+          "phase": 3,
+          "name": "Phase 3: Testing",
+          "description": "Comprehensive testing at unit, integration, and end-to-end levels",
+          "tasks": [
+            "TEST-001"
+          ],
+          "deliverables": [
+            "All tests passing",
+            "Coverage meets requirements"
+          ]
+        },
+        {
+          "phase": 4,
+          "name": "Phase 4: Documentation",
+          "description": "Complete documentation for users and developers",
+          "tasks": [
+            "DOC-001"
+          ],
+          "deliverables": [
+            "All documentation complete",
+            "Examples provided"
+          ]
+        }
+      ]
+    },
+    "7_testing_strategy": {
+      "unit_tests": [
+        "Test individual functions and methods in isolation",
+        "Verify input validation and error handling",
+        "Test edge cases and boundary conditions",
+        "Achieve minimum 80% code coverage"
+      ],
+      "integration_tests": [
+        "Test component interactions and data flow",
+        "Verify end-to-end functionality",
+        "Test integration with existing systems"
+      ],
+      "end_to_end_tests": [
+        "Not applicable"
+      ],
+      "edge_case_scenarios": [
+        {
+          "scenario": "Empty or null input provided",
+          "setup": "Call function with None or empty string",
+          "expected_behavior": "Function validates input and returns appropriate error",
+          "verification": "Assert error message and status code",
+          "error_handling": "ValueError or ValidationError"
+        },
+        {
+          "scenario": "Invalid input format provided",
+          "setup": "Call function with malformed or incorrect data type",
+          "expected_behavior": "Function validates input type and returns error",
+          "verification": "Assert error message indicates invalid format",
+          "error_handling": "TypeError or ValidationError"
+        },
+        {
+          "scenario": "Boundary conditions at limits",
+          "setup": "Test with minimum and maximum allowed values",
+          "expected_behavior": "Function handles boundary values correctly",
+          "verification": "Assert results are within expected range",
+          "error_handling": "No error expected for valid boundaries"
+        }
+      ]
+    },
+    "8_success_criteria": {
+      "functional_requirements": [
+        {
+          "requirement": "Feature implementation complete",
+          "metric": "All requirements implemented",
+          "target": "100% of specified requirements",
+          "validation": "Manual verification against requirements list"
+        },
+        {
+          "requirement": "Integration successful",
+          "metric": "Feature works with existing system",
+          "target": "No breaking changes to existing functionality",
+          "validation": "Run full test suite"
+        },
+        {
+          "requirement": "Implement Lock Delay (Infinity mechanic) - 300-700ms grace period before locking",
+          "metric": "Functionality verified",
+          "target": "Works as specified",
+          "validation": "Test cases for: Implement Lock Delay (Infinity mechanic) - 300-700ms grace period before locking"
+        },
+        {
+          "requirement": "Extract game engine from UI into dedicated hook/module (useTetrisEngine/tetrisEngine.ts)",
+          "metric": "Functionality verified",
+          "target": "Works as specified",
+          "validation": "Test cases for: Extract game engine from UI into dedicated hook/module (useTetrisEngine/tetrisEngine.ts)"
+        },
+        {
+          "requirement": "Implement Wall Kicks (SRS-Lite rotation) with offset attempts on collision",
+          "metric": "Functionality verified",
+          "target": "Works as specified",
+          "validation": "Test cases for: Implement Wall Kicks (SRS-Lite rotation) with offset attempts on collision"
+        }
+      ],
+      "quality_requirements": [
+        {
+          "requirement": "Code coverage",
+          "metric": "Line coverage",
+          "target": ">80%",
+          "validation": "Run coverage tool"
+        },
+        {
+          "requirement": "Code quality",
+          "metric": "Linter passes",
+          "target": "Zero linting errors",
+          "validation": "Run linter"
+        },
+        {
+          "requirement": "Type safety",
+          "metric": "Type checker passes",
+          "target": "Zero type errors",
+          "validation": "Run type checker"
+        }
+      ],
+      "performance_requirements": [
+        {
+          "requirement": "Response time",
+          "metric": "Execution time",
+          "target": "< 1 second for typical operations",
+          "validation": "Performance tests"
+        }
+      ],
+      "security_requirements": [
+        {
+          "requirement": "Input validation",
+          "metric": "All inputs validated",
+          "target": "100% validation coverage",
+          "validation": "Security review"
+        }
+      ]
+    },
+    "9_implementation_checklist": {
+      "pre_implementation": [
+        "\u2610 Review complete plan for gaps or ambiguities",
+        "\u2610 Verify all requirements are clear and testable",
+        "\u2610 Set up development environment with required dependencies"
+      ],
+      "phase_1": [
+        "\u2610 SETUP-001: Create initial project structure and setup development environment with required dependencies"
+      ],
+      "phase_2": [
+        "\u2610 LOGIC-001: Implement core feature functionality following existing project patterns and architecture"
+      ],
+      "phase_3": [
+        "\u2610 TEST-001: Write unit tests for all new functionality with minimum 80% code coverage",
+        "\u2610 TEST-002: Write integration tests to verify end-to-end functionality and component interactions"
+      ],
+      "phase_4": [
+        "\u2610 DOC-001: Update documentation including README, API docs, and inline code comments for all public interfaces"
+      ],
+      "finalization": [
+        "\u2610 All tests passing (unit + integration)",
+        "\u2610 Code review completed and approved",
+        "\u2610 Documentation updated and complete",
+        "\u2610 Changelog entry created with version bump",
+        "\u2610 Final verification against success criteria"
+      ]
+    }
+  }
+}

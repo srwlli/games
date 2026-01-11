@@ -1,0 +1,159 @@
+{
+  "foundation_docs": {
+    "available": [
+      "README.md (root)",
+      "API.md (coderef/foundation-docs)",
+      "ARCHITECTURE.md (coderef/foundation-docs)",
+      "COMPONENTS.md (coderef/foundation-docs)",
+      "SCHEMA.md (coderef/foundation-docs)"
+    ],
+    "missing": [
+      "USER-GUIDE.md"
+    ]
+  },
+  "foundation_doc_content": {
+    "ARCHITECTURE.md": {
+      "location": "coderef\\foundation-docs",
+      "preview": "# Architecture Documentation\n\n## Module Dependency Graph\n\n*Auto-scan attempted but failed. Check that:*\n- *Node.js is installed*\n- *CODEREF_CLI_PATH environment variable is set correctly*\n- *The coderef CLI is built (`pnpm build` in cli directory)*\n\n## Code Patterns\n\n## Recent Activity\n\n\n*Generated: 2026-01-08T17:26:14.341742*",
+      "headers": [
+        "Architecture Documentation",
+        "Module Dependency Graph",
+        "Code Patterns",
+        "Recent Activity"
+      ],
+      "size": 328
+    },
+    "API.md": {
+      "location": "coderef\\foundation-docs",
+      "preview": "# API Documentation\n\n## Overview\n\n- **Framework:** Unknown\n- **Authentication:** Unknown\n- **Error Format:** Unknown\n- **Total Endpoints:** 0\n\n## Endpoints\n\n*No API endpoints detected.*\n\n## Authentication\n\n*Authentication method not detected.*\n\n## Error Handling\n\n*Error format not detected.*\n\n*Generated: 2026-01-08T17:26:14.348493*",
+      "headers": [
+        "API Documentation",
+        "Overview",
+        "Endpoints",
+        "Authentication",
+        "Error Handling"
+      ],
+      "size": 333
+    },
+    "COMPONENTS.md": {
+      "location": "coderef\\foundation-docs",
+      "preview": "# Project Components\n\n## Detected Components\n\n*Note: Run `coderef index` for comprehensive module analysis with relationships.*\n\n| Component | Path | Type |\n|-----------|------|------|\n| theme-provider | `components\\theme-provider.tsx` | tsx |\n| memory-match | `components\\games\\memory-match.tsx` | tsx |\n| pick-up-sticks | `components\\games\\pick-up-sticks.tsx` | tsx |\n| reflex-tapper | `components\\games\\reflex-tapper.tsx` | tsx |\n| tetris | `components\\games\\tetris.tsx` | tsx |\n| accordion | `com",
+      "headers": [
+        "Project Components",
+        "Detected Components"
+      ],
+      "size": 1798
+    },
+    "SCHEMA.md": {
+      "location": "coderef\\foundation-docs",
+      "preview": "# Schema Documentation\n\n*No database models detected.*\n\n\n*Generated: 2026-01-08T17:26:14.342387*",
+      "headers": [
+        "Schema Documentation"
+      ],
+      "size": 96
+    },
+    "README.md": {
+      "location": "root",
+      "preview": "# games\n\n## Overview\n\n<!-- AGENT: Describe what this project does -->\n\n## Quick Stats\n\n| Metric | Value |\n|--------|-------|\n| Dependencies | 60 |\n\n## Quick Start\n\n<!-- AGENT: Installation and usage instructions -->\n\n## Documentation\n\n- [API Reference](coderef/foundation-docs/API.md)\n- [Architecture](coderef/foundation-docs/ARCHITECTURE.md)\n- [Components](coderef/foundation-docs/COMPONENTS.md)\n- [Schema](coderef/foundation-docs/SCHEMA.md)\n\n---\n\n*Generated: 2026-01-08T17:26:14.340859*",
+      "headers": [
+        "games",
+        "Overview",
+        "Quick Stats",
+        "Quick Start",
+        "Documentation"
+      ],
+      "size": 488
+    }
+  },
+  "inventory_data": {
+    "available": [],
+    "missing": [
+      "Run /quick-inventory to generate inventory data"
+    ]
+  },
+  "coding_standards": {
+    "available": [],
+    "missing": [
+      "BEHAVIOR-STANDARDS.md",
+      "COMPONENT-PATTERN.md",
+      "UI-STANDARDS.md",
+      "UX-PATTERNS.md",
+      "COMPONENT-INDEX.md"
+    ]
+  },
+  "reference_components": {
+    "primary": null,
+    "secondary": [],
+    "total_found": 0,
+    "note": "Using fallback - coderef tools unavailable"
+  },
+  "key_patterns_identified": [],
+  "technology_stack": {
+    "language": "JavaScript/TypeScript",
+    "framework": "React",
+    "database": "unknown",
+    "testing": "unknown",
+    "build": "npm scripts"
+  },
+  "project_structure": {
+    "main_directories": [
+      "mini-game-creation",
+      "components\\ui"
+    ],
+    "file_counts": {
+      "components\\ui": 57,
+      "mini-game-creation": 10,
+      "public": 9,
+      "hooks": 6,
+      ".coderef": 5,
+      "coderef\\foundation-docs": 5,
+      "components\\games": 5,
+      ".coderef\\diagrams": 4,
+      ".coderef\\reports": 4,
+      "app": 3
+    },
+    "organization_pattern": "component-based"
+  },
+  "gaps_and_risks": [
+    "Low test coverage: 0% (target: \u226580%)",
+    "Missing foundation docs: USER-GUIDE.md",
+    "No coding standards directory found (coderef/standards/)",
+    "No test directory found (tests/, test/, or __tests__/)",
+    "No CI configuration found (.github/workflows/, .gitlab-ci.yml, etc.)"
+  ],
+  "dependency_analysis": null,
+  "impact_analysis": null,
+  "complexity_analysis": null,
+  "architecture_diagram": null,
+  "telemetry_summary": {
+    "total_sources_used": 1,
+    "coderef_file_reads": {
+      "count": 1,
+      "percentage": 100.0,
+      "files": [
+        ".coderef/index.json"
+      ]
+    },
+    "mcp_tool_calls": {
+      "count": 0,
+      "success_count": 0,
+      "percentage": 0.0,
+      "tools": []
+    },
+    "foundation_doc_reads": {
+      "count": 0,
+      "percentage": 0.0,
+      "docs": []
+    }
+  },
+  "_uds": {
+    "generated_by": "coderef-workflow v2.0.0",
+    "document_type": "Project Analysis",
+    "workorder_id": "WO-TETRIS-IMPROVEMENTS-001",
+    "feature_id": "tetris-improvements",
+    "last_updated": "2026-01-11",
+    "ai_assistance": true,
+    "status": "DRAFT",
+    "next_review": "2026-02-10"
+  }
+}
