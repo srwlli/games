@@ -7,6 +7,7 @@ import PickUpSticks from "@/components/games/pick-up-sticks"
 import MemoryMatch from "@/components/games/memory-match"
 import ReflexTapper from "@/components/games/reflex-tapper"
 import Tetris from "@/components/games/tetris"
+import Fishing from "@/components/games/fishing"
 
 export const GAMES_REGISTRY = {
   "pick-up-sticks": {
@@ -44,5 +45,14 @@ export const GAMES_REGISTRY = {
     color: "bg-purple-500",
     component: Tetris,
     thumbnail: "🟦",
+  },
+  fishing: {
+    id: "fishing",
+    title: "Fishing Master",
+    description: "Catch fish using 5 different techniques.",
+    category: "Action",
+    color: "bg-cyan-500",
+    component: Fishing,
+    thumbnail: "🎣",
   },
 }

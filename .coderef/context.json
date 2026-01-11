@@ -1,0 +1,62 @@
+{
+  "version": "2.0.0",
+  "generatedAt": "2026-01-11T20:02:31.536Z",
+  "projectPath": "C:\\Users\\willh\\Desktop\\games",
+  "statistics": {
+    "totalElements": 541,
+    "totalFiles": 77,
+    "elementsByType": {
+      "component": 322,
+      "method": 145,
+      "function": 43,
+      "constant": 19,
+      "hook": 12
+    },
+    "filesByExtension": {
+      ".tsx": 503,
+      ".ts": 38
+    }
+  },
+  "topFiles": [
+    {
+      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+      "elementCount": 77
+    },
+    {
+      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
+      "elementCount": 43
+    },
+    {
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
+      "elementCount": 40
+    },
+    {
+      "file": "C:/Users/willh/Desktop/games/components/ui/chart.tsx",
+      "elementCount": 18
+    },
+    {
+      "file": "C:/Users/willh/Desktop/games/components/ui/menubar.tsx",
+      "elementCount": 16
+    },
+    {
+      "file": "C:/Users/willh/Desktop/games/components/ui/context-menu.tsx",
+      "elementCount": 15
+    },
+    {
+      "file": "C:/Users/willh/Desktop/games/components/ui/dropdown-menu.tsx",
+      "elementCount": 15
+    },
+    {
+      "file": "C:/Users/willh/Desktop/games/components/ui/field.tsx",
+      "elementCount": 14
+    },
+    {
+      "file": "C:/Users/willh/Desktop/games/components/ui/use-toast.ts",
+      "elementCount": 13
+    },
+    {
+      "file": "C:/Users/willh/Desktop/games/hooks/use-toast.ts",
+      "elementCount": 13
+    }
+  ]
+}

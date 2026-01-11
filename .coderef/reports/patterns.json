@@ -1,0 +1,641 @@
+{
+  "version": "2.0.0",
+  "generatedAt": "2026-01-11T20:02:31.547Z",
+  "projectPath": "C:\\Users\\willh\\Desktop\\games",
+  "patterns": {
+    "handlers": [
+      {
+        "type": "handler",
+        "name": "handleKeyDown",
+        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+        "line": 155
+      },
+      {
+        "type": "handler",
+        "name": "handleCast",
+        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+        "line": 355
+      },
+      {
+        "type": "handler",
+        "name": "handleRelease",
+        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+        "line": 361
+      },
+      {
+        "type": "handler",
+        "name": "handleReelStop",
+        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+        "line": 389
+      },
+      {
+        "type": "handler",
+        "name": "handleHold",
+        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+        "line": 596
+      },
+      {
+        "type": "handler",
+        "name": "handleRelease",
+        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+        "line": 600
+      },
+      {
+        "type": "handler",
+        "name": "handleKeyDown",
+        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+        "line": 722
+      },
+      {
+        "type": "handler",
+        "name": "handleJerk",
+        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+        "line": 739
+      },
+      {
+        "type": "handler",
+        "name": "handleMouseDown",
+        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+        "line": 984
+      },
+      {
+        "type": "handler",
+        "name": "handleMouseMove",
+        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+        "line": 994
+      },
+      {
+        "type": "handler",
+        "name": "handleMouseUp",
+        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+        "line": 1002
+      },
+      {
+        "type": "handler",
+        "name": "handlePromptSuccess",
+        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+        "line": 1162
+      },
+      {
+        "type": "handler",
+        "name": "handleTap",
+        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+        "line": 1184
+      },
+      {
+        "type": "handler",
+        "name": "handleTouchStart",
+        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+        "line": 1193
+      },
+      {
+        "type": "handler",
+        "name": "handleTouchEnd",
+        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+        "line": 1205
+      },
+      {
+        "type": "handler",
+        "name": "handleCardClick",
+        "file": "C:/Users/willh/Desktop/games/components/games/memory-match.tsx",
+        "line": 41
+      },
+      {
+        "type": "handler",
+        "name": "handleKeyDown",
+        "file": "C:/Users/willh/Desktop/games/components/games/memory-match.tsx",
+        "line": 85
+      },
+      {
+        "type": "handler",
+        "name": "handleStickClick",
+        "file": "C:/Users/willh/Desktop/games/components/games/pick-up-sticks.tsx",
+        "line": 45
+      },
+      {
+        "type": "handler",
+        "name": "handleKeyDown",
+        "file": "C:/Users/willh/Desktop/games/components/games/pick-up-sticks.tsx",
+        "line": 92
+      },
+      {
+        "type": "handler",
+        "name": "handleTargetClick",
+        "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
+        "line": 37
+      },
+      {
+        "type": "handler",
+        "name": "handleKeyDown",
+        "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
+        "line": 52
+      },
+      {
+        "type": "handler",
+        "name": "handleKeyDown",
+        "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
+        "line": 281
+      },
+      {
+        "type": "handler",
+        "name": "handleTouchStart",
+        "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
+        "line": 345
+      },
+      {
+        "type": "handler",
+        "name": "handleTouchEnd",
+        "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
+        "line": 350
+      },
+      {
+        "type": "handler",
+        "name": "handleKeyDown",
+        "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
+        "line": 98
+      },
+      {
+        "type": "handler",
+        "name": "onChange",
+        "file": "C:/Users/willh/Desktop/games/components/ui/use-mobile.tsx",
+        "line": 10
+      },
+      {
+        "type": "handler",
+        "name": "onChange",
+        "file": "C:/Users/willh/Desktop/games/hooks/use-mobile.ts",
+        "line": 10
+      }
+    ],
+    "decorators": [],
+    "errorPatterns": [
+      {
+        "type": "error-handling",
+        "name": "FieldError",
+        "file": "C:/Users/willh/Desktop/games/components/ui/field.tsx",
+        "line": 186
+      }
+    ],
+    "testPatterns": [
+      {
+        "type": "test",
+        "name": "switch",
+        "file": "C:/Users/willh/Desktop/games/components/games/shared/stats-bar.tsx",
+        "line": 89
+      },
+      {
+        "type": "test",
+        "name": "switch",
+        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+        "line": 137
+      },
+      {
+        "type": "test",
+        "name": "switch",
+        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+        "line": 518
+      },
+      {
+        "type": "test",
+        "name": "switch",
+        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+        "line": 917
+      },
+      {
+        "type": "test",
+        "name": "switch",
+        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+        "line": 1226
+      },
+      {
+        "type": "test",
+        "name": "initializeSticks",
+        "file": "C:/Users/willh/Desktop/games/components/games/pick-up-sticks.tsx",
+        "line": 26
+      },
+      {
+        "type": "test",
+        "name": "INITIAL_FALL_SPEED",
+        "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
+        "line": 81
+      },
+      {
+        "type": "test",
+        "name": "switch",
+        "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
+        "line": 301
+      },
+      {
+        "type": "test",
+        "name": "AccordionItem",
+        "file": "C:/Users/willh/Desktop/games/components/ui/accordion.tsx",
+        "line": 15
+      },
+      {
+        "type": "test",
+        "name": "AlertDialogTitle",
+        "file": "C:/Users/willh/Desktop/games/components/ui/alert-dialog.tsx",
+        "line": 95
+      },
+      {
+        "type": "test",
+        "name": "AlertTitle",
+        "file": "C:/Users/willh/Desktop/games/components/ui/alert.tsx",
+        "line": 37
+      },
+      {
+        "type": "test",
+        "name": "AspectRatio",
+        "file": "C:/Users/willh/Desktop/games/components/ui/aspect-ratio.tsx",
+        "line": 5
+      },
+      {
+        "type": "test",
+        "name": "BreadcrumbItem",
+        "file": "C:/Users/willh/Desktop/games/components/ui/breadcrumb.tsx",
+        "line": 24
+      },
+      {
+        "type": "test",
+        "name": "CardTitle",
+        "file": "C:/Users/willh/Desktop/games/components/ui/card.tsx",
+        "line": 31
+      },
+      {
+        "type": "test",
+        "name": "CarouselItem",
+        "file": "C:/Users/willh/Desktop/games/components/ui/carousel.tsx",
+        "line": 156
+      },
+      {
+        "type": "test",
+        "name": "CommandItem",
+        "file": "C:/Users/willh/Desktop/games/components/ui/command.tsx",
+        "line": 142
+      },
+      {
+        "type": "test",
+        "name": "ContextMenuItem",
+        "file": "C:/Users/willh/Desktop/games/components/ui/context-menu.tsx",
+        "line": 114
+      },
+      {
+        "type": "test",
+        "name": "ContextMenuCheckboxItem",
+        "file": "C:/Users/willh/Desktop/games/components/ui/context-menu.tsx",
+        "line": 137
+      },
+      {
+        "type": "test",
+        "name": "ContextMenuRadioItem",
+        "file": "C:/Users/willh/Desktop/games/components/ui/context-menu.tsx",
+        "line": 163
+      },
+      {
+        "type": "test",
+        "name": "DialogTitle",
+        "file": "C:/Users/willh/Desktop/games/components/ui/dialog.tsx",
+        "line": 106
+      },
+      {
+        "type": "test",
+        "name": "DrawerTitle",
+        "file": "C:/Users/willh/Desktop/games/components/ui/drawer.tsx",
+        "line": 98
+      },
+      {
+        "type": "test",
+        "name": "DropdownMenuItem",
+        "file": "C:/Users/willh/Desktop/games/components/ui/dropdown-menu.tsx",
+        "line": 62
+      },
+      {
+        "type": "test",
+        "name": "DropdownMenuCheckboxItem",
+        "file": "C:/Users/willh/Desktop/games/components/ui/dropdown-menu.tsx",
+        "line": 85
+      },
+      {
+        "type": "test",
+        "name": "DropdownMenuRadioItem",
+        "file": "C:/Users/willh/Desktop/games/components/ui/dropdown-menu.tsx",
+        "line": 122
+      },
+      {
+        "type": "test",
+        "name": "EmptyTitle",
+        "file": "C:/Users/willh/Desktop/games/components/ui/empty.tsx",
+        "line": 61
+      },
+      {
+        "type": "test",
+        "name": "FieldTitle",
+        "file": "C:/Users/willh/Desktop/games/components/ui/field.tsx",
+        "line": 128
+      },
+      {
+        "type": "test",
+        "name": "FormItem",
+        "file": "C:/Users/willh/Desktop/games/components/ui/form.tsx",
+        "line": 76
+      },
+      {
+        "type": "test",
+        "name": "FormItemContext",
+        "file": "C:/Users/willh/Desktop/games/components/ui/form.tsx",
+        "line": 72
+      },
+      {
+        "type": "test",
+        "name": "ItemGroup",
+        "file": "C:/Users/willh/Desktop/games/components/ui/item.tsx",
+        "line": 8
+      },
+      {
+        "type": "test",
+        "name": "ItemSeparator",
+        "file": "C:/Users/willh/Desktop/games/components/ui/item.tsx",
+        "line": 19
+      },
+      {
+        "type": "test",
+        "name": "Item",
+        "file": "C:/Users/willh/Desktop/games/components/ui/item.tsx",
+        "line": 54
+      },
+      {
+        "type": "test",
+        "name": "ItemMedia",
+        "file": "C:/Users/willh/Desktop/games/components/ui/item.tsx",
+        "line": 91
+      },
+      {
+        "type": "test",
+        "name": "ItemContent",
+        "file": "C:/Users/willh/Desktop/games/components/ui/item.tsx",
+        "line": 106
+      },
+      {
+        "type": "test",
+        "name": "ItemTitle",
+        "file": "C:/Users/willh/Desktop/games/components/ui/item.tsx",
+        "line": 119
+      },
+      {
+        "type": "test",
+        "name": "ItemDescription",
+        "file": "C:/Users/willh/Desktop/games/components/ui/item.tsx",
+        "line": 132
+      },
+      {
+        "type": "test",
+        "name": "ItemActions",
+        "file": "C:/Users/willh/Desktop/games/components/ui/item.tsx",
+        "line": 146
+      },
+      {
+        "type": "test",
+        "name": "ItemHeader",
+        "file": "C:/Users/willh/Desktop/games/components/ui/item.tsx",
+        "line": 156
+      },
+      {
+        "type": "test",
+        "name": "ItemFooter",
+        "file": "C:/Users/willh/Desktop/games/components/ui/item.tsx",
+        "line": 169
+      },
+      {
+        "type": "test",
+        "name": "Comp",
+        "file": "C:/Users/willh/Desktop/games/components/ui/item.tsx",
+        "line": 62
+      },
+      {
+        "type": "test",
+        "name": "MenubarItem",
+        "file": "C:/Users/willh/Desktop/games/components/ui/menubar.tsx",
+        "line": 91
+      },
+      {
+        "type": "test",
+        "name": "MenubarCheckboxItem",
+        "file": "C:/Users/willh/Desktop/games/components/ui/menubar.tsx",
+        "line": 114
+      },
+      {
+        "type": "test",
+        "name": "MenubarRadioItem",
+        "file": "C:/Users/willh/Desktop/games/components/ui/menubar.tsx",
+        "line": 140
+      },
+      {
+        "type": "test",
+        "name": "NavigationMenuItem",
+        "file": "C:/Users/willh/Desktop/games/components/ui/navigation-menu.tsx",
+        "line": 48
+      },
+      {
+        "type": "test",
+        "name": "PaginationItem",
+        "file": "C:/Users/willh/Desktop/games/components/ui/pagination.tsx",
+        "line": 36
+      },
+      {
+        "type": "test",
+        "name": "RadioGroupItem",
+        "file": "C:/Users/willh/Desktop/games/components/ui/radio-group.tsx",
+        "line": 22
+      },
+      {
+        "type": "test",
+        "name": "SelectItem",
+        "file": "C:/Users/willh/Desktop/games/components/ui/select.tsx",
+        "line": 101
+      },
+      {
+        "type": "test",
+        "name": "SheetTitle",
+        "file": "C:/Users/willh/Desktop/games/components/ui/sheet.tsx",
+        "line": 104
+      },
+      {
+        "type": "test",
+        "name": "SidebarMenuItem",
+        "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
+        "line": 465
+      },
+      {
+        "type": "test",
+        "name": "SidebarMenuSubItem",
+        "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
+        "line": 655
+      },
+      {
+        "type": "test",
+        "name": "Switch",
+        "file": "C:/Users/willh/Desktop/games/components/ui/switch.tsx",
+        "line": 8
+      },
+      {
+        "type": "test",
+        "name": "ToastTitle",
+        "file": "C:/Users/willh/Desktop/games/components/ui/toast.tsx",
+        "line": 91
+      },
+      {
+        "type": "test",
+        "name": "ToggleGroupItem",
+        "file": "C:/Users/willh/Desktop/games/components/ui/toggle-group.tsx",
+        "line": 43
+      },
+      {
+        "type": "test",
+        "name": "TOAST_LIMIT",
+        "file": "C:/Users/willh/Desktop/games/components/ui/use-toast.ts",
+        "line": 8
+      },
+      {
+        "type": "test",
+        "name": "switch",
+        "file": "C:/Users/willh/Desktop/games/components/ui/use-toast.ts",
+        "line": 75
+      },
+      {
+        "type": "test",
+        "name": "TOAST_LIMIT",
+        "file": "C:/Users/willh/Desktop/games/hooks/use-toast.ts",
+        "line": 8
+      },
+      {
+        "type": "test",
+        "name": "switch",
+        "file": "C:/Users/willh/Desktop/games/hooks/use-toast.ts",
+        "line": 75
+      }
+    ],
+    "apiEndpoints": [
+      {
+        "type": "api-endpoint",
+        "name": "getLurePoint",
+        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+        "line": 1007
+      },
+      {
+        "type": "api-endpoint",
+        "name": "getPromptIcon",
+        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+        "line": 1225
+      },
+      {
+        "type": "api-endpoint",
+        "name": "handleTargetClick",
+        "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
+        "line": 37
+      },
+      {
+        "type": "api-endpoint",
+        "name": "getPayloadConfigFromPayload",
+        "file": "C:/Users/willh/Desktop/games/components/ui/chart.tsx",
+        "line": 308
+      },
+      {
+        "type": "api-endpoint",
+        "name": "CommandInput",
+        "file": "C:/Users/willh/Desktop/games/components/ui/command.tsx",
+        "line": 63
+      },
+      {
+        "type": "api-endpoint",
+        "name": "InputGroup",
+        "file": "C:/Users/willh/Desktop/games/components/ui/input-group.tsx",
+        "line": 10
+      },
+      {
+        "type": "api-endpoint",
+        "name": "InputGroupAddon",
+        "file": "C:/Users/willh/Desktop/games/components/ui/input-group.tsx",
+        "line": 59
+      },
+      {
+        "type": "api-endpoint",
+        "name": "InputGroupButton",
+        "file": "C:/Users/willh/Desktop/games/components/ui/input-group.tsx",
+        "line": 99
+      },
+      {
+        "type": "api-endpoint",
+        "name": "InputGroupText",
+        "file": "C:/Users/willh/Desktop/games/components/ui/input-group.tsx",
+        "line": 118
+      },
+      {
+        "type": "api-endpoint",
+        "name": "InputGroupInput",
+        "file": "C:/Users/willh/Desktop/games/components/ui/input-group.tsx",
+        "line": 130
+      },
+      {
+        "type": "api-endpoint",
+        "name": "InputGroupTextarea",
+        "file": "C:/Users/willh/Desktop/games/components/ui/input-group.tsx",
+        "line": 146
+      },
+      {
+        "type": "api-endpoint",
+        "name": "InputOTP",
+        "file": "C:/Users/willh/Desktop/games/components/ui/input-otp.tsx",
+        "line": 9
+      },
+      {
+        "type": "api-endpoint",
+        "name": "InputOTPGroup",
+        "file": "C:/Users/willh/Desktop/games/components/ui/input-otp.tsx",
+        "line": 29
+      },
+      {
+        "type": "api-endpoint",
+        "name": "InputOTPSlot",
+        "file": "C:/Users/willh/Desktop/games/components/ui/input-otp.tsx",
+        "line": 39
+      },
+      {
+        "type": "api-endpoint",
+        "name": "InputOTPSeparator",
+        "file": "C:/Users/willh/Desktop/games/components/ui/input-otp.tsx",
+        "line": 69
+      },
+      {
+        "type": "api-endpoint",
+        "name": "Input",
+        "file": "C:/Users/willh/Desktop/games/components/ui/input.tsx",
+        "line": 5
+      },
+      {
+        "type": "api-endpoint",
+        "name": "SidebarInput",
+        "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
+        "line": 321
+      },
+      {
+        "type": "api-endpoint",
+        "name": "dispatch",
+        "file": "C:/Users/willh/Desktop/games/components/ui/use-toast.ts",
+        "line": 133
+      },
+      {
+        "type": "api-endpoint",
+        "name": "dispatch",
+        "file": "C:/Users/willh/Desktop/games/hooks/use-toast.ts",
+        "line": 133
+      }
+    ]
+  },
+  "statistics": {
+    "totalHandlers": 27,
+    "totalDecorators": 0,
+    "totalErrorPatterns": 1,
+    "totalTestPatterns": 56,
+    "totalApiEndpoints": 19
+  }
+}

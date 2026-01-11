@@ -75,7 +75,6 @@ export default function PickUpSticks() {
     1500,
     shouldLevelUp,
   )
-  }
 
   const resetGame = () => {
     setSticks(initializeSticks(12))
