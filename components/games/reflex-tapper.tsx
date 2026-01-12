@@ -231,17 +231,22 @@ export default function ReflexTapper() {
     }
   }, [isPlaying, countdown, showCountdown])
 
+  // Countdown timer effect
   useEffect(() => {
     if (countdown === null || countdown <= 0) return
 
     const timer = setTimeout(() => {
       if (countdown === 1) {
+        // Countdown finished - start the game
         setCountdown(null)
         setShowCountdown(false)
-        gameStartTimeRef.current = Date.now()
-        elapsedSecondsRef.current = 0
-        const initialPhase = getCurrentRulePhase(0)
-        setCurrentPhase(initialPhase)
+        // Use setTimeout to ensure state updates are processed
+        setTimeout(() => {
+          gameStartTimeRef.current = Date.now()
+          elapsedSecondsRef.current = 0
+          const initialPhase = getCurrentRulePhase(0)
+          setCurrentPhase(initialPhase)
+        }, 0)
       } else {
         setCountdown(countdown - 1)
       }
