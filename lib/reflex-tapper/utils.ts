@@ -148,15 +148,18 @@ export function generateTarget(
   const lifetime = calculateTargetLifetime(elapsedSeconds, config)
 
   // Check for overlap with existing targets
+  // Targets are 64px (w-16 h-16), which is ~4% of screen width at 1600px
+  // We need at least 12% distance to prevent visual overlap
   let x = Math.random() * 80 + 10
   let y = Math.random() * 70 + 15
   let attempts = 0
-  const maxAttempts = 10
+  const maxAttempts = 20 // Increased attempts for better placement
+  const minDistance = 12 // Increased minimum distance to 12%
 
   while (attempts < maxAttempts) {
     const overlaps = existingTargets.some((t) => {
       const distance = Math.sqrt(Math.pow(t.x - x, 2) + Math.pow(t.y - y, 2))
-      return distance < 8 // Minimum 8% distance between targets
+      return distance < minDistance
     })
 
     if (!overlaps) break
@@ -164,6 +167,30 @@ export function generateTarget(
     x = Math.random() * 80 + 10
     y = Math.random() * 70 + 15
     attempts++
+  }
+
+  // If still overlapping after max attempts, try to find a better position
+  // by checking less crowded areas
+  if (attempts >= maxAttempts && existingTargets.length > 0) {
+    // Try positions away from existing targets
+    const avgX = existingTargets.reduce((sum, t) => sum + t.x, 0) / existingTargets.length
+    const avgY = existingTargets.reduce((sum, t) => sum + t.y, 0) / existingTargets.length
+    
+    // Try opposite side of average position
+    x = avgX > 50 ? Math.random() * 30 + 10 : Math.random() * 30 + 60
+    y = avgY > 50 ? Math.random() * 30 + 15 : Math.random() * 30 + 55
+    
+    // Final overlap check
+    const stillOverlaps = existingTargets.some((t) => {
+      const distance = Math.sqrt(Math.pow(t.x - x, 2) + Math.pow(t.y - y, 2))
+      return distance < minDistance
+    })
+    
+    // If still overlapping, use original position (better than not spawning)
+    if (stillOverlaps) {
+      x = Math.random() * 80 + 10
+      y = Math.random() * 70 + 15
+    }
   }
 
   return {

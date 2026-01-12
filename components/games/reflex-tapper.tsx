@@ -446,9 +446,9 @@ export default function ReflexTapper() {
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -100, opacity: 0 }}
-          className="absolute top-1/2 left-0 right-0 z-20 flex justify-center"
+          className="absolute top-40 left-0 right-0 z-20 flex justify-center pointer-events-none"
         >
-          <div className="bg-orange-500 text-white font-black text-3xl px-12 py-6 rounded-2xl shadow-2xl">
+          <div className="bg-orange-500 text-white font-black text-2xl px-8 py-4 rounded-2xl shadow-2xl">
             NEW RULE: {currentPhase.instruction}
           </div>
         </motion.div>
