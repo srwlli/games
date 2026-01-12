@@ -1,0 +1,196 @@
+You are an expert implementation planner. Generate a detailed, executable plan for this feature:
+
+**FEATURE:** reflex-tapper-enhancements
+
+**DESCRIPTION:** Comprehensive enhancements to Reflex Tapper game including dynamic rule phases, adaptive difficulty, colored targets with rewards/penalties, decoy targets, reaction time tracking, multiple game modes, power-ups, accessibility improvements, persistence, and advanced gameplay mechanics for training and skill-building.
+
+**GOAL:** Transform Reflex Tapper from a simple reaction game into an advanced training tool with dynamic difficulty, multiple modes, rule-based gameplay, performance tracking, and accessibility features to provide engaging skill-building experiences.
+
+**REQUIREMENTS (22 total):**
+- Add dynamic rule phases with changing instructions mid-run (e.g., tap any, then tap only orange, then avoid red)
+- Vary spawn interval and target lifetime over time to create automatic difficulty ramp (faster spawns, shorter visibility)
+- Introduce colored targets with different rewards/penalties tied to phase instructions
+- Add decoy targets that should not be tapped to train go/no-go decision making
+- Track reaction time per target and show average/best reaction in GameOver modal as performance stat
+- Provide animated New Rule banner when phases change so players notice midgame rule shifts
+- Add multiple modes (Classic 20s, Sudden Death 1-mistake, Burst 5s) for variety and different training goals
+- Implement adaptive difficulty that adjusts spawn rate and penalties based on recent accuracy to keep players in challenge sweet spot
+- Add simple power-ups (extra time, slow motion, double score) as rare special targets to break monotony
+- Provide short pre-round countdown (3, 2, 1, Go) instead of spawning immediately so players are ready
+... and 12 more
+
+**CONSTRAINTS (6 total):**
+- Must maintain existing game functionality during enhancement
+- No breaking changes to component API or props
+- Must preserve all existing features (basic tapping, timer, scoring)
+- Performance optimizations must not degrade user experience on low-end devices
+- Accessibility improvements must follow WCAG 2.1 AA guidelines
+- localStorage usage must handle quota exceeded errors gracefully
+
+---
+
+**CRITICAL: You have COMPLETE codebase context. USE IT EXPLICITLY.**
+
+**CODE INVENTORY (.coderef/index.json):**
+- Total elements: 6
+- Available: Functions, classes, components with exact file paths and line numbers
+
+**CODING PATTERNS (.coderef/reports/patterns.json):**
+- 5 patterns identified
+- Includes: Error handling patterns, naming conventions, code organization rules
+
+**DEPENDENCY GRAPH (.coderef/graph.json):**
+- 618 nodes in dependency graph
+- Use for: Dependency analysis, impact assessment, task ordering
+
+**TEST COVERAGE (.coderef/reports/coverage.json):**
+- Overall coverage: unknown%
+- Use for: Identifying test gaps, planning test strategy
+
+**ARCHITECTURE (ARCHITECTURE.md preview):**
+# Architecture Documentation
+
+## Module Dependency Graph
+
+*Auto-scan attempted but failed. Check that:*
+- *Node.js is installed*
+- *CODEREF_CLI_PATH environment variable is set correctly*
+- *The coderef CLI is built (`pnpm build` in cli directory)*
+
+## Code Patterns
+
+## Recent Activity
+
+
+*Generated: 2026-01-08T17:26:14.341742*...
+
+**API REFERENCE (API.md preview):**
+# API Documentation
+
+## Overview
+
+- **Framework:** Unknown
+- **Authentication:** Unknown
+- **Error Format:** Unknown
+- **Total Endpoints:** 0
+
+## Endpoints
+
+*No API endpoints detected.*
+
+## Authentication
+
+*Authentication method not detected.*
+
+## Error Handling
+
+*Error format not detected.*
+
+*Generated: 2026-01-08T17:26:14.348493*...
+
+---
+
+**YOUR TASK - Generate Implementation Plan**
+
+You MUST create a plan.json following the 10-section structure below.
+
+**MANDATORY REQUIREMENTS:**
+
+1. **DEPENDENCY ANALYSIS** (use coderef data):
+   - Check which existing functions/classes this feature depends on (use index.json)
+   - Identify which files will be modified (check code inventory for exact paths)
+   - Analyze dependency chains (use graph.json if available)
+
+2. **PATTERN ADHERENCE** (use patterns.json):
+   - Follow existing coding patterns from patterns.json
+   - Match error handling approaches
+   - Use established naming conventions
+
+3. **TASK BREAKDOWN** (be SPECIFIC - most important):
+   - Break each requirement into FILE-LEVEL tasks
+   - Example: "IMPL-001: Modify src/auth/jwt.service.ts lines 45-60 - add generateRefreshToken() method"
+   - NOT: "IMPL-001: Implement JWT tokens"
+   - Include exact file paths from code inventory
+   - Reference specific line numbers where changes occur
+
+4. **PHASE PLANNING** (use dependencies):
+   - Order tasks by dependency (what must happen first?)
+   - Identify parallel vs sequential work
+   - Create realistic phases (not always 4!)
+   - Add "dependencies" and "rationale" fields to each phase
+
+5. **TESTING STRATEGY** (use coverage.json):
+   - Address current test coverage gaps
+   - Specify which test files to create/modify
+   - Include edge cases and integration tests
+
+---
+
+**OUTPUT FORMAT:**
+
+Return a JSON object with this structure:
+
+{
+  "META_DOCUMENTATION": {
+    "feature_name": "reflex-tapper-enhancements",
+    "workorder_id": "WO-REFLEX-TAPPER-ENHANCEMENTS-001",
+    "version": "1.0.0",
+    "status": "planning",
+    "generated_by": "AI Agent",
+    "has_context": true,
+    "has_analysis": true
+  },
+  "UNIVERSAL_PLANNING_STRUCTURE": {
+    "0_preparation": { ... },
+    "1_executive_summary": { ... },
+    "2_risk_assessment": { ... },
+    "3_current_state_analysis": { ... },
+    "4_key_features": { ... },
+    "5_task_id_system": {
+      "tasks": [
+        "SETUP-001: Specific setup task with file paths",
+        "IMPL-001: Modify path/to/file.py lines X-Y - add specific method/function",
+        "IMPL-002: Create path/to/new_file.py - implement specific component",
+        ...
+      ]
+    },
+    "6_implementation_phases": {
+      "phases": [
+        {
+          "phase": 1,
+          "name": "Descriptive Phase Name",
+          "description": "What this phase accomplishes",
+          "tasks": ["SETUP-001", "IMPL-001"],
+          "deliverables": ["Specific deliverable 1", "Specific deliverable 2"],
+          "dependencies": "Sequential - SETUP-001 must complete before IMPL-001",
+          "rationale": "Why this phase grouping makes sense"
+        }
+      ]
+    },
+    "7_testing_strategy": { ... },
+    "8_success_criteria": { ... },
+    "9_implementation_checklist": { ... }
+  }
+}
+
+---
+
+**VALIDATION RULES:**
+
+- ✅ Every task MUST reference specific files from code inventory
+- ✅ Every task MUST consider existing patterns from patterns.json
+- ✅ Every phase MUST have dependency-ordered tasks with rationale
+- ✅ Risk assessment MUST address breaking changes and dependencies
+- ✅ Testing strategy MUST address gaps from coverage.json
+- ✅ NO time estimates (hours/minutes) - use complexity levels instead
+- ✅ NO questions in plan - answer everything
+
+**EXAMPLE TASK (GOOD):**
+"IMPL-003: Modify generators/planning_generator.py lines 232-285 - Replace _generate_plan_internal() with _generate_plan_with_agent() async method that launches Task agent with coderef context"
+
+**EXAMPLE TASK (BAD):**
+"IMPL-003: Implement AI agent integration following existing patterns"
+
+---
+
+Generate the complete plan now. Be specific, reference actual files, and use the codebase intelligence provided.

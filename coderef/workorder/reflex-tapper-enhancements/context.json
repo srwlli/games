@@ -1,0 +1,65 @@
+{
+  "feature_name": "reflex-tapper-enhancements",
+  "description": "Comprehensive enhancements to Reflex Tapper game including dynamic rule phases, adaptive difficulty, colored targets with rewards/penalties, decoy targets, reaction time tracking, multiple game modes, power-ups, accessibility improvements, persistence, and advanced gameplay mechanics for training and skill-building.",
+  "goal": "Transform Reflex Tapper from a simple reaction game into an advanced training tool with dynamic difficulty, multiple modes, rule-based gameplay, performance tracking, and accessibility features to provide engaging skill-building experiences.",
+  "requirements": [
+    "Add dynamic rule phases with changing instructions mid-run (e.g., tap any, then tap only orange, then avoid red)",
+    "Vary spawn interval and target lifetime over time to create automatic difficulty ramp (faster spawns, shorter visibility)",
+    "Introduce colored targets with different rewards/penalties tied to phase instructions",
+    "Add decoy targets that should not be tapped to train go/no-go decision making",
+    "Track reaction time per target and show average/best reaction in GameOver modal as performance stat",
+    "Provide animated New Rule banner when phases change so players notice midgame rule shifts",
+    "Add multiple modes (Classic 20s, Sudden Death 1-mistake, Burst 5s) for variety and different training goals",
+    "Implement adaptive difficulty that adjusts spawn rate and penalties based on recent accuracy to keep players in challenge sweet spot",
+    "Add simple power-ups (extra time, slow motion, double score) as rare special targets to break monotony",
+    "Provide short pre-round countdown (3, 2, 1, Go) instead of spawning immediately so players are ready",
+    "Add sound effects or subtle haptics for hits, misses, and phase changes for stronger feedback",
+    "Surface streaks/combo scoring (consecutive hits without misses increase multiplier) to reward consistency",
+    "Add minimal pause overlay with current rule reminder and controls hints for clarity",
+    "Show small in-run progress indicator for time and phase timeline so players anticipate upcoming difficulty spikes",
+    "Improve accessibility with ARIA labels, keyboard activation, and aria-live region for score/time updates",
+    "Respect prefers-reduced-motion by swapping Framer Motion transitions for simpler fades or instant changes",
+    "Add color-blind-friendly patterns or shapes on targets so color-based rules remain readable for all players",
+    "Persist best score and best reaction time locally (localStorage) and show them in GameOver modal as long-term goals",
+    "Add lightweight stats screen (total games, average score, hit rate) to reinforce training/skill-building angle",
+    "Randomize spawn patterns slightly (bursts, gaps) instead of perfect fixed rhythm to avoid predictability",
+    "Clamp simultaneous target count and tune overlap rules so screen never becomes unreadable at high difficulty",
+    "Integrate tiny in-UI how to play panel explaining targets, colors, and penalties, always in sync with documented rules"
+  ],
+  "out_of_scope": [
+    "Online leaderboards",
+    "Multiplayer over network",
+    "3D graphics or complex animations",
+    "In-app purchases or monetization",
+    "Social media integration",
+    "Achievement system beyond basic stats",
+    "Optional left/right or quadrant-specific prompts (spatial selective attention)",
+    "Optional two-player hot-seat mode (split screen or alternating runs)",
+    "Optional practice mode with slower fixed difficulty"
+  ],
+  "constraints": [
+    "Must maintain existing game functionality during enhancement",
+    "No breaking changes to component API or props",
+    "Must preserve all existing features (basic tapping, timer, scoring)",
+    "Performance optimizations must not degrade user experience on low-end devices",
+    "Accessibility improvements must follow WCAG 2.1 AA guidelines",
+    "localStorage usage must handle quota exceeded errors gracefully"
+  ],
+  "decisions": {},
+  "success_criteria": {},
+  "_metadata": {
+    "workorder_id": "WO-REFLEX-TAPPER-ENHANCEMENTS-001",
+    "workorder_assigned_at": "2026-01-12T18:07:11.540534+00:00",
+    "workorder_assigned_by": "gather_context"
+  },
+  "_uds": {
+    "generated_by": "coderef-workflow v2.0.0",
+    "document_type": "Feature Context",
+    "workorder_id": "WO-REFLEX-TAPPER-ENHANCEMENTS-001",
+    "feature_id": "reflex-tapper-enhancements",
+    "last_updated": "2026-01-12",
+    "ai_assistance": true,
+    "status": "DRAFT",
+    "next_review": "2026-02-11"
+  }
+}

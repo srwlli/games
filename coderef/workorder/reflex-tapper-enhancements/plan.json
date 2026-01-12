@@ -1,0 +1,301 @@
+{
+  "META_DOCUMENTATION": {
+    "feature_name": "reflex-tapper-enhancements",
+    "workorder_id": "WO-REFLEX-TAPPER-ENHANCEMENTS-001",
+    "version": "1.0.0",
+    "status": "planning",
+    "generated_by": "PlanningGenerator (fallback mode)",
+    "has_context": true,
+    "has_analysis": true,
+    "uds": {
+      "generated_by": "coderef-workflow v2.0.0",
+      "document_type": "Implementation Plan",
+      "last_updated": "2026-01-12",
+      "ai_assistance": true,
+      "next_review": "2026-02-11"
+    }
+  },
+  "UNIVERSAL_PLANNING_STRUCTURE": {
+    "0_preparation": {},
+    "1_executive_summary": {
+      "purpose": "Comprehensive enhancements to Reflex Tapper game including dynamic rule phases, adaptive difficulty, colored targets with rewards/penalties, decoy targets, reaction time tracking, multiple game modes, power-ups, accessibility improvements, persistence, and advanced gameplay mechanics for training and skill-building.",
+      "value_proposition": "Transform Reflex Tapper from a simple reaction game into an advanced training tool with dynamic difficulty, multiple modes, rule-based gameplay, performance tracking, and accessibility features to provide engaging skill-building experiences.",
+      "real_world_analogy": "Similar to building reflex-tapper-enhancements - systematically implementing each requirement to deliver complete functionality",
+      "use_case": "User requests reflex-tapper-enhancements \u2192 System implements: Add dynamic rule phases with changing instructions mid-run (e.g., tap any, then tap only orange, then avoid red), Vary spawn interval and target lifetime over time to create automatic difficulty ramp (faster spawns, shorter visibility), Introduce colored targets with different rewards/penalties tied to phase instructions \u2192 Feature is functional",
+      "output": "Implemented 22 requirements: Add dynamic rule phases with changing instructions mid-run (e.g., tap any, then tap only orange, then avoid red), Vary spawn interval and target lifetime over time to create automatic difficulty ramp (faster spawns, shorter visibility), Introduce colored targets with different rewards/penalties tied to phase instructions"
+    },
+    "2_risk_assessment": {
+      "overall_risk": "medium",
+      "complexity": "high (estimated 15+ files, 1000+ lines)",
+      "scope": "Estimated 22 requirements affecting multiple components",
+      "file_system_risk": "low (standard code changes only)",
+      "dependencies": [
+        "Must maintain existing game functionality during enhancement",
+        "No breaking changes to component API or props",
+        "Must preserve all existing features (basic tapping, timer, scoring)",
+        "Performance optimizations must not degrade user experience on low-end devices",
+        "Accessibility improvements must follow WCAG 2.1 AA guidelines",
+        "localStorage usage must handle quota exceeded errors gracefully"
+      ],
+      "performance_concerns": [
+        "No significant performance concerns identified - monitor during implementation"
+      ],
+      "security_considerations": [
+        "Follow existing security patterns - review during implementation"
+      ],
+      "breaking_changes": "none (extending existing functionality)"
+    },
+    "3_current_state_analysis": {
+      "affected_files": [
+        "Identify during implementation based on feature scope"
+      ],
+      "dependencies": {
+        "existing_internal": [
+          "Existing modules and components - identify during implementation"
+        ],
+        "existing_external": [],
+        "new_external": [],
+        "new_internal": []
+      },
+      "architecture_context": "Follows existing patterns: Standard implementation patterns"
+    },
+    "4_key_features": {
+      "primary_features": [
+        "Add dynamic rule phases with changing instructions mid-run (e.g., tap any, then tap only orange, then avoid red)",
+        "Vary spawn interval and target lifetime over time to create automatic difficulty ramp (faster spawns, shorter visibility)",
+        "Introduce colored targets with different rewards/penalties tied to phase instructions",
+        "Add decoy targets that should not be tapped to train go/no-go decision making",
+        "Track reaction time per target and show average/best reaction in GameOver modal as performance stat"
+      ],
+      "secondary_features": [
+        "Provide animated New Rule banner when phases change so players notice midgame rule shifts",
+        "Add multiple modes (Classic 20s, Sudden Death 1-mistake, Burst 5s) for variety and different training goals",
+        "Implement adaptive difficulty that adjusts spawn rate and penalties based on recent accuracy to keep players in challenge sweet spot",
+        "Add simple power-ups (extra time, slow motion, double score) as rare special targets to break monotony",
+        "Provide short pre-round countdown (3, 2, 1, Go) instead of spawning immediately so players are ready",
+        "Add sound effects or subtle haptics for hits, misses, and phase changes for stronger feedback",
+        "Surface streaks/combo scoring (consecutive hits without misses increase multiplier) to reward consistency",
+        "Add minimal pause overlay with current rule reminder and controls hints for clarity",
+        "Show small in-run progress indicator for time and phase timeline so players anticipate upcoming difficulty spikes",
+        "Improve accessibility with ARIA labels, keyboard activation, and aria-live region for score/time updates",
+        "Respect prefers-reduced-motion by swapping Framer Motion transitions for simpler fades or instant changes",
+        "Add color-blind-friendly patterns or shapes on targets so color-based rules remain readable for all players",
+        "Persist best score and best reaction time locally (localStorage) and show them in GameOver modal as long-term goals",
+        "Add lightweight stats screen (total games, average score, hit rate) to reinforce training/skill-building angle",
+        "Randomize spawn patterns slightly (bursts, gaps) instead of perfect fixed rhythm to avoid predictability",
+        "Clamp simultaneous target count and tune overlap rules so screen never becomes unreadable at high difficulty",
+        "Integrate tiny in-UI how to play panel explaining targets, colors, and penalties, always in sync with documented rules"
+      ],
+      "edge_case_handling": [
+        "Empty or null input validation",
+        "Invalid input error handling",
+        "Boundary conditions and limits"
+      ],
+      "configuration_options": [
+        "None"
+      ]
+    },
+    "5_task_id_system": {
+      "tasks": [
+        "SETUP-001: Create initial project structure and setup development environment with required dependencies",
+        "LOGIC-001: Implement Add dynamic rule phases with changing instructions mid-run (e.g., tap any, then tap only orange, then avoid red) following existing project patterns and architecture",
+        "LOGIC-002: Implement Vary spawn interval and target lifetime over time to create automatic difficulty ramp (faster spawns, shorter visibility) following existing project patterns and architecture",
+        "LOGIC-003: Implement Introduce colored targets with different rewards/penalties tied to phase instructions following existing project patterns and architecture",
+        "LOGIC-004: Implement Add decoy targets that should not be tapped to train go/no-go decision making following existing project patterns and architecture",
+        "LOGIC-005: Implement Track reaction time per target and show average/best reaction in GameOver modal as performance stat following existing project patterns and architecture",
+        "TEST-001: Write unit tests for all new functionality with minimum 80% code coverage",
+        "TEST-002: Write integration tests to verify end-to-end functionality and component interactions",
+        "DOC-001: Update documentation including README, API docs, and inline code comments for all public interfaces"
+      ]
+    },
+    "6_implementation_phases": {
+      "phases": [
+        {
+          "phase": 1,
+          "name": "Phase 1: Foundation",
+          "description": "Setup and scaffolding - create initial structure, install dependencies, configure environment",
+          "tasks": [
+            "SETUP-001"
+          ],
+          "deliverables": [
+            "All files exist",
+            "Dependencies installed",
+            "Environment configured"
+          ]
+        },
+        {
+          "phase": 2,
+          "name": "Phase 2: Core Implementation",
+          "description": "Implement primary features and business logic following existing patterns",
+          "tasks": [
+            "LOGIC-001"
+          ],
+          "deliverables": [
+            "Happy path works end-to-end",
+            "Core functionality complete"
+          ]
+        },
+        {
+          "phase": 3,
+          "name": "Phase 3: Testing",
+          "description": "Comprehensive testing at unit, integration, and end-to-end levels",
+          "tasks": [
+            "TEST-001"
+          ],
+          "deliverables": [
+            "All tests passing",
+            "Coverage meets requirements"
+          ]
+        },
+        {
+          "phase": 4,
+          "name": "Phase 4: Documentation",
+          "description": "Complete documentation for users and developers",
+          "tasks": [
+            "DOC-001"
+          ],
+          "deliverables": [
+            "All documentation complete",
+            "Examples provided"
+          ]
+        }
+      ]
+    },
+    "7_testing_strategy": {
+      "unit_tests": [
+        "Test individual functions and methods in isolation",
+        "Verify input validation and error handling",
+        "Test edge cases and boundary conditions",
+        "Achieve minimum 80% code coverage"
+      ],
+      "integration_tests": [
+        "Test component interactions and data flow",
+        "Verify end-to-end functionality",
+        "Test integration with existing systems"
+      ],
+      "end_to_end_tests": [
+        "Not applicable"
+      ],
+      "edge_case_scenarios": [
+        {
+          "scenario": "Empty or null input provided",
+          "setup": "Call function with None or empty string",
+          "expected_behavior": "Function validates input and returns appropriate error",
+          "verification": "Assert error message and status code",
+          "error_handling": "ValueError or ValidationError"
+        },
+        {
+          "scenario": "Invalid input format provided",
+          "setup": "Call function with malformed or incorrect data type",
+          "expected_behavior": "Function validates input type and returns error",
+          "verification": "Assert error message indicates invalid format",
+          "error_handling": "TypeError or ValidationError"
+        },
+        {
+          "scenario": "Boundary conditions at limits",
+          "setup": "Test with minimum and maximum allowed values",
+          "expected_behavior": "Function handles boundary values correctly",
+          "verification": "Assert results are within expected range",
+          "error_handling": "No error expected for valid boundaries"
+        }
+      ]
+    },
+    "8_success_criteria": {
+      "functional_requirements": [
+        {
+          "requirement": "Feature implementation complete",
+          "metric": "All requirements implemented",
+          "target": "100% of specified requirements",
+          "validation": "Manual verification against requirements list"
+        },
+        {
+          "requirement": "Integration successful",
+          "metric": "Feature works with existing system",
+          "target": "No breaking changes to existing functionality",
+          "validation": "Run full test suite"
+        },
+        {
+          "requirement": "Add dynamic rule phases with changing instructions mid-run (e.g., tap any, then tap only orange, then avoid red)",
+          "metric": "Functionality verified",
+          "target": "Works as specified",
+          "validation": "Test cases for: Add dynamic rule phases with changing instructions mid-run (e.g., tap any, then tap only orange, then avoid red)"
+        },
+        {
+          "requirement": "Vary spawn interval and target lifetime over time to create automatic difficulty ramp (faster spawns, shorter visibility)",
+          "metric": "Functionality verified",
+          "target": "Works as specified",
+          "validation": "Test cases for: Vary spawn interval and target lifetime over time to create automatic difficulty ramp (faster spawns, shorter visibility)"
+        },
+        {
+          "requirement": "Introduce colored targets with different rewards/penalties tied to phase instructions",
+          "metric": "Functionality verified",
+          "target": "Works as specified",
+          "validation": "Test cases for: Introduce colored targets with different rewards/penalties tied to phase instructions"
+        }
+      ],
+      "quality_requirements": [
+        {
+          "requirement": "Code coverage",
+          "metric": "Line coverage",
+          "target": ">80%",
+          "validation": "Run coverage tool"
+        },
+        {
+          "requirement": "Code quality",
+          "metric": "Linter passes",
+          "target": "Zero linting errors",
+          "validation": "Run linter"
+        },
+        {
+          "requirement": "Type safety",
+          "metric": "Type checker passes",
+          "target": "Zero type errors",
+          "validation": "Run type checker"
+        }
+      ],
+      "performance_requirements": [
+        {
+          "requirement": "Response time",
+          "metric": "Execution time",
+          "target": "< 1 second for typical operations",
+          "validation": "Performance tests"
+        }
+      ],
+      "security_requirements": [
+        {
+          "requirement": "Input validation",
+          "metric": "All inputs validated",
+          "target": "100% validation coverage",
+          "validation": "Security review"
+        }
+      ]
+    },
+    "9_implementation_checklist": {
+      "pre_implementation": [
+        "\u2610 Review complete plan for gaps or ambiguities",
+        "\u2610 Verify all requirements are clear and testable",
+        "\u2610 Set up development environment with required dependencies"
+      ],
+      "phase_1": [
+        "\u2610 SETUP-001: Create initial project structure and setup development environment with required dependencies"
+      ],
+      "phase_2": [
+        "\u2610 LOGIC-001: Implement core feature functionality following existing project patterns and architecture"
+      ],
+      "phase_3": [
+        "\u2610 TEST-001: Write unit tests for all new functionality with minimum 80% code coverage",
+        "\u2610 TEST-002: Write integration tests to verify end-to-end functionality and component interactions"
+      ],
+      "phase_4": [
+        "\u2610 DOC-001: Update documentation including README, API docs, and inline code comments for all public interfaces"
+      ],
+      "finalization": [
+        "\u2610 All tests passing (unit + integration)",
+        "\u2610 Code review completed and approved",
+        "\u2610 Documentation updated and complete",
+        "\u2610 Changelog entry created with version bump",
+        "\u2610 Final verification against success criteria"
+      ]
+    }
+  }
+}
