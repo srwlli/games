@@ -8,7 +8,7 @@ This project features multiple playable games including:
 - **Tetris** - Modern Tetris implementation with lock delay, wall kicks, and hold piece
 - **Memory Match** - Card matching memory game
 - **Pick Up Sticks** - Strategy puzzle game
-- **Reflex Tapper** - Reaction time game
+- **Reflex Tapper** - Advanced reaction training game with dynamic rules, adaptive difficulty, and multiple modes
 - **Fishing** - Interactive fishing game
 
 ## Quick Stats
@@ -59,6 +59,24 @@ A fully-featured Tetris implementation with:
 - Mobile: On-screen D-pad and buttons
 
 See [Tetris Engine Documentation](lib/tetris/README.md) for technical details.
+
+### Reflex Tapper
+
+An advanced reaction training game featuring:
+
+- **Dynamic Rule Phases**: Instructions change mid-game (tap any, tap color, avoid color)
+- **Multiple Game Modes**: Classic (20s), Sudden Death (60s, 1 mistake), Burst (5s fast-paced)
+- **Adaptive Difficulty**: Automatically adjusts spawn rate and visibility based on accuracy
+- **Power-ups**: Extra time, slow motion, double score bonuses
+- **Performance Tracking**: Reaction time tracking, streaks, combo multipliers
+- **Accessibility**: Full ARIA support, keyboard navigation, color-blind patterns, reduced motion
+- **Persistence**: Best scores and stats saved locally
+
+**Controls:**
+- Click or tap targets to score points
+- Follow changing rules displayed during gameplay
+- Press P or Escape to pause
+- Use Enter/Space on focused targets for keyboard play
 
 ## Documentation
 
