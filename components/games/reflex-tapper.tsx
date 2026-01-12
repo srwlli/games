@@ -32,6 +32,7 @@ export default function ReflexTapper() {
   // Pre-round countdown state
   const [countdown, setCountdown] = useState<number | null>(null)
   const [showCountdown, setShowCountdown] = useState(false)
+  const countdownStartedRef = useRef(false)
 
   // Game state
   const { isPlaying, isPaused, isGameOver, pause, resume, gameOver, reset, start } = useGameState({
@@ -221,9 +222,10 @@ export default function ReflexTapper() {
     return () => clearInterval(check)
   }, [powerUpActive])
 
-  // Pre-round countdown
+  // Pre-round countdown - only start once when game begins
   useEffect(() => {
-    if (isPlaying && countdown === null && !showCountdown) {
+    if (isPlaying && countdown === null && !showCountdown && !countdownStartedRef.current) {
+      countdownStartedRef.current = true
       setShowCountdown(true)
       setCountdown(3)
     }
@@ -259,6 +261,7 @@ export default function ReflexTapper() {
     setPowerUpActive(null)
     setCountdown(null)
     setShowCountdown(false)
+    countdownStartedRef.current = false // Reset countdown flag
     recentAccuracyRef.current = []
     spawnIntervalRef.current = config.initialSpawnInterval
     targetLifetimeRef.current = config.initialTargetLifetime
