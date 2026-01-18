@@ -1,13 +1,29 @@
 "use client"
 
+import { useEffect } from "react"
 import Link from "next/link"
 import { ArrowLeft, Gamepad2 } from "lucide-react"
 import type { GAMES_REGISTRY } from "@/lib/games-registry"
+import { useGameSession } from "@/hooks/use-game-session"
 
 type GameData = (typeof GAMES_REGISTRY)[keyof typeof GAMES_REGISTRY]
 
 export default function GameClient({ gameData }: { gameData: GameData }) {
   const ActiveGame = gameData.component
+  const { startSession, endSession } = useGameSession()
+
+  // Start session when game mounts
+  useEffect(() => {
+    startSession(gameData.id, {
+      title: gameData.title,
+      category: gameData.category,
+    })
+
+    // End session when component unmounts (user exits game)
+    return () => {
+      endSession()
+    }
+  }, [gameData.id, gameData.title, gameData.category, startSession, endSession])
 
   return (
     <div className="fixed inset-0 bg-zinc-950 flex flex-col h-screen overflow-hidden">
