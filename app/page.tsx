@@ -1,8 +1,9 @@
 "use client"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Play } from "lucide-react"
+import { Play, FileText, Gamepad2, Wrench } from "lucide-react"
 import { GAMES_REGISTRY } from "@/lib/games-registry"
+import { GameIcon } from "@/lib/game-icons"
 
 export default function GameDashboard() {
   return (
@@ -21,8 +22,8 @@ export default function GameDashboard() {
           >
             {/* Card Visual */}
             <div className="absolute inset-0 opacity-20 bg-blue-500 blur-3xl group-hover:opacity-40 transition-opacity" />
-            <div className="absolute inset-0 flex items-center justify-center text-7xl select-none">
-              📝
+            <div className="absolute inset-0 flex items-center justify-center select-none">
+              <FileText size={80} className="text-white/80" />
             </div>
 
             {/* Card Content */}
@@ -51,8 +52,8 @@ export default function GameDashboard() {
           >
             {/* Card Visual */}
             <div className="absolute inset-0 opacity-20 bg-amber-500 blur-3xl group-hover:opacity-40 transition-opacity" />
-            <div className="absolute inset-0 flex items-center justify-center text-7xl select-none">
-              🎮
+            <div className="absolute inset-0 flex items-center justify-center select-none">
+              <Gamepad2 size={80} className="text-white/80" />
             </div>
 
             {/* Card Content */}
@@ -81,8 +82,8 @@ export default function GameDashboard() {
           >
             {/* Card Visual */}
             <div className="absolute inset-0 opacity-20 bg-orange-500 blur-3xl group-hover:opacity-40 transition-opacity" />
-            <div className="absolute inset-0 flex items-center justify-center text-7xl select-none">
-              🔧
+            <div className="absolute inset-0 flex items-center justify-center select-none">
+              <Wrench size={80} className="text-white/80" />
             </div>
 
             {/* Card Content */}
@@ -116,8 +117,8 @@ export default function GameDashboard() {
               <div
                 className={`absolute inset-0 opacity-20 ${game.color} blur-3xl group-hover:opacity-40 transition-opacity`}
               />
-              <div className="absolute inset-0 flex items-center justify-center text-7xl select-none">
-                {game.thumbnail}
+              <div className="absolute inset-0 flex items-center justify-center select-none">
+                <GameIcon iconName={game.thumbnail} size={80} className="text-white/80" />
               </div>
 
               {/* Card Content */}

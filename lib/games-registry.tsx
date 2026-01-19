@@ -19,7 +19,7 @@ export const GAMES_REGISTRY = {
     category: "Work In Progress",
     color: "bg-emerald-500",
     component: PickUpSticks,
-    thumbnail: "🌲",
+    thumbnail: "TreePine",
   },
   "memory-match": {
     id: "memory-match",
@@ -28,7 +28,7 @@ export const GAMES_REGISTRY = {
     category: "Classic",
     color: "bg-purple-500",
     component: MemoryMatch,
-    thumbnail: "🧠",
+    thumbnail: "Brain",
   },
   "reflex-tapper": {
     id: "reflex-tapper",
@@ -37,7 +37,7 @@ export const GAMES_REGISTRY = {
     category: "Action",
     color: "bg-orange-500",
     component: ReflexTapper,
-    thumbnail: "⚡",
+    thumbnail: "Zap",
   },
   tetris: {
     id: "tetris",
@@ -46,7 +46,7 @@ export const GAMES_REGISTRY = {
     category: "Classic",
     color: "bg-purple-500",
     component: Tetris,
-    thumbnail: "🟦",
+    thumbnail: "Boxes",
   },
   fishing: {
     id: "fishing",
@@ -55,7 +55,7 @@ export const GAMES_REGISTRY = {
     category: "Work In Progress",
     color: "bg-cyan-500",
     component: Fishing,
-    thumbnail: "🎣",
+    thumbnail: "Fish",
   },
   boggle: {
     id: "boggle",
@@ -64,7 +64,7 @@ export const GAMES_REGISTRY = {
     category: "Word Game",
     color: "bg-blue-500",
     component: Boggle,
-    thumbnail: "🔤",
+    thumbnail: "Grid3x3",
   },
   wordle: {
     id: "wordle",
@@ -73,6 +73,6 @@ export const GAMES_REGISTRY = {
     category: "Word Game",
     color: "bg-green-500",
     component: Wordle,
-    thumbnail: "📝",
+    thumbnail: "FileText",
   },
 }

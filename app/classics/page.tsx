@@ -4,6 +4,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { Play } from "lucide-react"
 import { GAMES_REGISTRY } from "@/lib/games-registry"
+import { GameIcon } from "@/lib/game-icons"
 
 export default function ClassicsPage() {
   // Filter games by "Classic" category
@@ -24,8 +25,8 @@ export default function ClassicsPage() {
               <div
                 className={`absolute inset-0 opacity-20 ${game.color} blur-3xl group-hover:opacity-40 transition-opacity`}
               />
-              <div className="absolute inset-0 flex items-center justify-center text-7xl select-none">
-                {game.thumbnail}
+              <div className="absolute inset-0 flex items-center justify-center select-none">
+                <GameIcon iconName={game.thumbnail} size={80} className="text-white/80" />
               </div>
 
               {/* Card Content */}
