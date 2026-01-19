@@ -8,7 +8,7 @@ import { useCountdown } from "@/hooks/use-countdown"
 import { useGameSessionIntegration } from "@/hooks/use-game-session-integration"
 import { DictionaryService } from "@/lib/word-games/trie/trie-service"
 import { generateBoard, calculateBoggleScore, validateWord, solveBoard, BOGGLE_DICE } from "@/lib/word-games/boggle/engine"
-import { BOGGLE_CONFIG } from "@/lib/word-games/boggle/config"
+import { BOGGLE_CONFIG, TIME_MODES, type TimeMode } from "@/lib/word-games/boggle/config"
 import type { BogglePath, BogglePosition } from "@/lib/word-games/boggle/types"
 
 export default function Boggle() {
@@ -17,6 +17,10 @@ export default function Boggle() {
   })
   const { updateScore, endGameSession } = useGameSessionIntegration("boggle")
 
+  // Time mode selection
+  const [timeMode, setTimeMode] = useState<TimeMode>("3min")
+  const timeLimit = TIME_MODES[timeMode]
+
   const [board, setBoard] = useState<string[][]>([])
   const [foundWords, setFoundWords] = useState<Set<string>>(new Set())
   const [score, setScore] = useState(0)
@@ -24,6 +28,7 @@ export default function Boggle() {
   const [isLoading, setIsLoading] = useState(true)
   const [showWordsMissed, setShowWordsMissed] = useState(false)
   const [allWords, setAllWords] = useState<Set<string>>(new Set())
+  const [acceptedPath, setAcceptedPath] = useState<BogglePath | null>(null)
 
   const touchStartRef = useRef<{ row: number; col: number } | null>(null)
   const isDrawingRef = useRef(false)
@@ -39,7 +44,7 @@ export default function Boggle() {
   const cellEnterTimeRef = useRef<Map<string, number>>(new Map())
 
   const { timeLeft, reset: resetTimer } = useCountdown(
-    BOGGLE_CONFIG.TIME_LIMIT_SECONDS,
+    timeLimit,
     () => {
       handleGameOver()
     },
@@ -69,9 +74,9 @@ export default function Boggle() {
     setScore(0)
     setCurrentPath([])
     setShowWordsMissed(false)
-    resetTimer()
+    resetTimer(timeLimit) // Reset with selected time mode
     start()
-  }, [start, resetTimer])
+  }, [start, resetTimer, timeLimit])
 
   // Handle game over
   const handleGameOver = useCallback(() => {
@@ -465,6 +470,12 @@ export default function Boggle() {
         if ("vibrate" in navigator) {
           navigator.vibrate(20)
         }
+        // Show acceptance feedback: flash path green/emerald
+        setAcceptedPath([...currentPath])
+        // Clear accepted path after animation (300ms)
+        setTimeout(() => {
+          setAcceptedPath(null)
+        }, 300)
       }
     }
 
@@ -584,9 +595,6 @@ export default function Boggle() {
             onDragStart={(e) => {
               e.preventDefault()
             }}
-            onSelectStart={(e) => {
-              e.preventDefault()
-            }}
           >
             {/* Board Cells */}
             {board.map((row, rowIdx) =>
@@ -595,6 +603,7 @@ export default function Boggle() {
                 const pathIndex = currentPath.findIndex((p) => p.row === rowIdx && p.col === colIdx)
                 const isHovered = hoveredCell?.row === rowIdx && hoveredCell?.col === colIdx && !isInCurrentPath
                 const isLastInPath = pathIndex === currentPath.length - 1
+                const isAccepted = acceptedPath?.some((p) => p.row === rowIdx && p.col === colIdx) ?? false
 
                 return (
                   <motion.div
@@ -603,14 +612,25 @@ export default function Boggle() {
                       flex items-center justify-center
                       text-2xl font-black text-white
                       rounded-lg border-2 cursor-pointer
-                      ${isInCurrentPath 
+                      ${isAccepted
+                        ? "bg-emerald-500 border-emerald-300"
+                        : isInCurrentPath 
                         ? "bg-blue-500 border-blue-300" 
                         : isHovered 
                         ? "bg-blue-500/30 border-blue-400/50" 
                         : "bg-zinc-800 border-zinc-700"}
                       transition-all
                     `}
-                    animate={isInCurrentPath ? { scale: 1.1 } : isHovered ? { scale: 1.05 } : { scale: 1 }}
+                    animate={
+                      isAccepted 
+                        ? { scale: [1, 1.15, 1.1] } 
+                        : isInCurrentPath 
+                        ? { scale: 1.1 } 
+                        : isHovered 
+                        ? { scale: 1.05 } 
+                        : { scale: 1 }
+                    }
+                    transition={isAccepted ? { duration: 0.3 } : {}}
                     onClick={(e) => {
                       // Handle individual cell click
                       e.stopPropagation()
@@ -649,23 +669,47 @@ export default function Boggle() {
             )}
 
             {/* Path SVG Overlay */}
-            {currentPath.length > 1 && (
+            {((currentPath.length > 1) || (acceptedPath && acceptedPath.length > 1)) && (
               <svg className="absolute inset-0 pointer-events-none" style={{ width: "100%", height: "100%" }} viewBox="0 0 100 100" preserveAspectRatio="none">
-                <motion.polyline
-                  points={currentPath
-                    .map((pos) => {
-                      const cellSize = 100 / BOGGLE_CONFIG.GRID_SIZE
-                      const x = (pos.col + 0.5) * cellSize
-                      const y = (pos.row + 0.5) * cellSize
-                      return `${x},${y}`
-                    })
-                    .join(" ")}
-                  fill="none"
-                  stroke="#3b82f6"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+                {/* Accepted path (green/emerald) */}
+                {acceptedPath && acceptedPath.length > 1 && (
+                  <motion.polyline
+                    points={acceptedPath
+                      .map((pos) => {
+                        const cellSize = 100 / BOGGLE_CONFIG.GRID_SIZE
+                        const x = (pos.col + 0.5) * cellSize
+                        const y = (pos.row + 0.5) * cellSize
+                        return `${x},${y}`
+                      })
+                      .join(" ")}
+                    fill="none"
+                    stroke="#10b981"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: [0, 1, 1, 0] }}
+                    transition={{ duration: 0.3 }}
+                  />
+                )}
+                {/* Current path (blue) */}
+                {currentPath.length > 1 && !acceptedPath && (
+                  <motion.polyline
+                    points={currentPath
+                      .map((pos) => {
+                        const cellSize = 100 / BOGGLE_CONFIG.GRID_SIZE
+                        const x = (pos.col + 0.5) * cellSize
+                        const y = (pos.row + 0.5) * cellSize
+                        return `${x},${y}`
+                      })
+                      .join(" ")}
+                    fill="none"
+                    stroke="#3b82f6"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                )}
               </svg>
             )}
           </div>
@@ -718,7 +762,28 @@ export default function Boggle() {
       {!isPlaying && board.length === 0 && (
         <div className="text-center">
           <h2 className="text-4xl font-black text-white mb-4">Boggle</h2>
-          <p className="text-zinc-400 mb-8">Find as many words as you can in 3 minutes!</p>
+          <p className="text-zinc-400 mb-6">Find as many words as you can!</p>
+          
+          {/* Time Mode Selection */}
+          <div className="mb-8">
+            <label className="block text-white font-bold mb-3 text-lg">Select Time:</label>
+            <div className="flex flex-wrap gap-3 justify-center">
+              {Object.entries(TIME_MODES).map(([mode, seconds]) => (
+                <button
+                  key={mode}
+                  onClick={() => setTimeMode(mode as TimeMode)}
+                  className={`px-6 py-3 rounded-xl font-bold transition-all ${
+                    timeMode === mode
+                      ? "bg-blue-500 text-white scale-110"
+                      : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
+                  }`}
+                >
+                  {seconds}s
+                </button>
+              ))}
+            </div>
+          </div>
+
           <button
             onClick={startGame}
             className="bg-blue-500 hover:bg-blue-600 text-white font-black py-4 px-8 rounded-xl text-lg transition-colors"

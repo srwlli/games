@@ -41,13 +41,17 @@ export default function Wordle() {
         const word = await getRandomCommonWord()
         setTargetWord(word)
         setIsLoading(false)
+        // Auto-start game once word is loaded
+        if (word) {
+          start()
+        }
       } catch (error) {
         console.error("Failed to initialize Wordle:", error)
         setIsLoading(false)
       }
     }
     initGame()
-  }, [])
+  }, [start])
 
   // Start game
   const startGame = useCallback(async () => {
@@ -86,21 +90,31 @@ export default function Wordle() {
   // Handle letter input
   const handleLetter = useCallback(
     (letter: string) => {
-      if (!isPlaying || isPaused || currentGuess.length >= WORDLE_CONFIG.WORD_LENGTH) return
+      // Allow input if game is playing and not paused, or if game hasn't started yet (idle state)
+      if (isPaused || currentGuess.length >= WORDLE_CONFIG.WORD_LENGTH) return
+      if (!isPlaying && targetWord === "") return // Don't allow input if target word isn't loaded
       setCurrentGuess((prev) => prev + letter.toUpperCase())
     },
-    [isPlaying, isPaused, currentGuess.length],
+    [isPlaying, isPaused, currentGuess.length, targetWord],
   )
 
   // Handle backspace
   const handleBackspace = useCallback(() => {
-    if (!isPlaying || isPaused || currentGuess.length === 0) return
+    if (isPaused || currentGuess.length === 0) return
+    if (!isPlaying && targetWord === "") return // Don't allow input if target word isn't loaded
     setCurrentGuess((prev) => prev.slice(0, -1))
-  }, [isPlaying, isPaused, currentGuess.length])
+  }, [isPlaying, isPaused, currentGuess.length, targetWord])
 
   // Handle enter/guess submission
   const handleEnter = useCallback(() => {
-    if (!isPlaying || isPaused || currentGuess.length !== WORDLE_CONFIG.WORD_LENGTH) return
+    if (isPaused || currentGuess.length !== WORDLE_CONFIG.WORD_LENGTH) return
+    if (!isPlaying) {
+      // Auto-start game if not started yet
+      if (targetWord && currentGuess.length === WORDLE_CONFIG.WORD_LENGTH) {
+        start()
+      }
+      return
+    }
 
     // Validate guess
     if (!validateGuess(currentGuess)) {
@@ -150,7 +164,8 @@ export default function Wordle() {
   // Keyboard input handler
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (!isPlaying || isPaused) return
+      // Allow input even if game hasn't started (will auto-start on Enter)
+      if (isPaused) return
 
       if (e.key === "Enter") {
         handleEnter()
@@ -172,11 +187,13 @@ export default function Wordle() {
   }, [reset, startGame])
 
   const togglePause = useCallback(() => {
+    // Only toggle if game is actually playing or paused - prevent accidental resets
     if (isPlaying) {
       pause()
     } else if (isPaused) {
       resume()
     }
+    // If game is idle or gameOver, do nothing (don't reset)
   }, [isPlaying, isPaused, pause, resume])
 
   // Get color for letter state
@@ -307,7 +324,7 @@ export default function Wordle() {
               Start Game
             </button>
           )}
-          {isPlaying && (
+          {(isPlaying || isPaused) && (
             <button
               onClick={togglePause}
               className="bg-zinc-700 hover:bg-zinc-600 text-white font-bold py-2 px-4 rounded-lg transition-colors"
@@ -333,7 +350,7 @@ export default function Wordle() {
       )}
 
       {/* Pause Overlay */}
-      {isPaused && isPlaying && (
+      {isPaused && (
         <div className="absolute inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-10">
           <div className="text-center">
             <h2 className="text-4xl font-black text-white mb-4">Paused</h2>
