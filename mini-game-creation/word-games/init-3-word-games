@@ -1,0 +1,126 @@
+This document serves as the **Master Technical Specification** for the "Word Game Suite" (Boggle, Wordle, and Wordscape Clones). It outlines a unified architecture that leverages a shared dictionary service while maintaining game-specific logic and scoring.
+
+---
+
+## 1. System Architecture: The "Core-Service" Model
+
+To ensure scalability across multiple games, we utilize a **Singleton Service Architecture**. This ensures that massive word lists are loaded into memory exactly once.
+
+### The Unified Dictionary Engine
+
+We use a **Trie (Prefix Tree)** data structure. This is non-negotiable for performance, as it allows  lookups and **Prefix Pruning** (instantly stopping a search if no words start with a specific letter sequence).
+
+| Game | Dictionary Source | Validation Logic |
+| --- | --- | --- |
+| **Boggle** | **SOWPODS (Full)** | Full Scrabble dictionary; allows obscure words. |
+| **Wordle** | **Google-10,000 (Common)** | Target word must be common; Guesses can be obscure. |
+| **Wordscape** | **12Dicts (Common)** | Only highly recognizable words to ensure player satisfaction. |
+
+---
+
+## 2. Shared Library: `TrieService.ts`
+
+This service handles the loading of different `.txt` sources and provides the core search methods.
+
+```typescript
+class TrieNode {
+  children: { [key: string]: TrieNode } = {};
+  isWord: boolean = false;
+  isCommon: boolean = false; // Tag for Wordle/Wordscape filters
+}
+
+export class Trie {
+  root = new TrieNode();
+
+  // Load word and tag it with metadata (game-specific filters)
+  insert(word: string, isCommon: boolean) {
+    let node = this.root;
+    for (const char of word.toUpperCase()) {
+      if (!node.children[char]) node.children[char] = new TrieNode();
+      node = node.children[char];
+    }
+    node.isWord = true;
+    if (isCommon) node.isCommon = true;
+  }
+
+  // Used by Boggle & Wordle Guesses
+  contains(word: string): boolean {
+    let node = this.find(word);
+    return node !== null && node.isWord;
+  }
+
+  // Used for Wordle Targets & Wordscape Puzzles
+  containsCommon(word: string): boolean {
+    let node = this.find(word);
+    return node !== null && node.isWord && node.isCommon;
+  }
+
+  // Essential for Boggle & Wordscape Solvers
+  isPrefix(prefix: string): boolean {
+    return this.find(prefix) !== null;
+  }
+
+  private find(str: string): TrieNode | null {
+    let node = this.root;
+    for (const char of str.toUpperCase()) {
+      if (!node.children[char]) return null;
+      node = node.children[char];
+    }
+    return node;
+  }
+}
+
+```
+
+---
+
+## 3. Game-Specific Logic Modules
+
+### A. Boggle Engine
+
+* **Dice:** 16 standard dice (defined in `boggle-logic.ts`).
+* **Pathing:** Depth-First Search (DFS) with a `visited` set to prevent tile reuse.
+* **Scoring:** * 3 Letters: 1 pt
+* 4 Letters: 2 pts
+* 5 Letters: 3 pts
+* 6 Letters: 5 pts
+* 7 Letters: 7 pts
+* 8+ Letters: 11 pts
+
+
+
+### B. Wordle Engine
+
+* **Logic:** Simple string comparison.
+* **Feedback:** Returns an array of states: `correct` (green), `present` (yellow), or `absent` (gray).
+* **Validation:** Cross-references the `MasterTrie` for guess legality and `CommonTrie` for target word generation.
+
+### C. Wordscape Engine
+
+* **Logic:** Anagram solver. Uses the letters in the circle to traverse the Trie.
+* **Pruning:** If the current circle selection isn't a prefix, the search stops immediately.
+
+---
+
+## 4. Mobile-First Interaction Layer
+
+All games share a unified interaction philosophy to ensure high performance on mobile browsers.
+
+* **Touch Handling:** Use `touch-none` CSS to prevent screen scrolling.
+* **Visual Feedback:** Use an SVG `<polyline>` for the Boggle "Snake" and Wordscape circle connectors.
+* **Responsive Units:** Use `svh` (Small Viewport Height) to ensure the game board stays above the mobile keyboard/address bar.
+* **Haptics:** Trigger `window.navigator.vibrate(10)` on every successful letter selection.
+
+---
+
+## 5. Development Roadmap for Team
+
+1. **Phase 1:** Core `TrieService` singleton (Ingest `.txt` files).
+2. **Phase 2:** Shared DFS and Anagram solver algorithms.
+3. **Phase 3:** Boggle Implementation (Grid UI + Snake Path).
+4. **Phase 4:** Wordle Implementation (State-based grid).
+5. **Phase 5:** Wordscape Implementation (Circular wheel + Crossword grid).
+
+---
+
+**Would you like me to generate the "Words You Missed" solver algorithm next, which uses the Trie to find every valid word on a Boggle board?**
