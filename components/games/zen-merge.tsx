@@ -30,6 +30,8 @@ export default function ZenMerge() {
     const [score, setScore] = useState(0)
     const [highScore, setHighScore] = useState(0)
     const [draggedIndex, setDraggedIndex] = useState<number | null>(null)
+    const [discoveredLevels, setDiscoveredLevels] = useState<number>(1)
+    const [notification, setNotification] = useState<string | null>(null)
 
     const { isPlaying, isPaused, isGameOver, gameOver, reset, start } = useGameState({
         initialState: "playing",
@@ -41,6 +43,8 @@ export default function ZenMerge() {
     const resetGame = useCallback(() => {
         setGrid(Array(16).fill(null))
         setScore(0)
+        setDiscoveredLevels(1)
+        setNotification(null)
         reset()
         start()
 
@@ -128,26 +132,35 @@ export default function ZenMerge() {
             updateScore(newScore)
             if (newScore > highScore) setHighScore(newScore)
 
-            // Spawn one more on merge success
-            newGrid = spawnCrystal(newGrid)
-        } else if (targetCrystal === null) {
-            // MOVE
+            if (nextLevel > discoveredLevels) {
+                setDiscoveredLevels(nextLevel)
+                setNotification(`New Discovery: ${CRYSTAL_TIERS[nextLevel - 1].name}!`)
+                setTimeout(() => setNotification(null), 3000)
+            }
+            // NO AUTO-SPAWN: Merging rewards you with space.
+        } else {
+            // MOVE or SWAP
             newGrid[targetIndex] = sourceCrystal
-            newGrid[draggedIndex] = null
+            newGrid[draggedIndex] = targetCrystal // targetCrystal is null if empty, effectively moving it
         }
 
         setGrid(newGrid)
         setDraggedIndex(null)
 
         // Check for "Deadlock"
-        const hasPossibleMerges = newGrid.some((c, i) => {
-            if (!c) return false
-            // Check neighbors
-            const neighbors = [i - 1, i + 1, i - 4, i + 4].filter(n => n >= 0 && n < 16)
-            return neighbors.some(n => newGrid[n]?.level === c.level)
+        // 1. Is the grid full?
+        const isFull = newGrid.every(c => c !== null)
+        if (!isFull) return
+
+        // 2. Are there ANY merges possible on the whole board? (Global Check)
+        const levelCounts: Record<number, number> = {}
+        newGrid.forEach(c => {
+            if (c) levelCounts[c.level] = (levelCounts[c.level] || 0) + 1
         })
 
-        if (newGrid.every(c => c !== null) && !hasPossibleMerges) {
+        const hasAnyPossibleMerge = Object.values(levelCounts).some(count => count >= 2)
+
+        if (!hasAnyPossibleMerge) {
             gameOver()
         }
     }
@@ -157,6 +170,7 @@ export default function ZenMerge() {
             <StatsBar
                 stats={[
                     { label: "Score", value: score, color: "cyan" },
+                    { label: "High Score", value: highScore, color: "amber" },
                     { label: "Time", value: Math.floor(liveTime / 1000) + "s", color: "orange" },
                 ]}
                 layout="absolute"
@@ -210,10 +224,45 @@ export default function ZenMerge() {
                     </div>
                 </div>
 
-                <div className="text-center">
-                    <p className="text-zinc-500 text-[10px] font-black uppercase tracking-[0.2em]">
-                        {grid.filter(c => c === null).length > 0 ? "Tap empty tile to spawn" : "No space left! Merge items!"}
-                    </p>
+                <div className="text-center h-4">
+                    <AnimatePresence>
+                        {notification && (
+                            <motion.p
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0 }}
+                                className="text-cyan-400 text-[10px] font-black uppercase tracking-[0.2em]"
+                            >
+                                {notification}
+                            </motion.p>
+                        )}
+                    </AnimatePresence>
+                    {!notification && (
+                        <p className="text-zinc-500 text-[10px] font-black uppercase tracking-[0.2em]">
+                            {grid.filter(c => c === null).length > 0 ? "Tap empty tile to spawn shard" : "OUT OF SPACE! Merge items!"}
+                        </p>
+                    )}
+                </div>
+
+                {/* Discovered Tiers Progress */}
+                <div className="pt-4 border-t border-zinc-800/50">
+                    <div className="flex justify-between items-center mb-4 px-2">
+                        <span className="text-zinc-600 text-[10px] font-black uppercase tracking-widest">Discovery Progress</span>
+                        <span className="text-zinc-400 text-[10px] font-black">{Math.round((discoveredLevels / 10) * 100)}%</span>
+                    </div>
+                    <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar px-2">
+                        {CRYSTAL_TIERS.map((tier) => (
+                            <div
+                                key={tier.level}
+                                className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center text-xl transition-all duration-500 ${discoveredLevels >= tier.level
+                                    ? `bg-gradient-to-br ${tier.color} shadow-lg opacity-100`
+                                    : "bg-zinc-900 border border-zinc-800 opacity-20 grayscale"
+                                    }`}
+                            >
+                                {tier.emoji}
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
 
