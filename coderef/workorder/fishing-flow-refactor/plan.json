@@ -1,0 +1,37 @@
+{
+    "workorder_id": "WO-FISHING-001",
+    "title": "Unified Fishing Flow Refactor",
+    "description": "Consolidate 5 disparate fishing patterns into a single high-fidelity game loop.",
+    "status": "planned",
+    "phases": [
+        {
+            "name": "Phase 1: State Consolidation",
+            "tasks": [
+                "Define new FishingPhase type",
+                "Refactor handleCatch/handleMiss to be phase-aware"
+            ]
+        },
+        {
+            "name": "Phase 2: Mechanics Integration",
+            "tasks": [
+                "Migrate PowerMeter from Pattern 1",
+                "Implement Waiting/Nibble phase",
+                "Implement Hook-Set quick-reaction event",
+                "Implement Unified Battle (Tension + Stamina + QTE)"
+            ]
+        },
+        {
+            "name": "Phase 3: UI/UX Polish",
+            "tasks": [
+                "Update HUD for the 'Battle' state",
+                "Implement smooth transitions between phases",
+                "Verify results screen data accuracy"
+            ]
+        }
+    ],
+    "verification": [
+        "Test all state transitions",
+        "Balance tension/stamina difficulty",
+        "Ensure game session integration persists score correctly"
+    ]
+}

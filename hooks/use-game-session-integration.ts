@@ -29,7 +29,7 @@ import type { GAMES_REGISTRY } from "@/lib/games-registry"
 type GameId = keyof typeof GAMES_REGISTRY
 
 export function useGameSessionIntegration(gameId: GameId) {
-  const { updateSession, endSession, currentSession } = useGameSession()
+  const { updateSession, endSession, currentSession, setTimerPaused, liveTime } = useGameSession()
   const lastScoreRef = useRef<number | null>(null)
 
   // Update score in session (debounced to avoid too many updates)
@@ -60,6 +60,8 @@ export function useGameSessionIntegration(gameId: GameId) {
     updateScore,
     endGameSession,
     updateMetadata,
+    setTimerPaused,
+    liveTime,
     currentSession,
   }
 }

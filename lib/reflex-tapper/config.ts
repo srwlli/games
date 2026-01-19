@@ -10,7 +10,7 @@ export const GAME_MODES: Record<GameMode, GameConfig> = {
     initialTime: 20,
     initialSpawnInterval: 800,
     initialTargetLifetime: 1500,
-    maxTargetsOnScreen: 20,
+    maxTargetsOnScreen: 8, // Reduced for better playability
     adaptiveDifficulty: true,
     powerUpSpawnChance: 0.05, // 5% chance
   },
@@ -90,11 +90,11 @@ export const RULE_PHASES: Array<{
   duration: number
   targetColor?: "orange" | "red" | "blue" | "green" | "yellow" | "purple"
 }> = [
-  { type: "tap-any", instruction: "Tap any target", duration: 5 },
-  { type: "tap-color", instruction: "Tap only orange targets", targetColor: "orange", duration: 5 },
-  { type: "avoid-color", instruction: "Avoid red targets", targetColor: "red", duration: 5 },
-  { type: "tap-color", instruction: "Tap only blue targets", targetColor: "blue", duration: 5 },
-  { type: "tap-any", instruction: "Tap any target", duration: 5 },
+  { type: "tap-any", instruction: "Tap any target", duration: 8 },
+  { type: "tap-color", instruction: "Only Orange", targetColor: "orange", duration: 8 },
+  { type: "avoid-color", instruction: "Avoid Red", targetColor: "red", duration: 8 },
+  { type: "tap-color", instruction: "Only Blue", targetColor: "blue", duration: 8 },
+  { type: "tap-any", instruction: "Free Tap!", duration: 8 },
 ]
 
 export const ADAPTIVE_DIFFICULTY = {

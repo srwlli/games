@@ -1,0 +1,161 @@
+{
+    "META_DOCUMENTATION": {
+        "feature_name": "timer-infrastructure",
+        "workorder_id": "WO-TIMER-INFRASTRUCTURE-001",
+        "version": "1.0.0",
+        "status": "planning",
+        "generated_by": "coderef-docs-agent",
+        "has_context": true,
+        "has_analysis": true,
+        "uds": {
+            "generated_by": "coderef-workflow v2.0.0 (manual simulation)",
+            "document_type": "Implementation Plan",
+            "last_updated": "2026-01-19",
+            "ai_assistance": true,
+            "next_review": "2026-02-18"
+        }
+    },
+    "UNIVERSAL_PLANNING_STRUCTURE": {
+        "0_preparation": {
+            "context_received": "Analyzed existing timer implementations in Fishing and Tetris. Identified lack of centralized live timing in GameSessionContext.",
+            "inventory_check": "Verified existence of use-countdown.ts, use-game-state.ts, and game-session-context.tsx."
+        },
+        "1_executive_summary": {
+            "purpose": "Establish a robust, centralized timer infrastructure across the games platform to ensure consistent game loops, accurate session tracking, and reusable countdown logic.",
+            "value_proposition": "Reduces boilerplate in individual game components (Fishing, Tetris), enables accurate 'Time Played' metrics in real-time, and standardizes the pre-game countdown experience.",
+            "real_world_analogy": "Centralizing the clocks in a casino to ensure every table operates on the same precise schedule.",
+            "use_case": "A game starts -> Global timer ticks -> UI updates with 'Time Remaining' -> Session ends -> Total play time is accurately recorded.",
+            "output": "A new use-start-countdown hook, an upgraded GameSessionContext with live timing, and refactored versions of core games."
+        },
+        "2_risk_assessment": {
+            "overall_risk": "low",
+            "complexity": "medium",
+            "scope": "Affects core hooks and major game components (Fishing, Tetris).",
+            "file_system_risk": "low",
+            "dependencies": [
+                "GameSessionProvider must remain the root wrapper.",
+                "useGameState must stay synchronized with timer status."
+            ],
+            "performance_concerns": [
+                "Minimal overhead from a single centralized setInterval in the context."
+            ],
+            "security_considerations": [
+                "Timer state should be protected from direct external manipulation."
+            ],
+            "breaking_changes": "Transitioning existing games to the new hooks will require temporary state logic updates."
+        },
+        "3_current_state_analysis": {
+            "affected_files": [
+                "contexts/game-session-context.tsx",
+                "hooks/use-countdown.ts",
+                "components/games/tetris.tsx",
+                "components/games/fishing.tsx"
+            ],
+            "dependencies": {
+                "existing_internal": [
+                    "useGameState",
+                    "GameSessionContext"
+                ],
+                "existing_external": [
+                    "framer-motion (for countdown animations)"
+                ],
+                "new_external": [],
+                "new_internal": [
+                    "use-start-countdown.ts"
+                ]
+            },
+            "architecture_context": "Next.js App Router with Context-based state management."
+        },
+        "4_key_features": {
+            "primary_features": [
+                "Live PlayTime tracking in GameSessionContext",
+                "Standardized Start Countdown hook (3-2-1 sequence)",
+                "Pause/Resume capabilities for all game timers",
+                "Integration of centralized timing into the StatsBar"
+            ],
+            "secondary_features": [
+                "Visual feedback for low-time situations",
+                "Automatic session ending on specific timer conditions",
+                "Deterministic locking in Tetris via new timer logic"
+            ],
+            "edge_case_handling": [
+                "Timer behavior on tab visibility change (pausing when hidden)",
+                "Handling massive lag spikes in setInterval"
+            ],
+            "configuration_options": [
+                "Adjustable countdown durations",
+                "Toggle for live vs. static time display"
+            ]
+        },
+        "5_task_id_system": {
+            "tasks": [
+                "HOOKS-001: Enhance use-countdown.ts with precision pausing",
+                "HOOKS-002: Implement use-start-countdown.ts for pre-game sequence",
+                "CONTEXT-001: Add liveTime tracking to game-session-context.tsx",
+                "GAME-001: Refactor Tetris to use centralized start countdown",
+                "GAME-002: Refactor Fishing QTE and pattern timers",
+                "TEST-001: Verify timer synchronization across state changes"
+            ]
+        },
+        "6_implementation_phases": {
+            "phases": [
+                {
+                    "phase": 1,
+                    "name": "Core Infrastructure",
+                    "tasks": [
+                        "HOOKS-001",
+                        "HOOKS-002",
+                        "CONTEXT-001"
+                    ],
+                    "deliverables": [
+                        "New hooks available",
+                        "Context tracks live time"
+                    ]
+                },
+                {
+                    "phase": 2,
+                    "name": "Game Integration",
+                    "tasks": [
+                        "GAME-001",
+                        "GAME-002"
+                    ],
+                    "deliverables": [
+                        "Tetris and Fishing updated",
+                        "Consistent start sequence"
+                    ]
+                }
+            ]
+        },
+        "7_testing_strategy": {
+            "unit_tests": [
+                "Verify useCountdown decrement logic",
+                "Verify useStartCountdown sequence timing"
+            ],
+            "integration_tests": [
+                "Ensure GameSessionContext updates session history with correct play time",
+                "Test pause/resume toggle affects all active timers"
+            ]
+        },
+        "8_success_criteria": {
+            "functional_requirements": [
+                "Timer pauses when game state is 'paused'",
+                "Start countdown displays 3-2-1-GO accurately",
+                "Total play time matches actual wall-clock time spent playing"
+            ],
+            "quality_requirements": [
+                "Zero memory leaks from cleared intervals",
+                "Smooth animations for countdown transitions"
+            ]
+        },
+        "9_implementation_checklist": {
+            "pre_implementation": [
+                "Review existing timer logic in Tetris to avoid regression",
+                "Ensure GameSessionContext state is robust against hydration errors"
+            ],
+            "finalization": [
+                "Validate plan against Universal Documentation Standards",
+                "Create walkthrough for verified changes"
+            ]
+        }
+    }
+}

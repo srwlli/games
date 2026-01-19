@@ -6,6 +6,7 @@ import { StatsBar, GameOverModal, StartScreen, CountdownOverlay } from "@/compon
 import { useGameState } from "@/hooks/use-game-state"
 import { useCountdown } from "@/hooks/use-countdown"
 import { useGameSessionIntegration } from "@/hooks/use-game-session-integration"
+import { useStartCountdown } from "@/hooks/use-start-countdown"
 import { DictionaryService } from "@/lib/word-games/trie/trie-service"
 import { generateBoard, calculateBoggleScore, validateWord, solveBoard, BOGGLE_DICE } from "@/lib/word-games/boggle/engine"
 import { BOGGLE_CONFIG, TIME_MODES, type TimeMode } from "@/lib/word-games/boggle/config"
@@ -15,7 +16,7 @@ export default function Boggle() {
   const { isPlaying, isPaused, isGameOver, pause, resume, gameOver, reset, start } = useGameState({
     initialState: "idle",
   })
-  const { updateScore, endGameSession } = useGameSessionIntegration("boggle")
+  const { updateScore, endGameSession, setTimerPaused, liveTime } = useGameSessionIntegration("boggle")
 
   // Time mode selection
   const [timeMode, setTimeMode] = useState<TimeMode>("3min")
@@ -29,8 +30,7 @@ export default function Boggle() {
   const [showWordsMissed, setShowWordsMissed] = useState(false)
   const [allWords, setAllWords] = useState<Set<string>>(new Set())
   const [acceptedPath, setAcceptedPath] = useState<BogglePath | null>(null)
-  const [countdown, setCountdown] = useState<number | null>(null)
-  const countdownStartedRef = useRef(false)
+  const { countdown, startCountdown, resetCountdown } = useStartCountdown()
 
   const touchStartRef = useRef<{ row: number; col: number } | null>(null)
   const isDrawingRef = useRef(false)
@@ -50,8 +50,13 @@ export default function Boggle() {
     () => {
       handleGameOver()
     },
-    isPlaying && !isPaused,
+    isPlaying && !isPaused && countdown === null,
   )
+
+  // Sync session timer with game pause state
+  useEffect(() => {
+    setTimerPaused(isPaused || countdown !== null || !isPlaying)
+  }, [isPaused, countdown, isPlaying, setTimerPaused])
 
   // Initialize dictionary on mount
   useEffect(() => {
@@ -78,26 +83,9 @@ export default function Boggle() {
     setShowWordsMissed(false)
     resetTimer(timeLimit) // Reset with selected time mode
     start()
-    // Start countdown
-    countdownStartedRef.current = true
-    setCountdown(3)
-  }, [start, resetTimer, timeLimit])
+    startCountdown()
+  }, [start, resetTimer, timeLimit, startCountdown])
 
-  // Countdown timer effect
-  useEffect(() => {
-    if (countdown === null || countdown <= 0) return
-
-    const timer = setTimeout(() => {
-      if (countdown === 1) {
-        setCountdown(null)
-        // Game actually starts now (countdown finished)
-      } else {
-        setCountdown(countdown - 1)
-      }
-    }, 1000)
-
-    return () => clearTimeout(timer)
-  }, [countdown])
 
   // Handle game over
   const handleGameOver = useCallback(() => {
@@ -117,7 +105,7 @@ export default function Boggle() {
       const y = clientY - rect.top
 
       const cellSize = rect.width / BOGGLE_CONFIG.GRID_SIZE
-      
+
       // Calculate which cell we're in
       const col = Math.floor(x / cellSize)
       const row = Math.floor(y / cellSize)
@@ -130,10 +118,10 @@ export default function Boggle() {
       // Calculate position within cell (0-1 range)
       const cellX = (x % cellSize) / cellSize
       const cellY = (y % cellSize) / cellSize
-      
+
       // Use a very large center zone (85% of cell) - extremely forgiving
       const centerThreshold = 0.075 // 7.5% margin = 85% center area
-      const isInCenter = 
+      const isInCenter =
         cellX >= centerThreshold && cellX <= (1 - centerThreshold) &&
         cellY >= centerThreshold && cellY <= (1 - centerThreshold)
 
@@ -154,34 +142,34 @@ export default function Boggle() {
         const { dx, dy } = movementVectorRef.current
         const absDx = Math.abs(dx)
         const absDy = Math.abs(dy)
-        
+
         // If movement is clearly diagonal (both dx and dy significant), prefer diagonal cells
         const isDiagonalMovement = absDx > 5 && absDy > 5 && Math.abs(absDx - absDy) < absDx * 0.5
-        
+
         if (isDiagonalMovement) {
           // For diagonal movement, check diagonal neighbors first
           const diagonalDirs = [
             { dr: -1, dc: -1 }, { dr: -1, dc: 1 },
             { dr: 1, dc: -1 }, { dr: 1, dc: 1 }
           ]
-          
+
           for (const { dr, dc } of diagonalDirs) {
             const nr = row + dr
             const nc = col + dc
-            
+
             if (nr >= 0 && nr < BOGGLE_CONFIG.GRID_SIZE && nc >= 0 && nc < BOGGLE_CONFIG.GRID_SIZE) {
               let adjCellX = cellX - dc
               let adjCellY = cellY - dr
-              
+
               if (adjCellX < 0) adjCellX += 1
               if (adjCellX > 1) adjCellX -= 1
               if (adjCellY < 0) adjCellY += 1
               if (adjCellY > 1) adjCellY -= 1
-              
+
               const distanceToAdjCenter = Math.sqrt(
                 Math.pow(adjCellX - 0.5, 2) + Math.pow(adjCellY - 0.5, 2)
               )
-              
+
               // More lenient threshold for diagonal movement
               if (distanceToAdjCenter < currentDistanceToCenter - 0.15) {
                 return { row: nr, col: nc }
@@ -194,31 +182,31 @@ export default function Boggle() {
       // Standard adjacent cell detection with higher threshold
       let bestCell: BogglePosition | null = null
       let bestDistance = Infinity
-      
+
       for (let dr = -1; dr <= 1; dr++) {
         for (let dc = -1; dc <= 1; dc++) {
           if (dr === 0 && dc === 0) continue
-          
+
           const nr = row + dr
           const nc = col + dc
-          
+
           if (nr >= 0 && nr < BOGGLE_CONFIG.GRID_SIZE && nc >= 0 && nc < BOGGLE_CONFIG.GRID_SIZE) {
             let adjCellX = cellX - dc
             let adjCellY = cellY - dr
-            
+
             if (adjCellX < 0) adjCellX += 1
             if (adjCellX > 1) adjCellX -= 1
             if (adjCellY < 0) adjCellY += 1
             if (adjCellY > 1) adjCellY -= 1
-            
+
             const distanceToAdjCenter = Math.sqrt(
               Math.pow(adjCellX - 0.5, 2) + Math.pow(adjCellY - 0.5, 2)
             )
-            
+
             // Higher threshold (0.25) to prevent corner catches
             // Only switch if significantly closer to adjacent cell center
-            if (distanceToAdjCenter < bestDistance && 
-                distanceToAdjCenter < currentDistanceToCenter - 0.25) {
+            if (distanceToAdjCenter < bestDistance &&
+              distanceToAdjCenter < currentDistanceToCenter - 0.25) {
               bestDistance = distanceToAdjCenter
               bestCell = { row: nr, col: nc }
             }
@@ -310,7 +298,7 @@ export default function Boggle() {
       let cell = detectedCell
       if (currentPath.length > 0) {
         const lastCell = currentPath[currentPath.length - 1]
-        
+
         // If detected cell is not adjacent to last cell, ignore it
         // This prevents accidental jumps to non-adjacent cells at corners
         if (!isAdjacent(lastCell, detectedCell)) {
@@ -322,19 +310,19 @@ export default function Boggle() {
         // This prevents selecting cells that are just passed over during diagonal movement
         const cellKey = `${cell.row},${cell.col}`
         const currentTime = Date.now()
-        
+
         // Track when we first entered this cell
         if (!cellEnterTimeRef.current.has(cellKey)) {
           cellEnterTimeRef.current.set(cellKey, currentTime)
         }
-        
+
         const enterTime = cellEnterTimeRef.current.get(cellKey)!
         const timeInCell = currentTime - enterTime
-        
+
         // Require minimum time in cell OR significant movement into cell before committing
         const rect = container.getBoundingClientRect()
         const cellSize = rect.width / BOGGLE_CONFIG.GRID_SIZE
-        
+
         // Calculate how far into the cell we are (0-1, where 0.5 is center)
         const cellX = ((clientX - rect.left) % cellSize) / cellSize
         const cellY = ((clientY - rect.top) % cellSize) / cellSize
@@ -342,14 +330,14 @@ export default function Boggle() {
           Math.min(cellX, 1 - cellX),
           Math.min(cellY, 1 - cellY)
         )
-        
+
         // Require either:
         // 1. Been in cell for at least 50ms (prevents quick pass-overs)
         // 2. Moved significantly into cell center (at least 30% from edge)
         // 3. This is a backtrack (already in path)
         const isBacktrack = isInPath(currentPath, cell)
         const isCommitted = timeInCell >= 50 || distanceFromEdge >= 0.3 || isBacktrack
-        
+
         // If we have a committed direction and this cell matches it, allow it
         if (committedDirectionRef.current) {
           const committed = committedDirectionRef.current
@@ -357,7 +345,7 @@ export default function Boggle() {
           const colDiff = cell.col - lastCell.col
           const committedRowDiff = committed.row - lastCell.row
           const committedColDiff = committed.col - lastCell.col
-          
+
           // If moving in committed direction, allow it
           if (rowDiff === committedRowDiff && colDiff === committedColDiff) {
             // Allow committed direction
@@ -381,7 +369,7 @@ export default function Boggle() {
           // Commit to this direction
           committedDirectionRef.current = cell
         }
-        
+
         // Clear enter time for cells we're leaving
         cellEnterTimeRef.current.forEach((time, key) => {
           if (key !== cellKey) {
@@ -404,7 +392,7 @@ export default function Boggle() {
       // Only process if cell changed
       if (lastCellRef.current?.row !== cell.row || lastCellRef.current?.col !== cell.col) {
         lastCellRef.current = cell
-        
+
         setCurrentPath((prev) => {
           if (prev.length === 0) {
             return [cell]
@@ -435,7 +423,7 @@ export default function Boggle() {
     // Check if this was a tap (quick touch without significant movement)
     const tapDuration = Date.now() - tapStartTimeRef.current
     const wasTap = tapDuration < 200 && tapStartPosRef.current
-    
+
     if (wasTap && touchStartRef.current) {
       // Handle tap: add cell to path if adjacent, or start new path
       const tappedCell = touchStartRef.current
@@ -457,7 +445,7 @@ export default function Boggle() {
         }
         return prev
       })
-      
+
       // Haptic feedback for tap
       if ("vibrate" in navigator) {
         navigator.vibrate(10)
@@ -537,10 +525,9 @@ export default function Boggle() {
     setShowWordsMissed(false)
     setAllWords(new Set())
     setAcceptedPath(null)
-    setCountdown(null)
-    countdownStartedRef.current = false
+    resetCountdown()
     // Do not auto-start - user must click "Start Game" again
-  }, [reset])
+  }, [reset, resetCountdown])
 
   const togglePause = useCallback(() => {
     if (isPlaying) {
@@ -562,9 +549,9 @@ export default function Boggle() {
   }
 
   return (
-    <div 
-      className="relative w-full h-full flex flex-col items-center justify-center bg-black touch-none" 
-      style={{ 
+    <div
+      className="relative w-full h-full flex flex-col items-center justify-center bg-black touch-none"
+      style={{
         height: "100svh",
         paddingTop: "env(safe-area-inset-top, 0px)",
         paddingBottom: "env(safe-area-inset-bottom, 0px)"
@@ -576,10 +563,11 @@ export default function Boggle() {
           stats={[
             { label: "Score", value: score, color: "blue" },
             {
-              label: "Time",
+              label: "Time Remaining",
               value: `${timeLeft}s`,
               color: timeLeft < 30 ? "red" : "white",
             },
+            { label: "Play Time", value: Math.floor(liveTime / 1000) + "s", color: "orange" },
             { label: "Words", value: foundWords.size, color: "emerald" },
           ]}
           layout="absolute"
@@ -651,28 +639,28 @@ export default function Boggle() {
                       rounded-lg border-2 cursor-pointer
                       ${isAccepted
                         ? "bg-emerald-500 border-emerald-300"
-                        : isInCurrentPath 
-                        ? "bg-blue-500 border-blue-300" 
-                        : isHovered 
-                        ? "bg-blue-500/30 border-blue-400/50" 
-                        : "bg-zinc-800 border-zinc-700"}
+                        : isInCurrentPath
+                          ? "bg-blue-500 border-blue-300"
+                          : isHovered
+                            ? "bg-blue-500/30 border-blue-400/50"
+                            : "bg-zinc-800 border-zinc-700"}
                       transition-all
                     `}
                     animate={
-                      isAccepted 
-                        ? { scale: [1, 1.15, 1.1] } 
-                        : isInCurrentPath 
-                        ? { scale: 1.1 } 
-                        : isHovered 
-                        ? { scale: 1.05 } 
-                        : { scale: 1 }
+                      isAccepted
+                        ? { scale: [1, 1.15, 1.1] }
+                        : isInCurrentPath
+                          ? { scale: 1.1 }
+                          : isHovered
+                            ? { scale: 1.05 }
+                            : { scale: 1 }
                     }
                     transition={isAccepted ? { duration: 0.3 } : {}}
                     onClick={(e) => {
                       // Handle individual cell click
                       e.stopPropagation()
                       if (!isPlaying || isPaused) return
-                      
+
                       const clickedCell = { row: rowIdx, col: colIdx }
                       setCurrentPath((prev) => {
                         if (prev.length === 0) {
@@ -692,7 +680,7 @@ export default function Boggle() {
                         }
                         return prev
                       })
-                      
+
                       // Haptic feedback
                       if ("vibrate" in navigator) {
                         navigator.vibrate(10)
@@ -812,11 +800,10 @@ export default function Boggle() {
                 <button
                   key={mode}
                   onClick={() => setTimeMode(mode as TimeMode)}
-                  className={`px-4 py-2 rounded-lg font-bold transition-all text-sm ${
-                    timeMode === mode
+                  className={`px-4 py-2 rounded-lg font-bold transition-all text-sm ${timeMode === mode
                       ? "bg-blue-500 text-white scale-110"
                       : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
-                  }`}
+                    }`}
                 >
                   {seconds}s
                 </button>
@@ -866,9 +853,8 @@ export default function Boggle() {
                     .map((word) => (
                       <span
                         key={word}
-                        className={`text-sm font-bold ${
-                          foundWords.has(word) ? "text-emerald-400" : "text-zinc-400"
-                        }`}
+                        className={`text-sm font-bold ${foundWords.has(word) ? "text-emerald-400" : "text-zinc-400"
+                          }`}
                       >
                         {word}
                       </span>
@@ -905,9 +891,8 @@ export default function Boggle() {
                     .map((word) => (
                       <span
                         key={word}
-                        className={`text-sm font-bold ${
-                          foundWords.has(word) ? "text-emerald-400" : "text-zinc-400"
-                        }`}
+                        className={`text-sm font-bold ${foundWords.has(word) ? "text-emerald-400" : "text-zinc-400"
+                          }`}
                       >
                         {word}
                       </span>

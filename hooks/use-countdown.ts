@@ -1,10 +1,12 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
+import { useInterval } from "./use-interval"
 
 export interface UseCountdownReturn {
   timeLeft: number
   reset: (newInitialSeconds?: number) => void
+  setTimeLeft: (time: number | ((prev: number) => number)) => void
 }
 
 /**
@@ -12,15 +14,6 @@ export interface UseCountdownReturn {
  * Calls onComplete when reaching 0.
  * Pauses/resumes with game state via isActive flag.
  * Supports reset with optional new initial value.
- *
- * @param initialSeconds - Starting countdown value in seconds
- * @param onComplete - Callback to execute when countdown reaches 0
- * @param isActive - Whether the countdown should be active (default: true)
- *
- * @example
- * ```tsx
- * const { timeLeft, reset: resetTimer } = useCountdown(20, () => gameOver(), isPlaying)
- * ```
  */
 export function useCountdown(
   initialSeconds: number,
@@ -37,27 +30,25 @@ export function useCountdown(
     [initialSeconds],
   )
 
-  // Countdown effect
-  useEffect(() => {
-    // Don't run if inactive or already at 0
-    if (!isActive || timeLeft <= 0) {
-      if (timeLeft === 0 && onComplete) {
-        onComplete()
-      }
-      return
-    }
+  // Use the standardized useInterval for the ticking logic
+  useInterval(
+    () => {
+      setTimeLeft((prev) => {
+        const next = Math.max(0, prev - 1)
+        if (next === 0) {
+          onComplete?.()
+        }
+        return next
+      })
+    },
+    timeLeft > 0 ? 1000 : null,
+    isActive,
+  )
 
-    const timer = setTimeout(() => {
-      setTimeLeft((prev) => prev - 1)
-    }, 1000)
-
-    return () => clearTimeout(timer)
-  }, [timeLeft, isActive, onComplete])
-
-  // Reset timeLeft when initialSeconds changes externally
+  // Sync timeLeft if initialSeconds changes externally (preserved behavior)
   useEffect(() => {
     setTimeLeft(initialSeconds)
   }, [initialSeconds])
 
-  return { timeLeft, reset }
+  return { timeLeft, reset, setTimeLeft }
 }

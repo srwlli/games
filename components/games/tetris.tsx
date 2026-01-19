@@ -9,6 +9,8 @@ import { useGameState } from "@/hooks/use-game-state"
 import { useInterval } from "@/hooks/use-interval"
 import { useDelayedAction } from "@/hooks/use-delayed-action"
 import { useTetrisEngine } from "@/hooks/use-tetris-engine"
+import { useStartCountdown } from "@/hooks/use-start-countdown"
+import { useGameSessionIntegration } from "@/hooks/use-game-session-integration"
 import { BoardRow } from "./tetris/board-row"
 import { MobileControls } from "./tetris/mobile-controls"
 import { LineClearAnimation } from "./tetris/line-clear-animation"
@@ -25,8 +27,12 @@ export default function Tetris() {
   const [clearedLines, setClearedLines] = useState<number[]>([])
   const [scorePopup, setScorePopup] = useState<{ score: number; x: number; y: number } | null>(null)
   const [lastScore, setLastScore] = useState(0)
-  const [countdown, setCountdown] = useState<number | null>(null)
-  const countdownStartedRef = useRef(false)
+  const { countdown, startCountdown, resetCountdown } = useStartCountdown({
+    onComplete: () => {
+      // Game already started logic-wise, but engine loop was waiting for countdown === null
+    },
+  })
+  const { updateScore, endGameSession, setTimerPaused, liveTime } = useGameSessionIntegration("tetris")
 
   const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null)
   const touchMoveRef = useRef<{ lastX: number; lastY: number; lastTime: number } | null>(null)
@@ -71,8 +77,19 @@ export default function Tetris() {
   useEffect(() => {
     if (isGameOver) {
       soundManager.gameOver()
+      endGameSession(engine.score, { level: engine.level, lines: engine.linesCleared })
     }
-  }, [isGameOver])
+  }, [isGameOver, engine.score, engine.level, engine.linesCleared, endGameSession])
+
+  // Sync session timer with game pause state
+  useEffect(() => {
+    setTimerPaused(isPaused || countdown !== null)
+  }, [isPaused, countdown, setTimerPaused])
+
+  // Update session score
+  useEffect(() => {
+    updateScore(engine.score)
+  }, [engine.score, updateScore])
 
   // Game loop - automatically pauses/resumes with game state (only when countdown is done)
   useInterval(engine.tick, engine.fallSpeed, isPlaying && countdown === null)
@@ -86,35 +103,17 @@ export default function Tetris() {
   const handleRestart = useCallback(() => {
     engine.reset()
     reset()
-    setCountdown(null)
-    countdownStartedRef.current = false
+    resetCountdown()
     // Do not auto-start - user must click "Start Game" again
-  }, [engine, reset])
+  }, [engine, reset, resetCountdown])
 
   // Start game with countdown
   const handleStart = useCallback(() => {
     engine.reset()
     start()
-    // Start countdown
-    countdownStartedRef.current = true
-    setCountdown(3)
-  }, [engine, start])
+    startCountdown()
+  }, [engine, start, startCountdown])
 
-  // Countdown timer effect
-  useEffect(() => {
-    if (countdown === null || countdown <= 0) return
-
-    const timer = setTimeout(() => {
-      if (countdown === 1) {
-        setCountdown(null)
-        // Game actually starts now (countdown finished)
-      } else {
-        setCountdown(countdown - 1)
-      }
-    }, 1000)
-
-    return () => clearTimeout(timer)
-  }, [countdown])
 
   const togglePause = useCallback(() => {
     if (isPlaying) {
@@ -337,8 +336,8 @@ export default function Tetris() {
       <StatsBar
         stats={[
           { label: "Score", value: engine.score, color: "emerald", size: "simple" },
+          { label: "Time", value: Math.floor(liveTime / 1000) + "s", color: "orange", size: "simple" },
           { label: "Level", value: engine.level, color: "purple", size: "simple" },
-          { label: "Lines", value: engine.linesCleared, color: "cyan", size: "simple" },
         ]}
         layout="inline"
         className="w-full max-w-md mb-4 text-white"

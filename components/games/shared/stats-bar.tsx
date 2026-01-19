@@ -5,7 +5,7 @@ import type React from "react"
 export interface StatItem {
   label: string
   value: string | number
-  color?: "emerald" | "purple" | "orange" | "cyan" | "amber" | "white" | "red"
+  color?: "emerald" | "purple" | "orange" | "cyan" | "amber" | "white" | "red" | "blue"
   size?: "compact" | "standard" | "large" | "simple"
   conditionalColor?: (value: number) => string
 }
@@ -25,6 +25,7 @@ const colorClasses = {
   amber: "text-amber-400",
   white: "text-white",
   red: "text-red-400",
+  blue: "text-blue-400",
 }
 
 const sizeClasses = {
@@ -53,7 +54,7 @@ const sizeClasses = {
 function StatCard({ stat }: { stat: StatItem }) {
   const size = stat.size || "standard"
   const sizeConfig = sizeClasses[size]
-  
+
   // Determine color - check conditional first, then use default
   let colorClass = "text-white"
   if (stat.conditionalColor && typeof stat.value === "number") {

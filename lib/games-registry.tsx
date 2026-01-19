@@ -3,7 +3,7 @@
  * Add new games here to make them available in the platform
  */
 
-import PickUpSticks from "@/components/games/pick-up-sticks"
+import ZenMerge from "@/components/games/zen-merge"
 import MemoryMatch from "@/components/games/memory-match"
 import ReflexTapper from "@/components/games/reflex-tapper"
 import Tetris from "@/components/games/tetris"
@@ -12,14 +12,14 @@ import Boggle from "@/components/games/boggle"
 import Wordle from "@/components/games/wordle"
 
 export const GAMES_REGISTRY = {
-  "pick-up-sticks": {
-    id: "pick-up-sticks",
-    title: "Pick Up Sticks",
-    description: "Clear the forest path before time runs out.",
+  "zen-merge": {
+    id: "zen-merge",
+    title: "Zen Merge",
+    description: "Combine mysterious shards to discover the Zen Infinity crystal.",
     category: "Work In Progress",
-    color: "bg-emerald-500",
-    component: PickUpSticks,
-    thumbnail: "TreePine",
+    color: "bg-indigo-600",
+    component: ZenMerge,
+    thumbnail: "Sparkles",
   },
   "memory-match": {
     id: "memory-match",

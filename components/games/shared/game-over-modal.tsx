@@ -9,7 +9,8 @@ export interface GameOverModalProps {
   subtitle?: string
   score?: number | string
   scoreLabel?: string
-  accentColor: "purple" | "orange" | "red" | "emerald" | "blue"
+  accentColor: "purple" | "orange" | "red" | "emerald" | "blue" | "cyan" | "amber" | "indigo"
+
   onPlayAgain: () => void
   additionalContent?: React.ReactNode
   buttonText?: string
@@ -40,6 +41,21 @@ const accentColorClasses = {
     border: "border-blue-500",
     text: "text-blue-400",
     button: "bg-blue-500 hover:bg-blue-600",
+  },
+  cyan: {
+    border: "border-cyan-500",
+    text: "text-cyan-400",
+    button: "bg-cyan-500 hover:bg-cyan-600",
+  },
+  amber: {
+    border: "border-amber-500",
+    text: "text-amber-400",
+    button: "bg-amber-500 hover:bg-amber-600",
+  },
+  indigo: {
+    border: "border-indigo-500",
+    text: "text-indigo-400",
+    button: "bg-indigo-500 hover:bg-indigo-600",
   },
 }
 

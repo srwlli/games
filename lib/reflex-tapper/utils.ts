@@ -321,11 +321,11 @@ export function shouldSpawnGap(): boolean {
 export function getPatternClass(pattern: string): string {
   const patternClasses: Record<string, string> = {
     circle: "rounded-full",
-    square: "rounded-sm",
-    triangle: "rounded-t-lg",
-    diamond: "rotate-45 rounded-sm",
-    star: "rounded-full",
-    hexagon: "rounded-lg",
+    square: "rounded-lg",
+    triangle: "[clip-path:polygon(50%_0%,0%_100%,100%_100%)]",
+    diamond: "[clip-path:polygon(50%_0%,100%_50%,50%_100%,0%_50%)]",
+    star: "[clip-path:polygon(50%_0%,61%_35%,98%_35%,68%_57%,79%_91%,50%_70%,21%_91%,32%_57%,2%_35%,39%_35%)]",
+    hexagon: "[clip-path:polygon(25%_0%,75%_0%,100%_50%,75%_100%,25%_100%,0%_50%)]",
   }
   return patternClasses[pattern] || "rounded-full"
 }
