@@ -32,7 +32,10 @@ export default function GameClient({ gameData }: { gameData: GameData }) {
   return (
     <div className="fixed inset-0 bg-zinc-950 flex flex-col h-screen overflow-hidden">
       {/* Platform Navigation Bar */}
-      <nav className="h-16 border-b border-zinc-800 flex items-center justify-between px-6 bg-zinc-950/50 backdrop-blur-md z-50">
+      <nav 
+        className="h-16 border-b border-zinc-800 flex items-center justify-between px-6 bg-zinc-950/50 backdrop-blur-md z-50"
+        style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
+      >
         <Link href="/" className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors">
           <ArrowLeft size={20} />
           <span className="text-sm font-bold uppercase tracking-tighter">Exit</span>
@@ -47,7 +50,10 @@ export default function GameClient({ gameData }: { gameData: GameData }) {
       </nav>
 
       {/* Game Viewport */}
-      <main className="flex-grow relative w-full overflow-hidden flex items-center justify-center bg-black">
+      <main 
+        className="flex-grow relative w-full overflow-hidden flex items-center justify-center bg-black"
+        style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
+      >
         <div className="w-full h-full max-w-2xl mx-auto shadow-2xl relative">
           <ActiveGame />
         </div>

@@ -532,7 +532,14 @@ export default function Boggle() {
   }
 
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center bg-black touch-none" style={{ height: "100svh" }}>
+    <div 
+      className="relative w-full h-full flex flex-col items-center justify-center bg-black touch-none" 
+      style={{ 
+        height: "100svh",
+        paddingTop: "env(safe-area-inset-top, 0px)",
+        paddingBottom: "env(safe-area-inset-bottom, 0px)"
+      }}
+    >
       {/* Stats Bar */}
       {isPlaying && (
         <StatsBar

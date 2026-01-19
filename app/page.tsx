@@ -6,7 +6,10 @@ import { GAMES_REGISTRY } from "@/lib/games-registry"
 
 export default function GameDashboard() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-white p-6 pb-20 font-sans">
+    <div 
+      className="min-h-screen bg-zinc-950 text-white p-6 pb-20 font-sans"
+      style={{ paddingBottom: 'calc(5rem + env(safe-area-inset-bottom, 0px))' }}
+    >
       {/* Header */}
       <header className="max-w-6xl mx-auto mb-12 mt-8 flex justify-between items-end">
         <div>
@@ -55,9 +58,69 @@ export default function GameDashboard() {
           </motion.div>
         </Link>
 
-        {/* Individual Game Cards - Exclude Word Games (they're in /word-games) */}
+        {/* Classics Card */}
+        <Link href="/classics">
+          <motion.div
+            whileTap={{ scale: 0.97 }}
+            whileHover={{ y: -5 }}
+            className="group relative h-64 bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800 hover:border-emerald-500/50 transition-colors"
+          >
+            {/* Card Visual */}
+            <div className="absolute inset-0 opacity-20 bg-amber-500 blur-3xl group-hover:opacity-40 transition-opacity" />
+            <div className="absolute inset-0 flex items-center justify-center text-7xl select-none">
+              🎮
+            </div>
+
+            {/* Card Content */}
+            <div className="absolute inset-0 p-6 flex flex-col justify-end bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent">
+              <span className="text-[10px] font-bold tracking-[0.2em] text-emerald-500 uppercase mb-1">
+                Category
+              </span>
+              <h3 className="text-2xl font-black text-white">Classic Games</h3>
+              <p className="text-zinc-400 text-sm line-clamp-1 mb-4">Timeless arcade games and puzzles.</p>
+              <div className="flex items-center gap-2 text-xs font-bold uppercase text-white">
+                <div className="bg-emerald-500 rounded-full p-1">
+                  <Play size={12} fill="currentColor" className="text-zinc-950" />
+                </div>
+                Explore
+              </div>
+            </div>
+          </motion.div>
+        </Link>
+
+        {/* Work In Progress Card */}
+        <Link href="/work-in-progress">
+          <motion.div
+            whileTap={{ scale: 0.97 }}
+            whileHover={{ y: -5 }}
+            className="group relative h-64 bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800 hover:border-emerald-500/50 transition-colors"
+          >
+            {/* Card Visual */}
+            <div className="absolute inset-0 opacity-20 bg-orange-500 blur-3xl group-hover:opacity-40 transition-opacity" />
+            <div className="absolute inset-0 flex items-center justify-center text-7xl select-none">
+              🔧
+            </div>
+
+            {/* Card Content */}
+            <div className="absolute inset-0 p-6 flex flex-col justify-end bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent">
+              <span className="text-[10px] font-bold tracking-[0.2em] text-emerald-500 uppercase mb-1">
+                Category
+              </span>
+              <h3 className="text-2xl font-black text-white">Work In Progress</h3>
+              <p className="text-zinc-400 text-sm line-clamp-1 mb-4">Games currently under development.</p>
+              <div className="flex items-center gap-2 text-xs font-bold uppercase text-white">
+                <div className="bg-emerald-500 rounded-full p-1">
+                  <Play size={12} fill="currentColor" className="text-zinc-950" />
+                </div>
+                Explore
+              </div>
+            </div>
+          </motion.div>
+        </Link>
+
+        {/* Individual Game Cards - Exclude Word Games, Classics, and Work In Progress (they're in their own routes) */}
         {Object.values(GAMES_REGISTRY)
-          .filter((game) => game.category !== "Word Game")
+          .filter((game) => game.category !== "Word Game" && game.category !== "Classic" && game.category !== "Work In Progress")
           .map((game) => (
             <Link href={`/games/${game.id}`} key={game.id}>
             <motion.div

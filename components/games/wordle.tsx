@@ -129,19 +129,26 @@ export default function Wordle() {
       states,
     }
 
-    setGuesses((prev) => {
-      const updated = [...prev, newGuess]
-      return updated
-    })
+    const updatedGuesses = [...guesses, newGuess]
+    setGuesses(updatedGuesses)
 
     // Update letter states for keyboard
     const newLetterStates = new Map(letterStates)
     currentGuess.split("").forEach((letter, i) => {
       const currentState = newLetterStates.get(letter)
-      // Only update if new state is better (correct > present > absent)
-      if (!currentState || states[i] === "correct" || (states[i] === "present" && currentState === "absent")) {
-        newLetterStates.set(letter, states[i])
+      const newState = states[i]
+      
+      // Always prefer correct over present, and present over absent
+      if (!currentState) {
+        newLetterStates.set(letter, newState)
+      } else if (newState === "correct") {
+        // Always update to correct if we see it (even if current is present)
+        newLetterStates.set(letter, "correct")
+      } else if (newState === "present" && currentState === "absent") {
+        // Upgrade from absent to present
+        newLetterStates.set(letter, "present")
       }
+      // If currentState is already correct or present, and newState is worse, don't downgrade
     })
     setLetterStates(newLetterStates)
 
@@ -152,8 +159,8 @@ export default function Wordle() {
       return
     }
 
-    // Check lose condition
-    if (guesses.length + 1 >= WORDLE_CONFIG.MAX_ATTEMPTS) {
+    // Check lose condition - use updatedGuesses.length instead of guesses.length + 1
+    if (updatedGuesses.length >= WORDLE_CONFIG.MAX_ATTEMPTS) {
       setTimeout(() => handleGameOver(false), 500)
       return
     }
@@ -222,7 +229,14 @@ export default function Wordle() {
   }
 
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center bg-black" style={{ height: "100svh" }}>
+    <div 
+      className="relative w-full h-full flex flex-col items-center justify-center bg-black" 
+      style={{ 
+        height: "100svh",
+        paddingTop: "env(safe-area-inset-top, 0px)",
+        paddingBottom: "env(safe-area-inset-bottom, 0px)"
+      }}
+    >
       {/* Stats Bar */}
       {isPlaying && (
         <StatsBar
