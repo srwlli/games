@@ -1,4 +1,7 @@
 export { StatsBar } from "./stats-bar"
 export type { StatsBarProps, StatItem } from "./stats-bar"
 export { GameOverModal } from "./game-over-modal"
+export { StartScreen } from "./start-screen"
+export type { StartScreenProps } from "./start-screen"
+export { CountdownOverlay } from "./countdown-overlay"
 export type { GameOverModalProps } from "./game-over-modal"

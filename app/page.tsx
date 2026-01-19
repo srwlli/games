@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Trophy, Play } from "lucide-react"
+import { Play } from "lucide-react"
 import { GAMES_REGISTRY } from "@/lib/games-registry"
 
 export default function GameDashboard() {
@@ -10,22 +10,6 @@ export default function GameDashboard() {
       className="min-h-screen bg-zinc-950 text-white p-6 pb-20 font-sans"
       style={{ paddingBottom: 'calc(5rem + env(safe-area-inset-bottom, 0px))' }}
     >
-      {/* Header */}
-      <header className="max-w-6xl mx-auto mb-12 mt-8 flex justify-between items-end">
-        <div>
-          <h1 className="text-5xl font-black italic tracking-tighter uppercase leading-none">
-            Game<span className="text-emerald-500">Hub</span>
-          </h1>
-          <p className="text-zinc-500 mt-2 font-medium uppercase tracking-widest text-xs">Modern Touch Repository</p>
-        </div>
-        <div className="hidden sm:block">
-          <div className="bg-zinc-900 border border-zinc-800 rounded-full px-4 py-2 flex items-center gap-3">
-            <Trophy className="text-yellow-500 w-4 h-4" />
-            <span className="text-sm font-bold">Leaderboard</span>
-          </div>
-        </div>
-      </header>
-
       {/* Game Grid */}
       <main className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Word Games Card */}

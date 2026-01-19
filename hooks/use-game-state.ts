@@ -14,7 +14,7 @@ export interface UseGameStateOptions {
 }
 
 export function useGameState(options?: UseGameStateOptions) {
-  const [state, setState] = useState<GameState>(options?.initialState ?? "playing")
+  const [state, setState] = useState<GameState>(options?.initialState ?? "idle")
 
   // Memoized callbacks - CRITICAL for useEffect dependencies
   const start = useCallback(() => {

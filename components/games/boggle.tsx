@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { StatsBar, GameOverModal } from "@/components/games/shared"
+import { StatsBar, GameOverModal, StartScreen, CountdownOverlay } from "@/components/games/shared"
 import { useGameState } from "@/hooks/use-game-state"
 import { useCountdown } from "@/hooks/use-countdown"
 import { useGameSessionIntegration } from "@/hooks/use-game-session-integration"
@@ -29,6 +29,8 @@ export default function Boggle() {
   const [showWordsMissed, setShowWordsMissed] = useState(false)
   const [allWords, setAllWords] = useState<Set<string>>(new Set())
   const [acceptedPath, setAcceptedPath] = useState<BogglePath | null>(null)
+  const [countdown, setCountdown] = useState<number | null>(null)
+  const countdownStartedRef = useRef(false)
 
   const touchStartRef = useRef<{ row: number; col: number } | null>(null)
   const isDrawingRef = useRef(false)
@@ -76,7 +78,26 @@ export default function Boggle() {
     setShowWordsMissed(false)
     resetTimer(timeLimit) // Reset with selected time mode
     start()
+    // Start countdown
+    countdownStartedRef.current = true
+    setCountdown(3)
   }, [start, resetTimer, timeLimit])
+
+  // Countdown timer effect
+  useEffect(() => {
+    if (countdown === null || countdown <= 0) return
+
+    const timer = setTimeout(() => {
+      if (countdown === 1) {
+        setCountdown(null)
+        // Game actually starts now (countdown finished)
+      } else {
+        setCountdown(countdown - 1)
+      }
+    }, 1000)
+
+    return () => clearTimeout(timer)
+  }, [countdown])
 
   // Handle game over
   const handleGameOver = useCallback(() => {
@@ -506,11 +527,20 @@ export default function Boggle() {
     }
   }, [score, updateScore, isPlaying])
 
-  // Handle restart
-  const handleRestart = useCallback(() => {
+  // Handle reset
+  const handleReset = useCallback(() => {
     reset()
-    startGame()
-  }, [reset, startGame])
+    setBoard([])
+    setFoundWords(new Set())
+    setScore(0)
+    setCurrentPath([])
+    setShowWordsMissed(false)
+    setAllWords(new Set())
+    setAcceptedPath(null)
+    setCountdown(null)
+    countdownStartedRef.current = false
+    // Do not auto-start - user must click "Start Game" again
+  }, [reset])
 
   const togglePause = useCallback(() => {
     if (isPlaying) {
@@ -766,20 +796,23 @@ export default function Boggle() {
       )}
 
       {/* Start Screen */}
-      {!isPlaying && board.length === 0 && (
-        <div className="text-center">
-          <h2 className="text-4xl font-black text-white mb-4">Boggle</h2>
-          <p className="text-zinc-400 mb-6">Find as many words as you can!</p>
-          
+      {!isPlaying && !isGameOver && (
+        <StartScreen
+          title="Boggle"
+          description="Find as many words as you can!"
+          onStart={startGame}
+          accentColor="blue"
+          controls={["Drag or tap letters to form words", "P to pause"]}
+        >
           {/* Time Mode Selection */}
-          <div className="mb-8">
-            <label className="block text-white font-bold mb-3 text-lg">Select Time:</label>
+          <div className="mb-4">
+            <label className="block text-white font-bold mb-3 text-sm uppercase tracking-wider">Select Time:</label>
             <div className="flex flex-wrap gap-3 justify-center">
               {Object.entries(TIME_MODES).map(([mode, seconds]) => (
                 <button
                   key={mode}
                   onClick={() => setTimeMode(mode as TimeMode)}
-                  className={`px-6 py-3 rounded-xl font-bold transition-all ${
+                  className={`px-4 py-2 rounded-lg font-bold transition-all text-sm ${
                     timeMode === mode
                       ? "bg-blue-500 text-white scale-110"
                       : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
@@ -790,15 +823,11 @@ export default function Boggle() {
               ))}
             </div>
           </div>
-
-          <button
-            onClick={startGame}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-black py-4 px-8 rounded-xl text-lg transition-colors"
-          >
-            Start Game
-          </button>
-        </div>
+        </StartScreen>
       )}
+
+      {/* Countdown Overlay */}
+      <CountdownOverlay count={countdown} accentColor="blue" />
 
       {/* Pause Overlay */}
       {isPaused && isPlaying && (
@@ -823,7 +852,7 @@ export default function Boggle() {
         score={score}
         scoreLabel="Final Score"
         accentColor="blue"
-        onPlayAgain={handleRestart}
+        onPlayAgain={handleReset}
         additionalContent={
           showWordsMissed && allWords.size > 0 ? (
             <div className="mt-4 text-left">

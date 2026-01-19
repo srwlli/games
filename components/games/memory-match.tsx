@@ -1,8 +1,8 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import { motion } from "framer-motion"
-import { StatsBar, GameOverModal } from "@/components/games/shared"
+import { StatsBar, GameOverModal, StartScreen, CountdownOverlay } from "@/components/games/shared"
 import { useGameState } from "@/hooks/use-game-state"
 import { useDelayedAction } from "@/hooks/use-delayed-action"
 
@@ -13,8 +13,10 @@ export default function MemoryMatch() {
   const [flippedCards, setFlippedCards] = useState<number[]>([])
   const [moves, setMoves] = useState(0)
   const [shouldCheckMatch, setShouldCheckMatch] = useState(false)
-  const { isPlaying, isGameOver, pause, resume, reset, start, gameOver } = useGameState({
-    initialState: "playing",
+  const [countdown, setCountdown] = useState<number | null>(null)
+  const countdownStartedRef = useRef(false)
+  const { isPlaying, isPaused, isGameOver, pause, resume, reset, start, gameOver } = useGameState({
+    initialState: "idle",
   })
 
   const initializeGame = useCallback(() => {
@@ -30,16 +32,41 @@ export default function MemoryMatch() {
     setCards(shuffled)
     setFlippedCards([])
     setMoves(0)
-    reset()
     start()
-  }, [reset, start])
+    // Start countdown
+    countdownStartedRef.current = true
+    setCountdown(3)
+  }, [start])
 
-  useEffect(() => {
+  const handleStart = useCallback(() => {
     initializeGame()
   }, [initializeGame])
 
+  // Countdown timer effect
+  useEffect(() => {
+    if (countdown === null || countdown <= 0) return
+
+    const timer = setTimeout(() => {
+      if (countdown === 1) {
+        setCountdown(null)
+        // Game actually starts now (countdown finished)
+      } else {
+        setCountdown(countdown - 1)
+      }
+    }, 1000)
+
+    return () => clearTimeout(timer)
+  }, [countdown])
+
+  const handleReset = useCallback(() => {
+    reset()
+    setCountdown(null)
+    countdownStartedRef.current = false
+    // Do not auto-start - user must click "Start Game" again
+  }, [reset])
+
   const handleCardClick = (id: number) => {
-    if (!isPlaying || flippedCards.length === 2 || cards[id].flipped || cards[id].matched) return
+    if (!isPlaying || countdown !== null || flippedCards.length === 2 || cards[id].flipped || cards[id].matched) return
 
     const newCards = [...cards]
     newCards[id].flipped = true
@@ -86,7 +113,7 @@ export default function MemoryMatch() {
       if (e.key === "p" || e.key === "P" || e.key === "Escape") {
         if (isPlaying) {
           pause()
-        } else if (!isGameOver) {
+        } else if (isPaused) {
           resume()
         }
       }
@@ -94,10 +121,39 @@ export default function MemoryMatch() {
 
     window.addEventListener("keydown", handleKeyDown)
     return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [isPlaying, isGameOver, pause, resume])
+  }, [isPlaying, isPaused, pause, resume])
 
   return (
     <div className="w-full h-full bg-gradient-to-br from-purple-950 to-zinc-950 flex flex-col items-center justify-center p-8 relative overflow-hidden">
+      {/* Start Screen */}
+      {!isPlaying && !isGameOver && (
+        <StartScreen
+          title="Memory Match"
+          description="Flip cards and match pairs to win!"
+          onStart={handleStart}
+          accentColor="purple"
+          controls={["Click cards to flip", "P or Escape to pause"]}
+        />
+      )}
+
+      {/* Countdown Overlay */}
+      <CountdownOverlay count={countdown} accentColor="purple" />
+
+      {/* Pause Overlay */}
+      {isPaused && (
+        <div className="absolute inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-10">
+          <div className="text-center">
+            <h2 className="text-4xl font-black text-white mb-4">Paused</h2>
+            <button
+              onClick={resume}
+              className="bg-purple-500 hover:bg-purple-600 text-white font-black py-3 px-6 rounded-xl transition-colors"
+            >
+              Resume
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Stats */}
       <StatsBar
         stats={[{ label: "Moves", value: moves, color: "purple" }]}
@@ -131,7 +187,7 @@ export default function MemoryMatch() {
         score={moves}
         scoreLabel="Moves to complete"
         accentColor="purple"
-        onPlayAgain={initializeGame}
+        onPlayAgain={handleReset}
       />
     </div>
   )

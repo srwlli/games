@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef, useMemo } from "react"
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
-import { StatsBar, GameOverModal } from "@/components/games/shared"
+import { StatsBar, GameOverModal, StartScreen, CountdownOverlay } from "@/components/games/shared"
 import { useGameState } from "@/hooks/use-game-state"
 import { useInterval } from "@/hooks/use-interval"
 import { useCountdown } from "@/hooks/use-countdown"
@@ -273,6 +273,7 @@ export default function ReflexTapper() {
     gapEndTimeRef.current = 0
     resetTimer(config.initialTime)
     reset()
+    // Do not auto-start - user must click "Start Game" again
   }, [config, resetTimer, reset])
 
   // Start game
@@ -338,62 +339,46 @@ export default function ReflexTapper() {
       {/* ARIA Live Region */}
       <div ref={ariaLiveRef} className="sr-only" aria-live="polite" aria-atomic="true" />
 
-      {/* Pre-round countdown */}
-      {showCountdown && countdown !== null && (
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          className="absolute inset-0 flex items-center justify-center z-30 bg-black/80"
-        >
-          <motion.div
-            key={countdown}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            exit={{ scale: 0 }}
-            className="text-9xl font-black text-orange-400"
-          >
-            {countdown === 0 ? "GO!" : countdown}
-          </motion.div>
-        </motion.div>
-      )}
+      {/* Countdown Overlay */}
+      <CountdownOverlay count={showCountdown && countdown !== null ? countdown : null} accentColor="orange" />
 
-      {/* Mode Selection (before game starts) */}
+      {/* Start Screen */}
       {!isPlaying && !isGameOver && (
-        <div className="absolute inset-0 flex items-center justify-center z-20 bg-black/80">
-          <div className="bg-zinc-900 border-2 border-orange-500 rounded-3xl p-10 text-center max-w-md">
-            <h2 className="text-4xl font-black text-orange-400 mb-6">Reflex Tapper</h2>
-            <div className="mb-6">
-              <label className="block text-white mb-2">Select Mode:</label>
-              <select
-                value={gameMode}
-                onChange={(e) => setGameMode(e.target.value as GameMode)}
-                className="w-full bg-zinc-800 text-white p-3 rounded-lg border border-zinc-700"
-              >
-                <option value="classic">Classic (20s)</option>
-                <option value="sudden-death">Sudden Death (60s, 1 mistake = game over)</option>
-                <option value="burst">Burst (5s, fast-paced)</option>
-              </select>
-            </div>
-            <button
-              onClick={startGame}
-              className="bg-orange-500 hover:bg-orange-600 text-white font-black py-4 px-8 rounded-xl text-lg transition-colors w-full"
+        <StartScreen
+          title="Reflex Tapper"
+          description="Tap targets as fast as you can!"
+          onStart={startGame}
+          accentColor="orange"
+          controls={["Click targets to score", "P or Escape to pause"]}
+        >
+          {/* Mode Selection */}
+          <div className="mb-4">
+            <label className="block text-white font-bold mb-3 text-sm uppercase tracking-wider">Select Mode:</label>
+            <select
+              value={gameMode}
+              onChange={(e) => setGameMode(e.target.value as GameMode)}
+              className="w-full bg-zinc-800 text-white p-3 rounded-lg border border-zinc-700"
             >
-              Start Game
-            </button>
+              <option value="classic">Classic (20s)</option>
+              <option value="sudden-death">Sudden Death (60s, 1 mistake = game over)</option>
+              <option value="burst">Burst (5s, fast-paced)</option>
+            </select>
+          </div>
+          <div className="flex gap-2">
             <button
               onClick={() => setShowStats(true)}
-              className="mt-4 bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-2 px-6 rounded-lg text-sm transition-colors w-full"
+              className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-2 px-4 rounded-lg text-sm transition-colors"
             >
               View Stats
             </button>
             <button
               onClick={() => setShowHowToPlay(true)}
-              className="mt-2 bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-2 px-6 rounded-lg text-sm transition-colors w-full"
+              className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-2 px-4 rounded-lg text-sm transition-colors"
             >
               How to Play
             </button>
           </div>
-        </div>
+        </StartScreen>
       )}
 
       {/* Stats Bar */}
@@ -518,7 +503,7 @@ export default function ReflexTapper() {
         score={score}
         scoreLabel="Final Score"
         accentColor="orange"
-        onPlayAgain={startGame}
+        onPlayAgain={resetGame}
         additionalContent={
           <div className="mt-6 space-y-2">
             {reactionTimes.length > 0 && (

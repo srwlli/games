@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { StatsBar, GameOverModal } from "@/components/games/shared"
+import { StatsBar, GameOverModal, StartScreen } from "@/components/games/shared"
 import { useGameState } from "@/hooks/use-game-state"
 import { useGameSessionIntegration } from "@/hooks/use-game-session-integration"
 import { DictionaryService } from "@/lib/word-games/trie/trie-service"
@@ -41,17 +41,14 @@ export default function Wordle() {
         const word = await getRandomCommonWord()
         setTargetWord(word)
         setIsLoading(false)
-        // Auto-start game once word is loaded
-        if (word) {
-          start()
-        }
+        // DO NOT auto-start - user must click "Start Game" button
       } catch (error) {
         console.error("Failed to initialize Wordle:", error)
         setIsLoading(false)
       }
     }
     initGame()
-  }, [start])
+  }, [])
 
   // Start game
   const startGame = useCallback(async () => {
@@ -60,17 +57,23 @@ export default function Wordle() {
       if (!dict.loaded) {
         await dict.init()
       }
-      const word = await getRandomCommonWord()
-      setTargetWord(word)
+      // If target word not loaded, load it now
+      if (!targetWord) {
+        const word = await getRandomCommonWord()
+        setTargetWord(word)
+      }
       setGuesses([])
       setCurrentGuess("")
       setIsWon(false)
       setLetterStates(new Map())
       start()
+      // No countdown for Wordle - it's not a timed game
     } catch (error) {
       console.error("Failed to start game:", error)
     }
-  }, [start])
+  }, [start, targetWord])
+
+  // No countdown timer effect - Wordle is not a timed game
 
   // Handle game over
   const handleGameOver = useCallback(
@@ -86,6 +89,35 @@ export default function Wordle() {
     },
     [gameOver, guesses.length, targetWord, endGameSession],
   )
+
+  // Handle reset
+  const handleReset = useCallback(() => {
+    reset()
+    setTargetWord("")
+    setGuesses([])
+    setCurrentGuess("")
+    setIsWon(false)
+    setLetterStates(new Map())
+    setIsLoading(true)
+    // No countdown to reset - Wordle is not a timed game
+    // Reload word for next game
+    const initGame = async () => {
+      try {
+        const dict = DictionaryService.getInstance()
+        if (!dict.loaded) {
+          await dict.init()
+        }
+        const word = await getRandomCommonWord()
+        setTargetWord(word)
+        setIsLoading(false)
+      } catch (error) {
+        console.error("Failed to initialize Wordle:", error)
+        setIsLoading(false)
+      }
+    }
+    initGame()
+    // Do not auto-start - user must click "Start Game" again
+  }, [reset])
 
   // Handle letter input
   const handleLetter = useCallback(
@@ -187,11 +219,7 @@ export default function Wordle() {
     return () => window.removeEventListener("keydown", handleKeyDown)
   }, [isPlaying, isPaused, handleEnter, handleBackspace, handleLetter])
 
-  // Handle restart
-  const handleRestart = useCallback(() => {
-    reset()
-    startGame()
-  }, [reset, startGame])
+  // Handle restart - removed, using handleReset instead (no auto-start)
 
   const togglePause = useCallback(() => {
     // Only toggle if game is actually playing or paused - prevent accidental resets
@@ -350,17 +378,14 @@ export default function Wordle() {
       </div>
 
       {/* Start Screen */}
-      {!isPlaying && guesses.length === 0 && (
-        <div className="text-center">
-          <h2 className="text-4xl font-black text-white mb-4">Wordle</h2>
-          <p className="text-zinc-400 mb-8">Guess the 5-letter word in 6 tries!</p>
-          <button
-            onClick={startGame}
-            className="bg-green-500 hover:bg-green-600 text-white font-black py-4 px-8 rounded-xl text-lg transition-colors"
-          >
-            Start Game
-          </button>
-        </div>
+      {!isPlaying && !isGameOver && (
+        <StartScreen
+          title="Wordle"
+          description="Guess the 5-letter word in 6 tries!"
+          onStart={startGame}
+          accentColor="green"
+          controls={["Type letters to guess", "Enter to submit", "P to pause"]}
+        />
       )}
 
       {/* Pause Overlay */}
@@ -386,7 +411,7 @@ export default function Wordle() {
         score={isWon ? (WORDLE_CONFIG.MAX_ATTEMPTS - guesses.length + 1) * 100 : 0}
         scoreLabel="Score"
         accentColor={isWon ? "emerald" : "red"}
-        onPlayAgain={handleRestart}
+        onPlayAgain={handleReset}
       />
 
       {/* Hidden input for mobile keyboard */}

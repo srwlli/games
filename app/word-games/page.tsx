@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { ArrowLeft, Play } from "lucide-react"
+import { Play } from "lucide-react"
 import { GAMES_REGISTRY } from "@/lib/games-registry"
 
 export default function WordGamesPage() {
@@ -11,20 +11,6 @@ export default function WordGamesPage() {
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white p-6 pb-20 font-sans">
-      {/* Header */}
-      <header className="max-w-6xl mx-auto mb-12 mt-8">
-        <Link href="/" className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors mb-6">
-          <ArrowLeft size={20} />
-          <span className="text-sm font-bold uppercase tracking-tighter">Back to Dashboard</span>
-        </Link>
-        <div>
-          <h1 className="text-5xl font-black italic tracking-tighter uppercase leading-none">
-            Word<span className="text-blue-500">Games</span>
-          </h1>
-          <p className="text-zinc-500 mt-2 font-medium uppercase tracking-widest text-xs">Challenge Your Vocabulary</p>
-        </div>
-      </header>
-
       {/* Game Grid */}
       <main className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {wordGames.map((game) => (

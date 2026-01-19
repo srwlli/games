@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState, useEffect, useCallback, useRef, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { StatsBar, GameOverModal } from "@/components/games/shared"
+import { StatsBar, GameOverModal, StartScreen, CountdownOverlay } from "@/components/games/shared"
 import { useGameState } from "@/hooks/use-game-state"
 import { useInterval } from "@/hooks/use-interval"
 import { useDelayedAction } from "@/hooks/use-delayed-action"
@@ -25,6 +25,8 @@ export default function Tetris() {
   const [clearedLines, setClearedLines] = useState<number[]>([])
   const [scorePopup, setScorePopup] = useState<{ score: number; x: number; y: number } | null>(null)
   const [lastScore, setLastScore] = useState(0)
+  const [countdown, setCountdown] = useState<number | null>(null)
+  const countdownStartedRef = useRef(false)
 
   const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null)
   const touchMoveRef = useRef<{ lastX: number; lastY: number; lastTime: number } | null>(null)
@@ -72,8 +74,8 @@ export default function Tetris() {
     }
   }, [isGameOver])
 
-  // Game loop - automatically pauses/resumes with game state
-  useInterval(engine.tick, engine.fallSpeed, isPlaying)
+  // Game loop - automatically pauses/resumes with game state (only when countdown is done)
+  useInterval(engine.tick, engine.fallSpeed, isPlaying && countdown === null)
 
   // Level up animation - hide after 2 seconds
   useDelayedAction(() => {
@@ -84,9 +86,35 @@ export default function Tetris() {
   const handleRestart = useCallback(() => {
     engine.reset()
     reset()
-    // Start game immediately after reset
+    setCountdown(null)
+    countdownStartedRef.current = false
+    // Do not auto-start - user must click "Start Game" again
+  }, [engine, reset])
+
+  // Start game with countdown
+  const handleStart = useCallback(() => {
+    engine.reset()
     start()
-  }, [engine, reset, start])
+    // Start countdown
+    countdownStartedRef.current = true
+    setCountdown(3)
+  }, [engine, start])
+
+  // Countdown timer effect
+  useEffect(() => {
+    if (countdown === null || countdown <= 0) return
+
+    const timer = setTimeout(() => {
+      if (countdown === 1) {
+        setCountdown(null)
+        // Game actually starts now (countdown finished)
+      } else {
+        setCountdown(countdown - 1)
+      }
+    }, 1000)
+
+    return () => clearTimeout(timer)
+  }, [countdown])
 
   const togglePause = useCallback(() => {
     if (isPlaying) {
@@ -103,7 +131,7 @@ export default function Tetris() {
       if (gameState === "idle") {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault()
-          start()
+          handleStart()
         }
         return
       }
@@ -168,7 +196,7 @@ export default function Tetris() {
 
     window.addEventListener("keydown", handleKeyDown)
     return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [gameState, isPlaying, isPaused, isGameOver, engine, handleRestart, togglePause, resume, start])
+  }, [gameState, isPlaying, isPaused, isGameOver, engine, handleRestart, togglePause, resume, handleStart])
 
   // Touch handlers with continuous movement support
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -416,43 +444,18 @@ export default function Tetris() {
       </AnimatePresence>
 
       {/* Start Screen (Idle State) */}
-      <AnimatePresence>
-        {gameState === "idle" && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 rounded-2xl"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="start-screen-title"
-          >
-            <div className="text-center p-8 bg-zinc-900 border-2 border-purple-500/50 rounded-3xl max-w-sm w-full">
-              <h2 id="start-screen-title" className="text-4xl font-black text-white mb-2 tracking-tighter">
-                TETRIS
-              </h2>
-              <p className="text-zinc-400 mb-8">Ready to clear some lines?</p>
+      {gameState === "idle" && (
+        <StartScreen
+          title="TETRIS"
+          description="Ready to clear some lines?"
+          onStart={handleStart}
+          accentColor="purple"
+          controls={["Arrows / WASD to Move & Rotate", "Space for Hard Drop", "P to Pause"]}
+        />
+      )}
 
-              <button
-                onClick={start}
-                className="w-full py-4 bg-purple-500 hover:bg-purple-600 text-white font-black rounded-xl transition-all mb-6 shadow-lg shadow-purple-500/20"
-                aria-label="Start Tetris game"
-                autoFocus
-              >
-                START GAME
-              </button>
-
-              <div className="text-xs text-zinc-500 uppercase tracking-widest font-bold border-t border-zinc-800 pt-6">
-                Controls
-              </div>
-              <div className="mt-2 text-xs text-zinc-400 space-y-1">
-                <div>Arrows / WASD to Move & Rotate</div>
-                <div>Space for Hard Drop • P to Pause</div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Countdown Overlay */}
+      <CountdownOverlay count={countdown} accentColor="purple" />
 
       {/* Pause Overlay */}
       <AnimatePresence>

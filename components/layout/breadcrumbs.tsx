@@ -62,7 +62,7 @@ export default function Breadcrumbs() {
       className="sticky top-0 z-50 bg-zinc-950 border-b border-zinc-800"
       style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
     >
-      <nav className="max-w-7xl mx-auto px-6 py-3" aria-label="Breadcrumb">
+      <nav className="max-w-7xl mx-auto px-6 h-[30px] flex items-center" aria-label="Breadcrumb">
         <ol className="flex items-center gap-2 text-sm">
           {items.map((item, index) => {
             const isLast = index === items.length - 1
