@@ -30,6 +30,14 @@ export const BOGGLE_DICE = [
 ]
 
 /**
+ * Normalize Boggle word for dictionary lookup
+ * Converts "Q" to "QU" since dictionary stores words with "QU"
+ */
+function normalizeWordForDictionary(word: string): string {
+  return word.replace(/Q/g, 'QU')
+}
+
+/**
  * Calculate score for a word based on length
  */
 export function calculateBoggleScore(word: string): number {
@@ -108,8 +116,8 @@ export function validateWord(
       return false
     }
 
-    // Check for reuse
-    for (let j = 0; j < i; j++) {
+    // Check for reuse - next cell must not have been visited in previous positions
+    for (let j = 0; j <= i; j++) {
       if (path[j].row === next.row && path[j].col === next.col) {
         return false
       }
@@ -117,8 +125,29 @@ export function validateWord(
   }
 
   // Validate word exists in dictionary
+  // Normalize "Q" to "QU" since dictionary stores words with "QU"
   const dict = DictionaryService.getInstance()
-  return dict.validate(word, false)
+  
+  // Ensure dictionary is loaded
+  if (!dict.loaded) {
+    console.warn('Dictionary not loaded yet')
+    return false
+  }
+  
+  const normalizedWord = normalizeWordForDictionary(word)
+  const isValid = dict.validate(normalizedWord, false)
+  
+  // Debug logging in development
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Boggle validation:', {
+      word,
+      normalizedWord,
+      isValid,
+      dictLoaded: dict.loaded,
+    })
+  }
+  
+  return isValid
 }
 
 /**
@@ -134,11 +163,17 @@ export function solveBoard(board: string[][]): Set<string> {
 
   const dfs = (row: number, col: number, current: string, path: BogglePath) => {
     // Prune if prefix doesn't exist
-    if (!dict.isPrefix(current)) return
+    // Normalize "Q" to "QU" for prefix checking since dictionary stores words with "QU"
+    const normalizedPrefix = normalizeWordForDictionary(current)
+    if (!dict.isPrefix(normalizedPrefix)) return
 
     // Check if current path forms a valid word
-    if (current.length >= BOGGLE_CONFIG.MIN_WORD_LENGTH && dict.validate(current, false)) {
-      found.add(current)
+    // Normalize "Q" to "QU" since dictionary stores words with "QU"
+    if (current.length >= BOGGLE_CONFIG.MIN_WORD_LENGTH) {
+      const normalizedWord = normalizeWordForDictionary(current)
+      if (dict.validate(normalizedWord, false)) {
+        found.add(current) // Keep original format for display
+      }
     }
 
     visited[row][col] = true

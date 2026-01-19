@@ -23,7 +23,7 @@
  */
 
 import { useGameSession } from "@/hooks/use-game-session"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useCallback, startTransition } from "react"
 import type { GAMES_REGISTRY } from "@/lib/games-registry"
 
 type GameId = keyof typeof GAMES_REGISTRY
@@ -33,13 +33,17 @@ export function useGameSessionIntegration(gameId: GameId) {
   const lastScoreRef = useRef<number | null>(null)
 
   // Update score in session (debounced to avoid too many updates)
-  const updateScore = (score: number) => {
+  // Wrapped in useCallback to ensure stable reference and prevent render-time calls
+  const updateScore = useCallback((score: number) => {
     // Only update if score actually changed
     if (score !== lastScoreRef.current) {
       lastScoreRef.current = score
-      updateSession({ score })
+      // Use startTransition to defer state update, avoiding render-time updates
+      startTransition(() => {
+        updateSession({ score })
+      })
     }
-  }
+  }, [updateSession])
 
   // End game session with final score and metadata
   const endGameSession = (finalScore?: number, metadata?: Record<string, unknown>) => {
