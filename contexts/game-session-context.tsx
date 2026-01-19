@@ -39,6 +39,7 @@ export function GameSessionProvider({ children }: { children: React.ReactNode })
   const [currentSession, setCurrentSession] = useState<GameSession | null>(null)
   const [sessionHistory, setSessionHistory] = useState<GameSession[]>([])
   const sessionStartTimeRef = useRef<number | null>(null)
+  const currentSessionRef = useRef<GameSession | null>(null) // Ref to track session without causing re-renders
 
   // Load session history from localStorage on mount
   useEffect(() => {
@@ -75,6 +76,8 @@ export function GameSessionProvider({ children }: { children: React.ReactNode })
         metadata,
       }
 
+      // Update both state and ref
+      currentSessionRef.current = newSession
       setCurrentGame(gameId)
       setCurrentSession(newSession)
     },
@@ -83,14 +86,16 @@ export function GameSessionProvider({ children }: { children: React.ReactNode })
 
   const endSession = useCallback(
     (score?: number, metadata?: Record<string, unknown>) => {
-      if (!currentSession || !sessionStartTimeRef.current) return
+      // Use ref to avoid dependency on currentSession (prevents infinite loops)
+      const session = currentSessionRef.current
+      if (!session || !sessionStartTimeRef.current) return
 
       const endTime = Date.now()
       const completedSession: GameSession = {
-        ...currentSession,
+        ...session,
         endTime,
-        score: score ?? currentSession.score,
-        metadata: { ...currentSession.metadata, ...metadata },
+        score: score ?? session.score,
+        metadata: { ...session.metadata, ...metadata },
       }
 
       // Add to history
@@ -100,28 +105,32 @@ export function GameSessionProvider({ children }: { children: React.ReactNode })
         return updated
       })
 
-      // Clear current session
+      // Clear current session (both state and ref)
+      currentSessionRef.current = null
       setCurrentSession(null)
       setCurrentGame(null)
       sessionStartTimeRef.current = null
     },
-    [currentSession],
+    [], // Empty deps - uses ref instead of state
   )
 
   const updateSession = useCallback(
     (updates: Partial<Pick<GameSession, "score" | "metadata">>) => {
-      if (!currentSession) return
-
       setCurrentSession((prev) => {
         if (!prev) return null
-        return {
+        
+        const updated = {
           ...prev,
           ...updates,
           metadata: { ...prev.metadata, ...updates.metadata },
         }
+        
+        // Also update ref to keep it in sync
+        currentSessionRef.current = updated
+        return updated
       })
     },
-    [currentSession],
+    [], // Empty deps - uses functional update
   )
 
   // Analytics helpers

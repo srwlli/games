@@ -8,6 +8,8 @@ import MemoryMatch from "@/components/games/memory-match"
 import ReflexTapper from "@/components/games/reflex-tapper"
 import Tetris from "@/components/games/tetris"
 import Fishing from "@/components/games/fishing"
+import Boggle from "@/components/games/boggle"
+import Wordle from "@/components/games/wordle"
 
 export const GAMES_REGISTRY = {
   "pick-up-sticks": {
@@ -54,5 +56,23 @@ export const GAMES_REGISTRY = {
     color: "bg-cyan-500",
     component: Fishing,
     thumbnail: "🎣",
+  },
+  boggle: {
+    id: "boggle",
+    title: "Boggle",
+    description: "Find as many words as you can in 3 minutes.",
+    category: "Word Game",
+    color: "bg-blue-500",
+    component: Boggle,
+    thumbnail: "🔤",
+  },
+  wordle: {
+    id: "wordle",
+    title: "Wordle",
+    description: "Guess the 5-letter word in 6 tries.",
+    category: "Word Game",
+    color: "bg-green-500",
+    component: Wordle,
+    thumbnail: "📝",
   },
 }

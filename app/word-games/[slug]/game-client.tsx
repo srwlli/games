@@ -8,7 +8,7 @@ import { useGameSession } from "@/hooks/use-game-session"
 
 type GameData = (typeof GAMES_REGISTRY)[keyof typeof GAMES_REGISTRY]
 
-export default function GameClient({ gameData }: { gameData: GameData }) {
+export default function WordGameClient({ gameData }: { gameData: GameData }) {
   const ActiveGame = gameData.component
   const { startSession, endSession } = useGameSession()
   
@@ -33,9 +33,9 @@ export default function GameClient({ gameData }: { gameData: GameData }) {
     <div className="fixed inset-0 bg-zinc-950 flex flex-col h-screen overflow-hidden">
       {/* Platform Navigation Bar */}
       <nav className="h-16 border-b border-zinc-800 flex items-center justify-between px-6 bg-zinc-950/50 backdrop-blur-md z-50">
-        <Link href="/" className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors">
+        <Link href="/word-games" className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors">
           <ArrowLeft size={20} />
-          <span className="text-sm font-bold uppercase tracking-tighter">Exit</span>
+          <span className="text-sm font-bold uppercase tracking-tighter">Back to Word Games</span>
         </Link>
 
         <div className="flex items-center gap-3">

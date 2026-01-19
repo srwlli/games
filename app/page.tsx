@@ -55,9 +55,11 @@ export default function GameDashboard() {
           </motion.div>
         </Link>
 
-        {/* Individual Game Cards */}
-        {Object.values(GAMES_REGISTRY).map((game) => (
-          <Link href={`/games/${game.id}`} key={game.id}>
+        {/* Individual Game Cards - Exclude Word Games (they're in /word-games) */}
+        {Object.values(GAMES_REGISTRY)
+          .filter((game) => game.category !== "Word Game")
+          .map((game) => (
+            <Link href={`/games/${game.id}`} key={game.id}>
             <motion.div
               whileTap={{ scale: 0.97 }}
               whileHover={{ y: -5 }}
