@@ -1,118 +1,172 @@
 {
   "META_DOCUMENTATION": {
-    "workorder_id": "WO-MATH-FC-001",
     "feature_name": "math-flash-cards",
-    "title": "Implementation Plan: Math Flash Cards Game",
+    "workorder_id": "WO-MATH-FC-001",
     "version": "1.0.0",
     "status": "approved",
-    "timestamp": "2026-01-20T13:10:00Z"
-  },
-  "EXECUTIVE_SUMMARY": {
-    "goal": "Build a fast-paced, arcade-style math flash card game for 4th-grade mastery of multiplication and division.",
-    "key_benefits": [
-      "Gamified learning with high-pressure sprints",
-      "Adaptive difficulty that focuses on 'tricky' facts",
-      "Mobile-optimized input system",
-      "Seamless integration with platform session tracking"
-    ]
-  },
-  "TECHNICAL_ARCHITECTURE": {
-    "logic_layer": "lib/math-games/flash-cards/ - Pure TypeScript logic for engine and generation",
-    "ui_layer": "components/games/math-flash-cards.tsx - React component with Framer Motion animations",
-    "state_management": "Custom hook use-flash-cards.ts for bridging engine and UI"
-  },
-  "IMPLEMENTATION_PHASES": [
-    {
-      "phase": "Phase 1: Logic Foundation",
-      "tasks": [
-        {
-          "id": "LOGIC-001",
-          "description": "Create lib/math-games/flash-cards/types.ts - Define Problem, GameState, and SessionStats interfaces",
-          "files": ["lib/math-games/flash-cards/types.ts"]
-        },
-        {
-          "id": "LOGIC-002",
-          "description": "Create lib/math-games/flash-cards/config.ts - Define constants (60s timer, combo thresholds, fact ranges)",
-          "files": ["lib/math-games/flash-cards/config.ts"]
-        },
-        {
-          "id": "LOGIC-003",
-          "description": "Create lib/math-games/flash-cards/generator.ts - Implement 'Smart Generator' with fact weighting",
-          "files": ["lib/math-games/flash-cards/generator.ts"]
-        },
-        {
-          "id": "LOGIC-004",
-          "description": "Create lib/math-games/flash-cards/engine.ts - Implement game loop, combo tracking, and score calculation",
-          "files": ["lib/math-games/flash-cards/engine.ts"]
-        }
-      ]
-    },
-    {
-      "phase": "Phase 2: UI Components",
-      "tasks": [
-        {
-          "id": "UI-001",
-          "description": "Create components/games/shared/math-keypad.tsx - 3x3 mobile-optimized number pad",
-          "files": ["components/games/shared/math-keypad.tsx"]
-        },
-        {
-          "id": "UI-002",
-          "description": "Create components/games/math-flash-cards.tsx - Main game container with Framer Motion",
-          "files": ["components/games/math-flash-cards.tsx"]
-        },
-        {
-          "id": "UI-003",
-          "description": "Implement Flash Card visual component with 'flip' and 'shake' animations",
-          "files": ["components/games/math-flash-cards.tsx"]
-        }
-      ]
-    },
-    {
-      "phase": "Phase 3: Platform Integration",
-      "tasks": [
-        {
-          "id": "INT-001",
-          "description": "Update lib/games-registry.tsx - Register 'math-flash-cards' in category 'Math Game'",
-          "files": ["lib/games-registry.tsx"]
-        },
-        {
-          "id": "INT-002",
-          "description": "Integrate with use-game-session hook for session lifecycle and scoring",
-          "files": ["components/games/math-flash-cards.tsx"]
-        }
-      ]
-    },
-    {
-      "phase": "Phase 4: Polish & Feedback",
-      "tasks": [
-        {
-          "id": "POL-001",
-          "description": "Implement 'Heat Mode' visual effects (glow, screen shake)",
-          "files": ["components/games/math-flash-cards.tsx"]
-        },
-        {
-          "id": "POL-002",
-          "description": "Add sound effects for correct/incorrect answers and combo triggers",
-          "files": ["lib/math-games/flash-cards/sounds.ts"]
-        }
-      ]
+    "generated_by": "Claude (Manual Alignment)",
+    "has_context": true,
+    "has_analysis": true,
+    "uds": {
+      "generated_by": "coderef-workflow v2.0.0",
+      "document_type": "Implementation Plan",
+      "last_updated": "2026-01-20",
+      "ai_assistance": true,
+      "next_review": "2026-02-19"
     }
-  ],
-  "TEST_PLAN": {
-    "unit_tests": [
-      "Test fact generator weights correctly after missed answers",
-      "Validate division problems always have integer solutions",
-      "Verify combo multiplier logic"
-    ],
-    "manual_tests": [
-      "Verify keypad responsiveness on mobile",
-      "Confirm session ends correctly after 60s"
-    ]
   },
-  "GAPS_AND_RISKS": {
-    "risks": [
-      "Input speed vs animation timing - need to ensure UI doesn't lag behind fast tappers"
-    ],
-    "mitigation": "Use lightweight Framer Motion variants and pre-calculate next problem in background"
+  "UNIVERSAL_PLANNING_STRUCTURE": {
+    "0_preparation": {
+      "review_context": "Validated against 4th-grade math standards and existing game platform architecture.",
+      "prerequisites": [
+        "Access to lib/math-games/ directory",
+        "Access to components/games/ directory",
+        "Integration with use-game-session hook"
+      ]
+    },
+    "1_executive_summary": {
+      "purpose": "Create a high-energy arcade math drill game for 4th-grade level focused on multiplication and division mastery.",
+      "value_proposition": "Improves math fluency through gamified sprints, adaptive difficulty, and mobile-optimized inputs.",
+      "real_world_analogy": "A digital math sprint that adapts to your skill level, similar to a personal math coach in your pocket.",
+      "use_case": "User practice multiplication/division -> System tracks performance -> Difficulty ramps up for 'tricky' facts -> Session ends with a mastery report.",
+      "output": "Fully integrated Math Flash Cards game with adaptive weighting and mobile-optimized keypad."
+    },
+    "2_risk_assessment": {
+      "overall_risk": "low",
+      "complexity": "medium",
+      "scope": "New game implementation within existing framework",
+      "dependencies": [
+        "use-game-session hook",
+        "Framer Motion for animations",
+        "Lucide React for icons"
+      ],
+      "performance_concerns": [
+        "UI must remain responsive for rapid input (high-speed tapping)"
+      ],
+      "security_considerations": [
+        "No sensitive user data handled; scores persisted locally"
+      ],
+      "breaking_changes": "none"
+    },
+    "3_current_state_analysis": {
+      "affected_files": [
+        "lib/games-registry.tsx",
+        "lib/game-icons.tsx",
+        "app/math-games/page.tsx"
+      ],
+      "dependencies": {
+        "existing_internal": [
+          "hooks/use-game-session.ts",
+          "components/game-session-context.tsx"
+        ],
+        "existing_external": [
+          "framer-motion",
+          "lucide-react"
+        ],
+        "new_external": [],
+        "new_internal": [
+          "lib/math-games/flash-cards/engine.ts",
+          "components/games/math-flash-cards.tsx"
+        ]
+      },
+      "architecture_context": "Following the 'Logic Layer + UI Layer' pattern seen in Tetris and Reflex Tapper."
+    },
+    "4_key_features": {
+      "primary_features": [
+        "60-second sprint timer",
+        "Combo system with 'Heat Mode' multiplier",
+        "Adaptive problem generator focusing on missed facts",
+        "Multi-digit keypad input (mobile-optimized)"
+      ],
+      "secondary_features": [
+        "Post-game accuracy and tricky-fact report",
+        "High score persistence",
+        "Visual feedback (shake/glow) for answers"
+      ],
+      "edge_case_handling": [
+        "Integer-only results for division",
+        "No duplicate problems in a row",
+        "Rapid-fire input debouncing"
+      ]
+    },
+    "5_task_id_system": {
+      "tasks": [
+        "SETUP-001: Create directory structure for math games logic",
+        "LOGIC-001: Implement types.ts and config.ts for Flash Cards",
+        "LOGIC-002: Implement smart generator.ts with fact weighting",
+        "LOGIC-003: Implement core engine.ts logic",
+        "UI-001: Create shared MathKeypad component",
+        "UI-002: Create main MathFlashCards game component",
+        "INT-001: Register game in GAMES_REGISTRY",
+        "TEST-001: Unit test problem generator accuracy",
+        "DOC-001: Create ARCHITECTURE-RESOURCE-SHEET for math-flash-cards"
+      ]
+    },
+    "6_implementation_phases": {
+      "phases": [
+        {
+          "phase": 1,
+          "name": "Phase 1: Logic Foundation",
+          "description": "Establish core game rules and smart problem generation.",
+          "tasks": ["LOGIC-001", "LOGIC-002", "LOGIC-003"],
+          "deliverables": ["Functional engine and generator"]
+        },
+        {
+          "phase": 2,
+          "name": "Phase 2: UI Implementation",
+          "description": "Build the visual components and input system.",
+          "tasks": ["UI-001", "UI-002"],
+          "deliverables": ["Playable game UI with keypad"]
+        },
+        {
+          "phase": 3,
+          "name": "Phase 3: Integration & Testing",
+          "description": "Connect to platform hooks and verify behavior.",
+          "tasks": ["INT-001", "TEST-001"],
+          "deliverables": ["Game accessible from dashboard"]
+        },
+        {
+          "phase": 4,
+          "name": "Phase 4: Documentation",
+          "description": "Finalize resource sheets and code comments.",
+          "tasks": ["DOC-001"],
+          "deliverables": ["Complete documentation"]
+        }
+      ]
+    },
+    "7_testing_strategy": {
+      "unit_tests": [
+        "Verify division results are always integers",
+        "Test multiplier logic increments correctly"
+      ],
+      "integration_tests": [
+        "Ensure session ends exactly at 0 seconds"
+      ],
+      "manual_tests": [
+        "Verify keypad layout on mobile devices"
+      ]
+    },
+    "8_success_criteria": {
+      "functional_requirements": [
+        {
+          "requirement": "Smart generation",
+          "metric": "Fact weighting",
+          "target": "Missed facts appear 50% more often",
+          "validation": "Generator logs"
+        }
+      ],
+      "quality_requirements": [
+        {
+          "requirement": "Zero lint errors",
+          "target": "Pass",
+          "validation": "read_lints"
+        }
+      ]
+    },
+    "9_implementation_checklist": {
+      "pre_implementation": ["Review plan", "Verify .coderef/ is current"],
+      "phase_1": ["Implement LOGIC-001", "Implement LOGIC-002", "Implement LOGIC-003"],
+      "finalization": ["All tests pass", "Documentation updated"]
+    }
   }
 }
