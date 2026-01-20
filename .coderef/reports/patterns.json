@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generatedAt": "2026-01-11T20:02:31.547Z",
+  "generatedAt": "2026-01-20T17:59:45.331Z",
   "projectPath": "C:\\Users\\willh\\Desktop\\games",
   "patterns": {
     "handlers": [
@@ -8,145 +8,79 @@
         "type": "handler",
         "name": "handleKeyDown",
         "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-        "line": 155
+        "line": 243
       },
       {
         "type": "handler",
-        "name": "handleCast",
+        "name": "handleKeyUp",
         "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-        "line": 355
-      },
-      {
-        "type": "handler",
-        "name": "handleRelease",
-        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-        "line": 361
-      },
-      {
-        "type": "handler",
-        "name": "handleReelStop",
-        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-        "line": 389
-      },
-      {
-        "type": "handler",
-        "name": "handleHold",
-        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-        "line": 596
-      },
-      {
-        "type": "handler",
-        "name": "handleRelease",
-        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-        "line": 600
-      },
-      {
-        "type": "handler",
-        "name": "handleKeyDown",
-        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-        "line": 722
-      },
-      {
-        "type": "handler",
-        "name": "handleJerk",
-        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-        "line": 739
-      },
-      {
-        "type": "handler",
-        "name": "handleMouseDown",
-        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-        "line": 984
-      },
-      {
-        "type": "handler",
-        "name": "handleMouseMove",
-        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-        "line": 994
-      },
-      {
-        "type": "handler",
-        "name": "handleMouseUp",
-        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-        "line": 1002
-      },
-      {
-        "type": "handler",
-        "name": "handlePromptSuccess",
-        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-        "line": 1162
-      },
-      {
-        "type": "handler",
-        "name": "handleTap",
-        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-        "line": 1184
-      },
-      {
-        "type": "handler",
-        "name": "handleTouchStart",
-        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-        "line": 1193
-      },
-      {
-        "type": "handler",
-        "name": "handleTouchEnd",
-        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-        "line": 1205
+        "line": 253
       },
       {
         "type": "handler",
         "name": "handleCardClick",
         "file": "C:/Users/willh/Desktop/games/components/games/memory-match.tsx",
-        "line": 41
+        "line": 71
       },
       {
         "type": "handler",
         "name": "handleKeyDown",
         "file": "C:/Users/willh/Desktop/games/components/games/memory-match.tsx",
-        "line": 85
-      },
-      {
-        "type": "handler",
-        "name": "handleStickClick",
-        "file": "C:/Users/willh/Desktop/games/components/games/pick-up-sticks.tsx",
-        "line": 45
-      },
-      {
-        "type": "handler",
-        "name": "handleKeyDown",
-        "file": "C:/Users/willh/Desktop/games/components/games/pick-up-sticks.tsx",
-        "line": 92
-      },
-      {
-        "type": "handler",
-        "name": "handleTargetClick",
-        "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
-        "line": 37
+        "line": 131
       },
       {
         "type": "handler",
         "name": "handleKeyDown",
         "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
-        "line": 52
+        "line": 371
       },
       {
         "type": "handler",
         "name": "handleKeyDown",
         "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-        "line": 281
+        "line": 128
       },
       {
         "type": "handler",
         "name": "handleTouchStart",
         "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-        "line": 345
+        "line": 201
+      },
+      {
+        "type": "handler",
+        "name": "handleTouchMove",
+        "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
+        "line": 207
       },
       {
         "type": "handler",
         "name": "handleTouchEnd",
         "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-        "line": 350
+        "line": 229
+      },
+      {
+        "type": "handler",
+        "name": "handleKeyDown",
+        "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+        "line": 205
+      },
+      {
+        "type": "handler",
+        "name": "handleTileClick",
+        "file": "C:/Users/willh/Desktop/games/components/games/zen-merge.tsx",
+        "line": 84
+      },
+      {
+        "type": "handler",
+        "name": "handleDragStart",
+        "file": "C:/Users/willh/Desktop/games/components/games/zen-merge.tsx",
+        "line": 99
+      },
+      {
+        "type": "handler",
+        "name": "handleDrop",
+        "file": "C:/Users/willh/Desktop/games/components/games/zen-merge.tsx",
+        "line": 109
       },
       {
         "type": "handler",
@@ -162,6 +96,12 @@
       },
       {
         "type": "handler",
+        "name": "handleGameOver",
+        "file": "C:/Users/willh/Desktop/games/hooks/use-game-session-integration.ts",
+        "line": 19
+      },
+      {
+        "type": "handler",
         "name": "onChange",
         "file": "C:/Users/willh/Desktop/games/hooks/use-mobile.ts",
         "line": 10
@@ -171,9 +111,93 @@
     "errorPatterns": [
       {
         "type": "error-handling",
+        "name": "catch",
+        "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+        "line": 68
+      },
+      {
+        "type": "error-handling",
+        "name": "catch",
+        "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+        "line": 45
+      },
+      {
+        "type": "error-handling",
+        "name": "catch",
+        "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+        "line": 71
+      },
+      {
+        "type": "error-handling",
+        "name": "catch",
+        "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+        "line": 113
+      },
+      {
+        "type": "error-handling",
         "name": "FieldError",
         "file": "C:/Users/willh/Desktop/games/components/ui/field.tsx",
         "line": 186
+      },
+      {
+        "type": "error-handling",
+        "name": "catch",
+        "file": "C:/Users/willh/Desktop/games/contexts/game-session-context.tsx",
+        "line": 61
+      },
+      {
+        "type": "error-handling",
+        "name": "catch",
+        "file": "C:/Users/willh/Desktop/games/contexts/game-session-context.tsx",
+        "line": 70
+      },
+      {
+        "type": "error-handling",
+        "name": "catch",
+        "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/persistence.ts",
+        "line": 22
+      },
+      {
+        "type": "error-handling",
+        "name": "catch",
+        "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/persistence.ts",
+        "line": 37
+      },
+      {
+        "type": "error-handling",
+        "name": "catch",
+        "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/persistence.ts",
+        "line": 45
+      },
+      {
+        "type": "error-handling",
+        "name": "catch",
+        "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/persistence.ts",
+        "line": 111
+      },
+      {
+        "type": "error-handling",
+        "name": "catch",
+        "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/sounds.ts",
+        "line": 15
+      },
+      {
+        "type": "error-handling",
+        "name": "catch",
+        "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/sounds.ts",
+        "line": 52
+      },
+      {
+        "type": "error-handling",
+        "name": "catch",
+        "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/sounds.ts",
+        "line": 80
+      },
+      {
+        "type": "error-handling",
+        "name": "catch",
+        "file": "C:/Users/willh/Desktop/games/lib/word-games/trie/trie-service.ts",
+        "line": 116
       }
     ],
     "testPatterns": [
@@ -181,49 +205,43 @@
         "type": "test",
         "name": "switch",
         "file": "C:/Users/willh/Desktop/games/components/games/shared/stats-bar.tsx",
-        "line": 89
+        "line": 90
       },
       {
         "type": "test",
-        "name": "switch",
-        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-        "line": 137
-      },
-      {
-        "type": "test",
-        "name": "switch",
-        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-        "line": 518
-      },
-      {
-        "type": "test",
-        "name": "switch",
-        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-        "line": 917
-      },
-      {
-        "type": "test",
-        "name": "switch",
-        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-        "line": 1226
-      },
-      {
-        "type": "test",
-        "name": "initializeSticks",
-        "file": "C:/Users/willh/Desktop/games/components/games/pick-up-sticks.tsx",
-        "line": 26
-      },
-      {
-        "type": "test",
-        "name": "INITIAL_FALL_SPEED",
-        "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-        "line": 81
+        "name": "initDictionary",
+        "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+        "line": 63
       },
       {
         "type": "test",
         "name": "switch",
         "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-        "line": 301
+        "line": 148
+      },
+      {
+        "type": "test",
+        "name": "initGame",
+        "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+        "line": 36
+      },
+      {
+        "type": "test",
+        "name": "initGame",
+        "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+        "line": 104
+      },
+      {
+        "type": "test",
+        "name": "switch",
+        "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+        "line": 236
+      },
+      {
+        "type": "test",
+        "name": "currentPageTitle",
+        "file": "C:/Users/willh/Desktop/games/components/layout/breadcrumbs.tsx",
+        "line": 24
       },
       {
         "type": "test",
@@ -335,15 +353,15 @@
       },
       {
         "type": "test",
-        "name": "FormItem",
-        "file": "C:/Users/willh/Desktop/games/components/ui/form.tsx",
-        "line": 76
-      },
-      {
-        "type": "test",
         "name": "FormItemContext",
         "file": "C:/Users/willh/Desktop/games/components/ui/form.tsx",
         "line": 72
+      },
+      {
+        "type": "test",
+        "name": "FormItem",
+        "file": "C:/Users/willh/Desktop/games/components/ui/form.tsx",
+        "line": 76
       },
       {
         "type": "test",
@@ -362,6 +380,12 @@
         "name": "Item",
         "file": "C:/Users/willh/Desktop/games/components/ui/item.tsx",
         "line": 54
+      },
+      {
+        "type": "test",
+        "name": "Comp",
+        "file": "C:/Users/willh/Desktop/games/components/ui/item.tsx",
+        "line": 62
       },
       {
         "type": "test",
@@ -404,12 +428,6 @@
         "name": "ItemFooter",
         "file": "C:/Users/willh/Desktop/games/components/ui/item.tsx",
         "line": 169
-      },
-      {
-        "type": "test",
-        "name": "Comp",
-        "file": "C:/Users/willh/Desktop/games/components/ui/item.tsx",
-        "line": 62
       },
       {
         "type": "test",
@@ -512,26 +530,86 @@
         "name": "switch",
         "file": "C:/Users/willh/Desktop/games/hooks/use-toast.ts",
         "line": 75
+      },
+      {
+        "type": "test",
+        "name": "ACCESSIBILITY",
+        "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/config.ts",
+        "line": 124
+      },
+      {
+        "type": "test",
+        "name": "updateStats",
+        "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/persistence.ts",
+        "line": 58
+      },
+      {
+        "type": "test",
+        "name": "switch",
+        "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/sounds.ts",
+        "line": 34
+      },
+      {
+        "type": "test",
+        "name": "shouldTapTarget",
+        "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+        "line": 94
+      },
+      {
+        "type": "test",
+        "name": "updateStreak",
+        "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+        "line": 239
+      },
+      {
+        "type": "test",
+        "name": "shouldSpawnBurst",
+        "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+        "line": 310
+      },
+      {
+        "type": "test",
+        "name": "shouldSpawnGap",
+        "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+        "line": 314
+      },
+      {
+        "type": "test",
+        "name": "switch",
+        "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+        "line": 97
+      },
+      {
+        "type": "test",
+        "name": "for",
+        "file": "C:/Users/willh/Desktop/games/lib/tetris/__tests__/engine.test.ts",
+        "line": 96
+      },
+      {
+        "type": "test",
+        "name": "for",
+        "file": "C:/Users/willh/Desktop/games/lib/tetris/__tests__/engine.test.ts",
+        "line": 110
+      },
+      {
+        "type": "test",
+        "name": "for",
+        "file": "C:/Users/willh/Desktop/games/lib/tetris/__tests__/engine.test.ts",
+        "line": 111
+      },
+      {
+        "type": "test",
+        "name": "if",
+        "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/__tests__/engine.test.ts",
+        "line": 65
       }
     ],
     "apiEndpoints": [
       {
         "type": "api-endpoint",
-        "name": "getLurePoint",
-        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-        "line": 1007
-      },
-      {
-        "type": "api-endpoint",
-        "name": "getPromptIcon",
-        "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-        "line": 1225
-      },
-      {
-        "type": "api-endpoint",
-        "name": "handleTargetClick",
-        "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
-        "line": 37
+        "name": "currentPageTitle",
+        "file": "C:/Users/willh/Desktop/games/components/layout/breadcrumbs.tsx",
+        "line": 24
       },
       {
         "type": "api-endpoint",
@@ -628,14 +706,68 @@
         "name": "dispatch",
         "file": "C:/Users/willh/Desktop/games/hooks/use-toast.ts",
         "line": 133
+      },
+      {
+        "type": "api-endpoint",
+        "name": "calculateTargetLifetime",
+        "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+        "line": 46
+      },
+      {
+        "type": "api-endpoint",
+        "name": "getCurrentRulePhase",
+        "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+        "line": 62
+      },
+      {
+        "type": "api-endpoint",
+        "name": "shouldTapTarget",
+        "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+        "line": 94
+      },
+      {
+        "type": "api-endpoint",
+        "name": "generateTarget",
+        "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+        "line": 116
+      },
+      {
+        "type": "api-endpoint",
+        "name": "getPatternClass",
+        "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+        "line": 321
+      },
+      {
+        "type": "api-endpoint",
+        "name": "getCellStyle",
+        "file": "C:/Users/willh/Desktop/games/lib/tetris/cell-styles.ts",
+        "line": 21
+      },
+      {
+        "type": "api-endpoint",
+        "name": "computePieceBounds",
+        "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+        "line": 16
+      },
+      {
+        "type": "api-endpoint",
+        "name": "getRandomCommonWord",
+        "file": "C:/Users/willh/Desktop/games/lib/word-games/wordle/engine.ts",
+        "line": 113
+      },
+      {
+        "type": "api-endpoint",
+        "name": "getGameIcon",
+        "file": "C:/Users/willh/Desktop/games/lib/game-icons.tsx",
+        "line": 44
       }
     ]
   },
   "statistics": {
-    "totalHandlers": 27,
+    "totalHandlers": 17,
     "totalDecorators": 0,
-    "totalErrorPatterns": 1,
-    "totalTestPatterns": 56,
-    "totalApiEndpoints": 19
+    "totalErrorPatterns": 15,
+    "totalTestPatterns": 67,
+    "totalApiEndpoints": 26
   }
 }

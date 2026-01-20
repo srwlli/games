@@ -10,8 +10,18 @@ import Tetris from "@/components/games/tetris"
 import Fishing from "@/components/games/fishing"
 import Boggle from "@/components/games/boggle"
 import Wordle from "@/components/games/wordle"
+import MathFlashCards from "@/components/games/math-flash-cards"
 
 export const GAMES_REGISTRY = {
+  "math-flash-cards": {
+    id: "math-flash-cards",
+    title: "Math Flash Cards",
+    description: "Master multiplication and division in a 60-second sprint.",
+    category: "Math Game",
+    color: "bg-emerald-600",
+    component: MathFlashCards,
+    thumbnail: "Calculator",
+  },
   "zen-merge": {
     id: "zen-merge",
     title: "Zen Merge",

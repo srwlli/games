@@ -33,17 +33,18 @@ export function useCountdown(
   // Use the standardized useInterval for the ticking logic
   useInterval(
     () => {
-      setTimeLeft((prev) => {
-        const next = Math.max(0, prev - 1)
-        if (next === 0) {
-          onComplete?.()
-        }
-        return next
-      })
+      setTimeLeft((prev) => Math.max(0, prev - 1))
     },
     timeLeft > 0 ? 1000 : null,
     isActive,
   )
+
+  // Handle completion separately from state update to avoid render-time updates
+  useEffect(() => {
+    if (timeLeft === 0 && isActive) {
+      onComplete?.()
+    }
+  }, [timeLeft, onComplete, isActive])
 
   // Sync timeLeft if initialSeconds changes externally (preserved behavior)
   useEffect(() => {

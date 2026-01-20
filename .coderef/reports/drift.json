@@ -1,14 +1,14 @@
 {
   "version": "2.0.0",
-  "generatedAt": "2026-01-11T20:02:31.557Z",
+  "generatedAt": "2026-01-20T17:59:45.337Z",
   "projectPath": "C:\\Users\\willh\\Desktop\\games",
   "hasPreviousScan": true,
   "summary": {
-    "totalElements": 541,
+    "totalElements": 780,
     "addedElements": 0,
     "removedElements": 0,
     "modifiedElements": 0,
-    "unchangedElements": 541
+    "unchangedElements": 780
   },
   "changes": {
     "added": [],

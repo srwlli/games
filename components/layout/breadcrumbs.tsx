@@ -7,6 +7,7 @@ import { GAMES_REGISTRY } from "@/lib/games-registry"
 // Map route segments to display names
 const ROUTE_METADATA: Record<string, { label: string }> = {
   "word-games": { label: "Word Games" },
+  "math-games": { label: "Math Games" },
   "classics": { label: "Classic Games" },
   "work-in-progress": { label: "Work In Progress" },
   "settings": { label: "Settings" },

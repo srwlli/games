@@ -1,28 +1,64 @@
 {
   "version": "2.0.0",
-  "generatedAt": "2026-01-11T20:02:31.534Z",
+  "generatedAt": "2026-01-20T17:59:45.297Z",
   "projectPath": "C:\\Users\\willh\\Desktop\\games",
-  "totalElements": 541,
+  "totalElements": 780,
   "elementsByType": {
-    "component": 322,
-    "method": 145,
-    "function": 43,
-    "constant": 19,
-    "hook": 12
+    "component": 350,
+    "method": 306,
+    "function": 77,
+    "constant": 27,
+    "hook": 16,
+    "class": 4
   },
   "elements": [
     {
       "type": "component",
+      "name": "ClassicGameClient",
+      "file": "C:/Users/willh/Desktop/games/app/classics/[slug]/game-client.tsx",
+      "line": 11,
+      "exported": true
+    },
+    {
+      "type": "component",
+      "name": "ActiveGame",
+      "file": "C:/Users/willh/Desktop/games/app/classics/[slug]/game-client.tsx",
+      "line": 12,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "ClassicGamePage",
+      "file": "C:/Users/willh/Desktop/games/app/classics/[slug]/page.tsx",
+      "line": 5,
+      "exported": true
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/app/classics/[slug]/page.tsx",
+      "line": 10,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "ClassicsPage",
+      "file": "C:/Users/willh/Desktop/games/app/classics/page.tsx",
+      "line": 9,
+      "exported": true
+    },
+    {
+      "type": "component",
       "name": "GameClient",
       "file": "C:/Users/willh/Desktop/games/app/games/[slug]/game-client.tsx",
-      "line": 9,
+      "line": 11,
       "exported": true
     },
     {
       "type": "component",
       "name": "ActiveGame",
       "file": "C:/Users/willh/Desktop/games/app/games/[slug]/game-client.tsx",
-      "line": 10,
+      "line": 12,
       "exported": false
     },
     {
@@ -41,261 +77,646 @@
     },
     {
       "type": "component",
+      "name": "MathGameClient",
+      "file": "C:/Users/willh/Desktop/games/app/math-games/[slug]/game-client.tsx",
+      "line": 11,
+      "exported": true
+    },
+    {
+      "type": "component",
+      "name": "ActiveGame",
+      "file": "C:/Users/willh/Desktop/games/app/math-games/[slug]/game-client.tsx",
+      "line": 12,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "MathGamePage",
+      "file": "C:/Users/willh/Desktop/games/app/math-games/[slug]/page.tsx",
+      "line": 5,
+      "exported": true
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/app/math-games/[slug]/page.tsx",
+      "line": 10,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "MathGamesPage",
+      "file": "C:/Users/willh/Desktop/games/app/math-games/page.tsx",
+      "line": 9,
+      "exported": true
+    },
+    {
+      "type": "component",
+      "name": "SettingsPage",
+      "file": "C:/Users/willh/Desktop/games/app/settings/page.tsx",
+      "line": 1,
+      "exported": true
+    },
+    {
+      "type": "component",
+      "name": "WordGameClient",
+      "file": "C:/Users/willh/Desktop/games/app/word-games/[slug]/game-client.tsx",
+      "line": 11,
+      "exported": true
+    },
+    {
+      "type": "component",
+      "name": "ActiveGame",
+      "file": "C:/Users/willh/Desktop/games/app/word-games/[slug]/game-client.tsx",
+      "line": 12,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "WordGamePage",
+      "file": "C:/Users/willh/Desktop/games/app/word-games/[slug]/page.tsx",
+      "line": 5,
+      "exported": true
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/app/word-games/[slug]/page.tsx",
+      "line": 10,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "WordGamesPage",
+      "file": "C:/Users/willh/Desktop/games/app/word-games/page.tsx",
+      "line": 9,
+      "exported": true
+    },
+    {
+      "type": "component",
+      "name": "WipGameClient",
+      "file": "C:/Users/willh/Desktop/games/app/work-in-progress/[slug]/game-client.tsx",
+      "line": 11,
+      "exported": true
+    },
+    {
+      "type": "component",
+      "name": "ActiveGame",
+      "file": "C:/Users/willh/Desktop/games/app/work-in-progress/[slug]/game-client.tsx",
+      "line": 12,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "WipGamePage",
+      "file": "C:/Users/willh/Desktop/games/app/work-in-progress/[slug]/page.tsx",
+      "line": 5,
+      "exported": true
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/app/work-in-progress/[slug]/page.tsx",
+      "line": 10,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "WorkInProgressPage",
+      "file": "C:/Users/willh/Desktop/games/app/work-in-progress/page.tsx",
+      "line": 9,
+      "exported": true
+    },
+    {
+      "type": "component",
       "name": "RootLayout",
       "file": "C:/Users/willh/Desktop/games/app/layout.tsx",
-      "line": 32,
+      "line": 52,
       "exported": true
     },
     {
       "type": "component",
       "name": "GameDashboard",
       "file": "C:/Users/willh/Desktop/games/app/page.tsx",
-      "line": 7,
+      "line": 8,
+      "exported": true
+    },
+    {
+      "type": "component",
+      "name": "CountdownOverlay",
+      "file": "C:/Users/willh/Desktop/games/components/games/shared/countdown-overlay.tsx",
+      "line": 21,
       "exported": true
     },
     {
       "type": "component",
       "name": "GameOverModal",
       "file": "C:/Users/willh/Desktop/games/components/games/shared/game-over-modal.tsx",
-      "line": 41,
+      "line": 62,
+      "exported": true
+    },
+    {
+      "type": "component",
+      "name": "StartScreen",
+      "file": "C:/Users/willh/Desktop/games/components/games/shared/start-screen.tsx",
+      "line": 26,
       "exported": true
     },
     {
       "type": "component",
       "name": "StatCard",
       "file": "C:/Users/willh/Desktop/games/components/games/shared/stats-bar.tsx",
-      "line": 53,
+      "line": 54,
       "exported": false
     },
     {
       "type": "component",
       "name": "StatsBar",
       "file": "C:/Users/willh/Desktop/games/components/games/shared/stats-bar.tsx",
-      "line": 84,
+      "line": 85,
       "exported": true
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/shared/stats-bar.tsx",
+      "line": 60,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/shared/stats-bar.tsx",
+      "line": 63,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/shared/stats-bar.tsx",
+      "line": 68,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "switch",
+      "file": "C:/Users/willh/Desktop/games/components/games/shared/stats-bar.tsx",
+      "line": 90,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/shared/stats-bar.tsx",
+      "line": 98,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "BoardCell",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris/board-cell.tsx",
+      "line": 13,
+      "exported": true
+    },
+    {
+      "type": "method",
+      "name": "memo",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris/board-cell.tsx",
+      "line": 13,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "BoardRow",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris/board-row.tsx",
+      "line": 19,
+      "exported": true
+    },
+    {
+      "type": "method",
+      "name": "memo",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris/board-row.tsx",
+      "line": 19,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris/board-row.tsx",
+      "line": 25,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris/board-row.tsx",
+      "line": 26,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris/board-row.tsx",
       "line": 59,
       "exported": false
     },
     {
       "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/shared/stats-bar.tsx",
-      "line": 62,
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris/board-row.tsx",
+      "line": 65,
       "exported": false
     },
     {
       "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/shared/stats-bar.tsx",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris/board-row.tsx",
       "line": 67,
       "exported": false
     },
     {
-      "type": "method",
-      "name": "switch",
-      "file": "C:/Users/willh/Desktop/games/components/games/shared/stats-bar.tsx",
-      "line": 89,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/shared/stats-bar.tsx",
-      "line": 97,
-      "exported": false
-    },
-    {
       "type": "component",
-      "name": "Fishing",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 51,
+      "name": "LineClearAnimation",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris/line-clear-animation.tsx",
+      "line": 11,
       "exported": true
     },
     {
       "type": "component",
-      "name": "SingleBarTimingPattern",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 297,
+      "name": "MobileControls",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris/mobile-controls.tsx",
+      "line": 14,
+      "exported": true
+    },
+    {
+      "type": "component",
+      "name": "ScorePopup",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris/score-popup.tsx",
+      "line": 13,
+      "exported": true
+    },
+    {
+      "type": "method",
+      "name": "memo",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris/score-popup.tsx",
+      "line": 13,
       "exported": false
     },
     {
       "type": "component",
-      "name": "TensionMeterPattern",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 499,
-      "exported": false
-    },
-    {
-      "type": "component",
-      "name": "LaneBasedPattern",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 657,
-      "exported": false
-    },
-    {
-      "type": "component",
-      "name": "DragPathPattern",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 831,
-      "exported": false
-    },
-    {
-      "type": "component",
-      "name": "QTEReelingPattern",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1082,
-      "exported": false
+      "name": "Boggle",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 15,
+      "exported": true
     },
     {
       "type": "function",
-      "name": "renderPattern",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 128,
-      "exported": false
-    },
-    {
-      "type": "function",
-      "name": "handleKeyDown",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 155,
-      "exported": false
-    },
-    {
-      "type": "function",
-      "name": "handleCast",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 355,
-      "exported": false
-    },
-    {
-      "type": "function",
-      "name": "handleRelease",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 361,
-      "exported": false
-    },
-    {
-      "type": "function",
-      "name": "handleReelStop",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 389,
-      "exported": false
-    },
-    {
-      "type": "function",
-      "name": "handleHold",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 596,
-      "exported": false
-    },
-    {
-      "type": "function",
-      "name": "handleRelease",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 600,
-      "exported": false
-    },
-    {
-      "type": "function",
-      "name": "handleKeyDown",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 722,
-      "exported": false
-    },
-    {
-      "type": "function",
-      "name": "handleJerk",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 739,
-      "exported": false
-    },
-    {
-      "type": "function",
-      "name": "handleMouseDown",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 984,
-      "exported": false
-    },
-    {
-      "type": "function",
-      "name": "handleMouseMove",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 994,
-      "exported": false
-    },
-    {
-      "type": "function",
-      "name": "handleMouseUp",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1002,
-      "exported": false
-    },
-    {
-      "type": "function",
-      "name": "getLurePoint",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1007,
-      "exported": false
-    },
-    {
-      "type": "function",
-      "name": "handlePromptSuccess",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1162,
-      "exported": false
-    },
-    {
-      "type": "function",
-      "name": "handleTap",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1184,
-      "exported": false
-    },
-    {
-      "type": "function",
-      "name": "handleTouchStart",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1193,
-      "exported": false
-    },
-    {
-      "type": "function",
-      "name": "handleTouchEnd",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1205,
-      "exported": false
-    },
-    {
-      "type": "function",
-      "name": "getPromptIcon",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1225,
+      "name": "initDictionary",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 63,
       "exported": false
     },
     {
       "type": "method",
-      "name": "switch",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 137,
+      "name": "catch",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 68,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 114,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 129,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 141,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 149,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
       "line": 156,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 160,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 174,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 186,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 187,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 193,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 253,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 262,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 285,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 299,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 342,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 350,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 354,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 362,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 364,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 375,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 387,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 393,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 397,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 404,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 427,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 431,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 442,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 450,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 455,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 479,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 513,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 533,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 535,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 540,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 666,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 677,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
+      "line": 685,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "Fishing",
       "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 157,
+      "line": 33,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "handleKeyDown",
+      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+      "line": 243,
+      "exported": false
+    },
+    {
+      "type": "function",
+      "name": "handleKeyUp",
+      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+      "line": 253,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+      "line": 110,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+      "line": 111,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+      "line": 115,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+      "line": 118,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+      "line": 121,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+      "line": 136,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+      "line": 146,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+      "line": 158,
       "exported": false
     },
     {
@@ -309,607 +730,418 @@
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 311,
+      "line": 167,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 322,
+      "line": 169,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 333,
+      "line": 203,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 344,
+      "line": 205,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 346,
+      "line": 206,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 356,
+      "line": 208,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 362,
+      "line": 211,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 366,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "for",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 375,
+      "line": 215,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 390,
+      "line": 221,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 394,
+      "line": 222,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 397,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "switch",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 518,
+      "line": 226,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 533,
+      "line": 233,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 547,
+      "line": 244,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 562,
+      "line": 248,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 564,
+      "line": 254,
       "exported": false
     },
     {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 567,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 591,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 706,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 723,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 726,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 729,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 747,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "for",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 866,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 882,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 885,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "switch",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 917,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 920,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 928,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 938,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 946,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 959,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1107,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1116,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1124,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1126,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1143,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1145,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1157,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1165,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1185,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1187,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1197,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1212,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1214,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1216,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1218,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "switch",
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "line": 1226,
+      "type": "constant",
+      "name": "MEMORY_MATCH_ICONS",
+      "file": "C:/Users/willh/Desktop/games/components/games/memory-match.tsx",
+      "line": 10,
       "exported": false
     },
     {
       "type": "component",
       "name": "MemoryMatch",
       "file": "C:/Users/willh/Desktop/games/components/games/memory-match.tsx",
-      "line": 11,
+      "line": 12,
       "exported": true
+    },
+    {
+      "type": "component",
+      "name": "Icon",
+      "file": "C:/Users/willh/Desktop/games/components/games/memory-match.tsx",
+      "line": 189,
+      "exported": false
     },
     {
       "type": "function",
       "name": "handleCardClick",
       "file": "C:/Users/willh/Desktop/games/components/games/memory-match.tsx",
-      "line": 41,
+      "line": 71,
       "exported": false
     },
     {
       "type": "function",
       "name": "handleKeyDown",
       "file": "C:/Users/willh/Desktop/games/components/games/memory-match.tsx",
-      "line": 85,
-      "exported": false
-    },
-    {
-      "type": "constant",
-      "name": "EMOJIS",
-      "file": "C:/Users/willh/Desktop/games/components/games/memory-match.tsx",
-      "line": 9,
+      "line": 131,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/memory-match.tsx",
-      "line": 51,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/memory-match.tsx",
-      "line": 63,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/memory-match.tsx",
-      "line": 86,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/memory-match.tsx",
-      "line": 87,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/memory-match.tsx",
-      "line": 89,
-      "exported": false
-    },
-    {
-      "type": "component",
-      "name": "PickUpSticks",
-      "file": "C:/Users/willh/Desktop/games/components/games/pick-up-sticks.tsx",
-      "line": 14,
-      "exported": true
-    },
-    {
-      "type": "function",
-      "name": "initializeSticks",
-      "file": "C:/Users/willh/Desktop/games/components/games/pick-up-sticks.tsx",
-      "line": 26,
-      "exported": false
-    },
-    {
-      "type": "function",
-      "name": "handleStickClick",
-      "file": "C:/Users/willh/Desktop/games/components/games/pick-up-sticks.tsx",
-      "line": 45,
-      "exported": false
-    },
-    {
-      "type": "function",
-      "name": "resetGame",
-      "file": "C:/Users/willh/Desktop/games/components/games/pick-up-sticks.tsx",
-      "line": 79,
-      "exported": false
-    },
-    {
-      "type": "function",
-      "name": "handleKeyDown",
-      "file": "C:/Users/willh/Desktop/games/components/games/pick-up-sticks.tsx",
-      "line": 92,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/pick-up-sticks.tsx",
-      "line": 52,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/pick-up-sticks.tsx",
-      "line": 57,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/pick-up-sticks.tsx",
-      "line": 93,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/pick-up-sticks.tsx",
-      "line": 94,
-      "exported": false
-    },
-    {
-      "type": "component",
-      "name": "ReflexTapper",
-      "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
-      "line": 10,
-      "exported": true
-    },
-    {
-      "type": "function",
-      "name": "handleTargetClick",
-      "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
-      "line": 37,
-      "exported": false
-    },
-    {
-      "type": "function",
-      "name": "resetGame",
-      "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
-      "line": 42,
-      "exported": false
-    },
-    {
-      "type": "function",
-      "name": "handleKeyDown",
-      "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
-      "line": 52,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
       "line": 53,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/memory-match.tsx",
+      "line": 81,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/memory-match.tsx",
+      "line": 93,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/memory-match.tsx",
+      "line": 132,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/memory-match.tsx",
+      "line": 133,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/memory-match.tsx",
+      "line": 135,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "ReflexTapper",
       "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
-      "line": 54,
+      "line": 33,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "handleKeyDown",
+      "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
+      "line": 371,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
+      "line": 95,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
-      "line": 56,
+      "line": 126,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
+      "line": 158,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
+      "line": 169,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
+      "line": 189,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
+      "line": 200,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
+      "line": 202,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
+      "line": 204,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
+      "line": 215,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
+      "line": 249,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
+      "line": 294,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
+      "line": 306,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
+      "line": 372,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
+      "line": 373,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
+      "line": 375,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
+      "line": 620,
       "exported": false
     },
     {
       "type": "component",
       "name": "Tetris",
       "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 112,
+      "line": 22,
       "exported": true
-    },
-    {
-      "type": "function",
-      "name": "createEmptyBoard",
-      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 93,
-      "exported": false
     },
     {
       "type": "function",
       "name": "handleKeyDown",
       "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 281,
+      "line": 128,
       "exported": false
     },
     {
       "type": "function",
       "name": "handleTouchStart",
       "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 345,
+      "line": 201,
+      "exported": false
+    },
+    {
+      "type": "function",
+      "name": "handleTouchMove",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
+      "line": 207,
       "exported": false
     },
     {
       "type": "function",
       "name": "handleTouchEnd",
       "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 350,
+      "line": 229,
       "exported": false
     },
     {
       "type": "function",
       "name": "renderBoard",
       "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 386,
+      "line": 285,
       "exported": false
     },
     {
       "type": "function",
       "name": "renderNextPiece",
       "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 435,
-      "exported": false
-    },
-    {
-      "type": "constant",
-      "name": "SHAPES",
-      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 13,
-      "exported": false
-    },
-    {
-      "type": "constant",
-      "name": "BOARD_WIDTH",
-      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 79,
-      "exported": false
-    },
-    {
-      "type": "constant",
-      "name": "BOARD_HEIGHT",
-      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 80,
-      "exported": false
-    },
-    {
-      "type": "constant",
-      "name": "INITIAL_FALL_SPEED",
-      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 81,
+      "line": 298,
       "exported": false
     },
     {
       "type": "method",
-      "name": "for",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
+      "line": 53,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
+      "line": 55,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
+      "line": 66,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
+      "line": 72,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
+      "line": 78,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
+      "line": 119,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
+      "line": 121,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
       "line": 130,
       "exported": false
     },
     {
       "type": "method",
-      "name": "for",
+      "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
       "line": 131,
       "exported": false
@@ -918,190 +1150,365 @@
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 132,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "for",
-      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 155,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "for",
-      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 156,
+      "line": 138,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 157,
+      "line": 139,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 160,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "for",
-      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 169,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 176,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 189,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 273,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 275,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 283,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 284,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 291,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 292,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 295,
+      "line": 142,
       "exported": false
     },
     {
       "type": "method",
       "name": "switch",
       "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 301,
+      "line": 148,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 362,
+      "line": 216,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 366,
+      "line": 218,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 370,
+      "line": 241,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
+      "line": 245,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
+      "line": 246,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
+      "line": 253,
       "exported": false
     },
     {
       "type": "method",
       "name": "for",
       "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 390,
+      "line": 269,
       "exported": false
     },
     {
       "type": "method",
       "name": "for",
       "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 391,
+      "line": 270,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 392,
+      "line": 271,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 395,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "for",
-      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 413,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "for",
-      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 414,
+      "line": 274,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
       "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 415,
+      "line": 316,
+      "exported": false
+    },
+    {
+      "type": "constant",
+      "name": "KEYBOARD_ROWS",
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "line": 13,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "Wordle",
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "line": 19,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "initGame",
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "line": 36,
+      "exported": false
+    },
+    {
+      "type": "function",
+      "name": "initGame",
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "line": 104,
+      "exported": false
+    },
+    {
+      "type": "function",
+      "name": "handleKeyDown",
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "line": 205,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "catch",
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "line": 45,
       "exported": false
     },
     {
       "type": "method",
       "name": "if",
-      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
-      "line": 451,
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "line": 57,
       "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "line": 61,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "catch",
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "line": 71,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "line": 107,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "catch",
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "line": 113,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "line": 143,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "line": 145,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "line": 174,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "line": 176,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "line": 179,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "line": 195,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "line": 209,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "line": 211,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "line": 226,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "line": 228,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "switch",
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "line": 236,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "line": 248,
+      "exported": false
+    },
+    {
+      "type": "constant",
+      "name": "CRYSTAL_TIERS",
+      "file": "C:/Users/willh/Desktop/games/components/games/zen-merge.tsx",
+      "line": 10,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "ZenMerge",
+      "file": "C:/Users/willh/Desktop/games/components/games/zen-merge.tsx",
+      "line": 28,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "handleTileClick",
+      "file": "C:/Users/willh/Desktop/games/components/games/zen-merge.tsx",
+      "line": 84,
+      "exported": false
+    },
+    {
+      "type": "function",
+      "name": "handleDragStart",
+      "file": "C:/Users/willh/Desktop/games/components/games/zen-merge.tsx",
+      "line": 99,
+      "exported": false
+    },
+    {
+      "type": "function",
+      "name": "handleDrop",
+      "file": "C:/Users/willh/Desktop/games/components/games/zen-merge.tsx",
+      "line": 109,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/zen-merge.tsx",
+      "line": 67,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/zen-merge.tsx",
+      "line": 87,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/zen-merge.tsx",
+      "line": 110,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/zen-merge.tsx",
+      "line": 122,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/zen-merge.tsx",
+      "line": 135,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/components/games/zen-merge.tsx",
+      "line": 163,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "Breadcrumbs",
+      "file": "C:/Users/willh/Desktop/games/components/layout/breadcrumbs.tsx",
+      "line": 17,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "currentPageTitle",
+      "file": "C:/Users/willh/Desktop/games/components/layout/breadcrumbs.tsx",
+      "line": 24,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "FooterTabBar",
+      "file": "C:/Users/willh/Desktop/games/components/layout/footer-tabbar.tsx",
+      "line": 7,
+      "exported": true
     },
     {
       "type": "component",
@@ -1301,6 +1708,13 @@
     },
     {
       "type": "component",
+      "name": "Comp",
+      "file": "C:/Users/willh/Desktop/games/components/ui/breadcrumb.tsx",
+      "line": 41,
+      "exported": false
+    },
+    {
+      "type": "component",
       "name": "BreadcrumbPage",
       "file": "C:/Users/willh/Desktop/games/components/ui/breadcrumb.tsx",
       "line": 52,
@@ -1322,13 +1736,6 @@
     },
     {
       "type": "component",
-      "name": "Comp",
-      "file": "C:/Users/willh/Desktop/games/components/ui/breadcrumb.tsx",
-      "line": 41,
-      "exported": false
-    },
-    {
-      "type": "component",
       "name": "ButtonGroup",
       "file": "C:/Users/willh/Desktop/games/components/ui/button-group.tsx",
       "line": 24,
@@ -1343,16 +1750,16 @@
     },
     {
       "type": "component",
-      "name": "ButtonGroupSeparator",
+      "name": "Comp",
       "file": "C:/Users/willh/Desktop/games/components/ui/button-group.tsx",
-      "line": 60,
+      "line": 47,
       "exported": false
     },
     {
       "type": "component",
-      "name": "Comp",
+      "name": "ButtonGroupSeparator",
       "file": "C:/Users/willh/Desktop/games/components/ui/button-group.tsx",
-      "line": 47,
+      "line": 60,
       "exported": false
     },
     {
@@ -1447,10 +1854,10 @@
       "exported": false
     },
     {
-      "type": "hook",
-      "name": "useCarousel",
+      "type": "component",
+      "name": "CarouselContext",
       "file": "C:/Users/willh/Desktop/games/components/ui/carousel.tsx",
-      "line": 35,
+      "line": 33,
       "exported": false
     },
     {
@@ -1489,10 +1896,10 @@
       "exported": false
     },
     {
-      "type": "component",
-      "name": "CarouselContext",
+      "type": "hook",
+      "name": "useCarousel",
       "file": "C:/Users/willh/Desktop/games/components/ui/carousel.tsx",
-      "line": 33,
+      "line": 35,
       "exported": false
     },
     {
@@ -1517,48 +1924,6 @@
       "exported": false
     },
     {
-      "type": "hook",
-      "name": "useChart",
-      "file": "C:/Users/willh/Desktop/games/components/ui/chart.tsx",
-      "line": 27,
-      "exported": false
-    },
-    {
-      "type": "component",
-      "name": "ChartContainer",
-      "file": "C:/Users/willh/Desktop/games/components/ui/chart.tsx",
-      "line": 37,
-      "exported": false
-    },
-    {
-      "type": "component",
-      "name": "ChartTooltipContent",
-      "file": "C:/Users/willh/Desktop/games/components/ui/chart.tsx",
-      "line": 107,
-      "exported": false
-    },
-    {
-      "type": "component",
-      "name": "ChartLegendContent",
-      "file": "C:/Users/willh/Desktop/games/components/ui/chart.tsx",
-      "line": 253,
-      "exported": false
-    },
-    {
-      "type": "function",
-      "name": "getPayloadConfigFromPayload",
-      "file": "C:/Users/willh/Desktop/games/components/ui/chart.tsx",
-      "line": 308,
-      "exported": false
-    },
-    {
-      "type": "component",
-      "name": "ChartStyle",
-      "file": "C:/Users/willh/Desktop/games/components/ui/chart.tsx",
-      "line": 72,
-      "exported": false
-    },
-    {
       "type": "constant",
       "name": "THEMES",
       "file": "C:/Users/willh/Desktop/games/components/ui/chart.tsx",
@@ -1574,6 +1939,20 @@
     },
     {
       "type": "component",
+      "name": "ChartContainer",
+      "file": "C:/Users/willh/Desktop/games/components/ui/chart.tsx",
+      "line": 37,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "ChartStyle",
+      "file": "C:/Users/willh/Desktop/games/components/ui/chart.tsx",
+      "line": 72,
+      "exported": false
+    },
+    {
+      "type": "component",
       "name": "ChartTooltip",
       "file": "C:/Users/willh/Desktop/games/components/ui/chart.tsx",
       "line": 105,
@@ -1581,9 +1960,37 @@
     },
     {
       "type": "component",
+      "name": "ChartTooltipContent",
+      "file": "C:/Users/willh/Desktop/games/components/ui/chart.tsx",
+      "line": 107,
+      "exported": false
+    },
+    {
+      "type": "component",
       "name": "ChartLegend",
       "file": "C:/Users/willh/Desktop/games/components/ui/chart.tsx",
       "line": 251,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "ChartLegendContent",
+      "file": "C:/Users/willh/Desktop/games/components/ui/chart.tsx",
+      "line": 253,
+      "exported": false
+    },
+    {
+      "type": "hook",
+      "name": "useChart",
+      "file": "C:/Users/willh/Desktop/games/components/ui/chart.tsx",
+      "line": 27,
+      "exported": false
+    },
+    {
+      "type": "function",
+      "name": "getPayloadConfigFromPayload",
+      "file": "C:/Users/willh/Desktop/games/components/ui/chart.tsx",
+      "line": 308,
       "exported": false
     },
     {
@@ -2225,6 +2632,34 @@
     },
     {
       "type": "component",
+      "name": "Form",
+      "file": "C:/Users/willh/Desktop/games/components/ui/form.tsx",
+      "line": 19,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "FormFieldContext",
+      "file": "C:/Users/willh/Desktop/games/components/ui/form.tsx",
+      "line": 28,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "FormField",
+      "file": "C:/Users/willh/Desktop/games/components/ui/form.tsx",
+      "line": 32,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "FormItemContext",
+      "file": "C:/Users/willh/Desktop/games/components/ui/form.tsx",
+      "line": 72,
+      "exported": false
+    },
+    {
+      "type": "component",
       "name": "FormItem",
       "file": "C:/Users/willh/Desktop/games/components/ui/form.tsx",
       "line": 76,
@@ -2263,34 +2698,6 @@
       "name": "useFormField",
       "file": "C:/Users/willh/Desktop/games/components/ui/form.tsx",
       "line": 45,
-      "exported": false
-    },
-    {
-      "type": "component",
-      "name": "Form",
-      "file": "C:/Users/willh/Desktop/games/components/ui/form.tsx",
-      "line": 19,
-      "exported": false
-    },
-    {
-      "type": "component",
-      "name": "FormFieldContext",
-      "file": "C:/Users/willh/Desktop/games/components/ui/form.tsx",
-      "line": 28,
-      "exported": false
-    },
-    {
-      "type": "component",
-      "name": "FormField",
-      "file": "C:/Users/willh/Desktop/games/components/ui/form.tsx",
-      "line": 32,
-      "exported": false
-    },
-    {
-      "type": "component",
-      "name": "FormItemContext",
-      "file": "C:/Users/willh/Desktop/games/components/ui/form.tsx",
-      "line": 72,
       "exported": false
     },
     {
@@ -2428,6 +2835,13 @@
     },
     {
       "type": "component",
+      "name": "Comp",
+      "file": "C:/Users/willh/Desktop/games/components/ui/item.tsx",
+      "line": 62,
+      "exported": false
+    },
+    {
+      "type": "component",
       "name": "ItemMedia",
       "file": "C:/Users/willh/Desktop/games/components/ui/item.tsx",
       "line": 91,
@@ -2473,13 +2887,6 @@
       "name": "ItemFooter",
       "file": "C:/Users/willh/Desktop/games/components/ui/item.tsx",
       "line": 169,
-      "exported": false
-    },
-    {
-      "type": "component",
-      "name": "Comp",
-      "file": "C:/Users/willh/Desktop/games/components/ui/item.tsx",
-      "line": 62,
       "exported": false
     },
     {
@@ -2952,10 +3359,52 @@
       "exported": false
     },
     {
-      "type": "hook",
-      "name": "useSidebar",
+      "type": "constant",
+      "name": "SIDEBAR_COOKIE_NAME",
       "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
-      "line": 47,
+      "line": 28,
+      "exported": false
+    },
+    {
+      "type": "constant",
+      "name": "SIDEBAR_COOKIE_MAX_AGE",
+      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
+      "line": 29,
+      "exported": false
+    },
+    {
+      "type": "constant",
+      "name": "SIDEBAR_WIDTH",
+      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
+      "line": 30,
+      "exported": false
+    },
+    {
+      "type": "constant",
+      "name": "SIDEBAR_WIDTH_MOBILE",
+      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
+      "line": 31,
+      "exported": false
+    },
+    {
+      "type": "constant",
+      "name": "SIDEBAR_WIDTH_ICON",
+      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
+      "line": 32,
+      "exported": false
+    },
+    {
+      "type": "constant",
+      "name": "SIDEBAR_KEYBOARD_SHORTCUT",
+      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
+      "line": 33,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "SidebarContext",
+      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
+      "line": 45,
       "exported": false
     },
     {
@@ -3044,9 +3493,23 @@
     },
     {
       "type": "component",
+      "name": "Comp",
+      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
+      "line": 401,
+      "exported": false
+    },
+    {
+      "type": "component",
       "name": "SidebarGroupAction",
       "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
       "line": 417,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "Comp",
+      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
+      "line": 422,
       "exported": false
     },
     {
@@ -3079,9 +3542,23 @@
     },
     {
       "type": "component",
+      "name": "Comp",
+      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
+      "line": 511,
+      "exported": false
+    },
+    {
+      "type": "component",
       "name": "SidebarMenuAction",
       "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
       "line": 548,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "Comp",
+      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
+      "line": 557,
       "exported": false
     },
     {
@@ -3120,94 +3597,24 @@
       "exported": false
     },
     {
-      "type": "function",
-      "name": "handleKeyDown",
-      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
-      "line": 98,
-      "exported": false
-    },
-    {
-      "type": "constant",
-      "name": "SIDEBAR_COOKIE_NAME",
-      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
-      "line": 28,
-      "exported": false
-    },
-    {
-      "type": "constant",
-      "name": "SIDEBAR_COOKIE_MAX_AGE",
-      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
-      "line": 29,
-      "exported": false
-    },
-    {
-      "type": "constant",
-      "name": "SIDEBAR_WIDTH",
-      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
-      "line": 30,
-      "exported": false
-    },
-    {
-      "type": "constant",
-      "name": "SIDEBAR_WIDTH_MOBILE",
-      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
-      "line": 31,
-      "exported": false
-    },
-    {
-      "type": "constant",
-      "name": "SIDEBAR_WIDTH_ICON",
-      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
-      "line": 32,
-      "exported": false
-    },
-    {
-      "type": "constant",
-      "name": "SIDEBAR_KEYBOARD_SHORTCUT",
-      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
-      "line": 33,
-      "exported": false
-    },
-    {
-      "type": "component",
-      "name": "SidebarContext",
-      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
-      "line": 45,
-      "exported": false
-    },
-    {
-      "type": "component",
-      "name": "Comp",
-      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
-      "line": 401,
-      "exported": false
-    },
-    {
-      "type": "component",
-      "name": "Comp",
-      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
-      "line": 422,
-      "exported": false
-    },
-    {
-      "type": "component",
-      "name": "Comp",
-      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
-      "line": 511,
-      "exported": false
-    },
-    {
-      "type": "component",
-      "name": "Comp",
-      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
-      "line": 557,
-      "exported": false
-    },
-    {
       "type": "component",
       "name": "Comp",
       "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
       "line": 680,
+      "exported": false
+    },
+    {
+      "type": "hook",
+      "name": "useSidebar",
+      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
+      "line": 47,
+      "exported": false
+    },
+    {
+      "type": "function",
+      "name": "handleKeyDown",
+      "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
+      "line": 98,
       "exported": false
     },
     {
@@ -3443,6 +3850,13 @@
     },
     {
       "type": "component",
+      "name": "ToggleGroupContext",
+      "file": "C:/Users/willh/Desktop/games/components/ui/toggle-group.tsx",
+      "line": 10,
+      "exported": false
+    },
+    {
+      "type": "component",
       "name": "ToggleGroup",
       "file": "C:/Users/willh/Desktop/games/components/ui/toggle-group.tsx",
       "line": 17,
@@ -3453,13 +3867,6 @@
       "name": "ToggleGroupItem",
       "file": "C:/Users/willh/Desktop/games/components/ui/toggle-group.tsx",
       "line": 43,
-      "exported": false
-    },
-    {
-      "type": "component",
-      "name": "ToggleGroupContext",
-      "file": "C:/Users/willh/Desktop/games/components/ui/toggle-group.tsx",
-      "line": 10,
       "exported": false
     },
     {
@@ -3498,6 +3905,13 @@
       "exported": false
     },
     {
+      "type": "constant",
+      "name": "MOBILE_BREAKPOINT",
+      "file": "C:/Users/willh/Desktop/games/components/ui/use-mobile.tsx",
+      "line": 3,
+      "exported": false
+    },
+    {
       "type": "hook",
       "name": "useIsMobile",
       "file": "C:/Users/willh/Desktop/games/components/ui/use-mobile.tsx",
@@ -3513,30 +3927,16 @@
     },
     {
       "type": "constant",
-      "name": "MOBILE_BREAKPOINT",
-      "file": "C:/Users/willh/Desktop/games/components/ui/use-mobile.tsx",
-      "line": 3,
+      "name": "TOAST_LIMIT",
+      "file": "C:/Users/willh/Desktop/games/components/ui/use-toast.ts",
+      "line": 8,
       "exported": false
     },
     {
-      "type": "method",
-      "name": "genId",
+      "type": "constant",
+      "name": "TOAST_REMOVE_DELAY",
       "file": "C:/Users/willh/Desktop/games/components/ui/use-toast.ts",
-      "line": 27,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "dispatch",
-      "file": "C:/Users/willh/Desktop/games/components/ui/use-toast.ts",
-      "line": 133,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "toast",
-      "file": "C:/Users/willh/Desktop/games/components/ui/use-toast.ts",
-      "line": 142,
+      "line": 9,
       "exported": false
     },
     {
@@ -3544,6 +3944,27 @@
       "name": "useToast",
       "file": "C:/Users/willh/Desktop/games/components/ui/use-toast.ts",
       "line": 171,
+      "exported": false
+    },
+    {
+      "type": "function",
+      "name": "genId",
+      "file": "C:/Users/willh/Desktop/games/components/ui/use-toast.ts",
+      "line": 27,
+      "exported": false
+    },
+    {
+      "type": "function",
+      "name": "dispatch",
+      "file": "C:/Users/willh/Desktop/games/components/ui/use-toast.ts",
+      "line": 133,
+      "exported": false
+    },
+    {
+      "type": "function",
+      "name": "toast",
+      "file": "C:/Users/willh/Desktop/games/components/ui/use-toast.ts",
+      "line": 142,
       "exported": false
     },
     {
@@ -3565,20 +3986,6 @@
       "name": "dismiss",
       "file": "C:/Users/willh/Desktop/games/components/ui/use-toast.ts",
       "line": 150,
-      "exported": false
-    },
-    {
-      "type": "constant",
-      "name": "TOAST_LIMIT",
-      "file": "C:/Users/willh/Desktop/games/components/ui/use-toast.ts",
-      "line": 8,
-      "exported": false
-    },
-    {
-      "type": "constant",
-      "name": "TOAST_REMOVE_DELAY",
-      "file": "C:/Users/willh/Desktop/games/components/ui/use-toast.ts",
-      "line": 9,
       "exported": false
     },
     {
@@ -3617,18 +4024,81 @@
       "exported": true
     },
     {
+      "type": "component",
+      "name": "GameSessionContext",
+      "file": "C:/Users/willh/Desktop/games/contexts/game-session-context.tsx",
+      "line": 40,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "GameSessionProvider",
+      "file": "C:/Users/willh/Desktop/games/contexts/game-session-context.tsx",
+      "line": 42,
+      "exported": true
+    },
+    {
       "type": "hook",
-      "name": "useCountdown",
-      "file": "C:/Users/willh/Desktop/games/hooks/use-countdown.ts",
-      "line": 25,
+      "name": "useGameSession",
+      "file": "C:/Users/willh/Desktop/games/contexts/game-session-context.tsx",
+      "line": 229,
       "exported": true
     },
     {
       "type": "method",
       "name": "if",
-      "file": "C:/Users/willh/Desktop/games/hooks/use-countdown.ts",
-      "line": 43,
+      "file": "C:/Users/willh/Desktop/games/contexts/game-session-context.tsx",
+      "line": 57,
       "exported": false
+    },
+    {
+      "type": "method",
+      "name": "catch",
+      "file": "C:/Users/willh/Desktop/games/contexts/game-session-context.tsx",
+      "line": 61,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "catch",
+      "file": "C:/Users/willh/Desktop/games/contexts/game-session-context.tsx",
+      "line": 70,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/contexts/game-session-context.tsx",
+      "line": 101,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/contexts/game-session-context.tsx",
+      "line": 186,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/contexts/game-session-context.tsx",
+      "line": 199,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/contexts/game-session-context.tsx",
+      "line": 231,
+      "exported": false
+    },
+    {
+      "type": "hook",
+      "name": "useCountdown",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-countdown.ts",
+      "line": 18,
+      "exported": true
     },
     {
       "type": "method",
@@ -3653,6 +4123,41 @@
     },
     {
       "type": "hook",
+      "name": "useGameSessionIntegration",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-game-session-integration.ts",
+      "line": 31,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "handleGameOver",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-game-session-integration.ts",
+      "line": 19,
+      "exported": false
+    },
+    {
+      "type": "function",
+      "name": "endGameSession",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-game-session-integration.ts",
+      "line": 49,
+      "exported": false
+    },
+    {
+      "type": "function",
+      "name": "updateMetadata",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-game-session-integration.ts",
+      "line": 55,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-game-session-integration.ts",
+      "line": 39,
+      "exported": false
+    },
+    {
+      "type": "hook",
       "name": "useGameState",
       "file": "C:/Users/willh/Desktop/games/hooks/use-game-state.ts",
       "line": 16,
@@ -3673,6 +4178,13 @@
       "exported": false
     },
     {
+      "type": "constant",
+      "name": "MOBILE_BREAKPOINT",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-mobile.ts",
+      "line": 3,
+      "exported": false
+    },
+    {
       "type": "hook",
       "name": "useIsMobile",
       "file": "C:/Users/willh/Desktop/games/hooks/use-mobile.ts",
@@ -3687,31 +4199,150 @@
       "exported": false
     },
     {
+      "type": "hook",
+      "name": "useStartCountdown",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-start-countdown.ts",
+      "line": 28,
+      "exported": true
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-start-countdown.ts",
+      "line": 50,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-start-countdown.ts",
+      "line": 51,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-start-countdown.ts",
+      "line": 56,
+      "exported": false
+    },
+    {
+      "type": "hook",
+      "name": "useTetrisEngine",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-tetris-engine.ts",
+      "line": 53,
+      "exported": true
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-tetris-engine.ts",
+      "line": 138,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-tetris-engine.ts",
+      "line": 147,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-tetris-engine.ts",
+      "line": 167,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-tetris-engine.ts",
+      "line": 190,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-tetris-engine.ts",
+      "line": 210,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-tetris-engine.ts",
+      "line": 218,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-tetris-engine.ts",
+      "line": 232,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-tetris-engine.ts",
+      "line": 285,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-tetris-engine.ts",
+      "line": 299,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-tetris-engine.ts",
+      "line": 317,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-tetris-engine.ts",
+      "line": 333,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-tetris-engine.ts",
+      "line": 352,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-tetris-engine.ts",
+      "line": 364,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-tetris-engine.ts",
+      "line": 385,
+      "exported": false
+    },
+    {
       "type": "constant",
-      "name": "MOBILE_BREAKPOINT",
-      "file": "C:/Users/willh/Desktop/games/hooks/use-mobile.ts",
-      "line": 3,
+      "name": "TOAST_LIMIT",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-toast.ts",
+      "line": 8,
       "exported": false
     },
     {
-      "type": "method",
-      "name": "genId",
+      "type": "constant",
+      "name": "TOAST_REMOVE_DELAY",
       "file": "C:/Users/willh/Desktop/games/hooks/use-toast.ts",
-      "line": 27,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "dispatch",
-      "file": "C:/Users/willh/Desktop/games/hooks/use-toast.ts",
-      "line": 133,
-      "exported": false
-    },
-    {
-      "type": "method",
-      "name": "toast",
-      "file": "C:/Users/willh/Desktop/games/hooks/use-toast.ts",
-      "line": 142,
+      "line": 9,
       "exported": false
     },
     {
@@ -3719,6 +4350,27 @@
       "name": "useToast",
       "file": "C:/Users/willh/Desktop/games/hooks/use-toast.ts",
       "line": 171,
+      "exported": false
+    },
+    {
+      "type": "function",
+      "name": "genId",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-toast.ts",
+      "line": 27,
+      "exported": false
+    },
+    {
+      "type": "function",
+      "name": "dispatch",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-toast.ts",
+      "line": 133,
+      "exported": false
+    },
+    {
+      "type": "function",
+      "name": "toast",
+      "file": "C:/Users/willh/Desktop/games/hooks/use-toast.ts",
+      "line": 142,
       "exported": false
     },
     {
@@ -3740,20 +4392,6 @@
       "name": "dismiss",
       "file": "C:/Users/willh/Desktop/games/hooks/use-toast.ts",
       "line": 150,
-      "exported": false
-    },
-    {
-      "type": "constant",
-      "name": "TOAST_LIMIT",
-      "file": "C:/Users/willh/Desktop/games/hooks/use-toast.ts",
-      "line": 8,
-      "exported": false
-    },
-    {
-      "type": "constant",
-      "name": "TOAST_REMOVE_DELAY",
-      "file": "C:/Users/willh/Desktop/games/hooks/use-toast.ts",
-      "line": 9,
       "exported": false
     },
     {
@@ -3786,17 +4424,1053 @@
     },
     {
       "type": "constant",
-      "name": "GAMES_REGISTRY",
-      "file": "C:/Users/willh/Desktop/games/lib/games-registry.tsx",
-      "line": 12,
+      "name": "SCORING",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/config.ts",
+      "line": 70,
+      "exported": true
+    },
+    {
+      "type": "constant",
+      "name": "DIFFICULTY_RAMP",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/config.ts",
+      "line": 79,
+      "exported": true
+    },
+    {
+      "type": "constant",
+      "name": "ADAPTIVE_DIFFICULTY",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/config.ts",
+      "line": 100,
+      "exported": true
+    },
+    {
+      "type": "constant",
+      "name": "POWER_UPS",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/config.ts",
+      "line": 111,
+      "exported": true
+    },
+    {
+      "type": "constant",
+      "name": "SPAWN_PATTERNS",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/config.ts",
+      "line": 117,
+      "exported": true
+    },
+    {
+      "type": "constant",
+      "name": "ACCESSIBILITY",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/config.ts",
+      "line": 124,
+      "exported": true
+    },
+    {
+      "type": "constant",
+      "name": "STORAGE_KEY",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/persistence.ts",
+      "line": 8,
+      "exported": false
+    },
+    {
+      "type": "function",
+      "name": "loadStats",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/persistence.ts",
+      "line": 13,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "saveStats",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/persistence.ts",
+      "line": 31,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "updateStats",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/persistence.ts",
+      "line": 58,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "clearStats",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/persistence.ts",
+      "line": 106,
       "exported": true
     },
     {
       "type": "method",
+      "name": "catch",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/persistence.ts",
+      "line": 22,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "catch",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/persistence.ts",
+      "line": 37,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/persistence.ts",
+      "line": 38,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "catch",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/persistence.ts",
+      "line": 45,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/persistence.ts",
+      "line": 68,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "catch",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/persistence.ts",
+      "line": 111,
+      "exported": false
+    },
+    {
+      "type": "class",
+      "name": "SoundManager",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/sounds.ts",
+      "line": 6,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/sounds.ts",
+      "line": 11,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/sounds.ts",
+      "line": 12,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "catch",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/sounds.ts",
+      "line": 15,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/sounds.ts",
+      "line": 31,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "switch",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/sounds.ts",
+      "line": 34,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "catch",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/sounds.ts",
+      "line": 52,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "catch",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/sounds.ts",
+      "line": 80,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/sounds.ts",
+      "line": 116,
+      "exported": false
+    },
+    {
+      "type": "function",
+      "name": "calculateSpawnInterval",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 30,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "calculateTargetLifetime",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 46,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "getCurrentRulePhase",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 62,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "shouldTapTarget",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 94,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "generateTarget",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 116,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "calculateScore",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 212,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "updateStreak",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 239,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "calculateAdaptiveDifficulty",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 263,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "shouldSpawnBurst",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 310,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "shouldSpawnGap",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 314,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "getPatternClass",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 321,
+      "exported": true
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 31,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 47,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 65,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 66,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "switch",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 97,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 129,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 134,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 140,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "while",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 159,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 174,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 190,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 217,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 221,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 229,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 240,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 273,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 276,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 283,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "line": 285,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/__tests__/engine.test.ts",
+      "line": 96,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/__tests__/engine.test.ts",
+      "line": 110,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/__tests__/engine.test.ts",
+      "line": 111,
+      "exported": false
+    },
+    {
+      "type": "function",
+      "name": "getCellStyle",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/cell-styles.ts",
+      "line": 21,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "shapeKeyToCellType",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/cell-styles.ts",
+      "line": 29,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "computePieceBounds",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 16,
+      "exported": false
+    },
+    {
+      "type": "function",
+      "name": "checkCollision",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 43,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "rotatePiece",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 76,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "attemptWallKick",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 84,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "createPiece",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 118,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "createEmptyBoard",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 135,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "lockPieceToBoard",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 144,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "clearLines",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 165,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "calculateFallSpeed",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 215,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "calculateGhostY",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 223,
+      "exported": true
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 23,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 24,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 25,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 51,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 52,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 53,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 58,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 63,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 106,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 147,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 148,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 149,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 152,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 170,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "line": 177,
+      "exported": false
+    },
+    {
+      "type": "class",
+      "name": "SoundManager",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/sounds.ts",
+      "line": 6,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/sounds.ts",
+      "line": 10,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/sounds.ts",
+      "line": 11,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/sounds.ts",
+      "line": 14,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/sounds.ts",
+      "line": 22,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/__tests__/engine.test.ts",
+      "line": 65,
+      "exported": false
+    },
+    {
+      "type": "constant",
+      "name": "BOGGLE_CONFIG",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/config.ts",
+      "line": 14,
+      "exported": true
+    },
+    {
+      "type": "constant",
+      "name": "BOGGLE_DICE",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/engine.ts",
+      "line": 13,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "normalizeWordForDictionary",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/engine.ts",
+      "line": 36,
+      "exported": false
+    },
+    {
+      "type": "function",
+      "name": "calculateBoggleScore",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/engine.ts",
+      "line": 43,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "generateBoard",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/engine.ts",
+      "line": 58,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "validateWord",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/engine.ts",
+      "line": 81,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "solveBoard",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/engine.ts",
+      "line": 157,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "dfs",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/engine.ts",
+      "line": 164,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/engine.ts",
+      "line": 64,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/engine.ts",
+      "line": 66,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/engine.ts",
+      "line": 90,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/engine.ts",
+      "line": 99,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/engine.ts",
+      "line": 102,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/engine.ts",
+      "line": 108,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/engine.ts",
+      "line": 120,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/engine.ts",
+      "line": 121,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/engine.ts",
+      "line": 132,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/engine.ts",
+      "line": 141,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/engine.ts",
+      "line": 172,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/engine.ts",
+      "line": 182,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/engine.ts",
+      "line": 183,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/engine.ts",
+      "line": 207,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/engine.ts",
+      "line": 208,
+      "exported": false
+    },
+    {
+      "type": "class",
+      "name": "TrieNode",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/trie/trie-node.ts",
+      "line": 5,
+      "exported": true
+    },
+    {
+      "type": "class",
+      "name": "DictionaryService",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/trie/trie-service.ts",
+      "line": 10,
+      "exported": true
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/trie/trie-service.ts",
+      "line": 17,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/trie/trie-service.ts",
+      "line": 22,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/trie/trie-service.ts",
+      "line": 38,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/trie/trie-service.ts",
+      "line": 57,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/trie/trie-service.ts",
+      "line": 59,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/trie/trie-service.ts",
+      "line": 65,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "while",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/trie/trie-service.ts",
+      "line": 76,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/trie/trie-service.ts",
+      "line": 89,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/trie/trie-service.ts",
+      "line": 91,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/trie/trie-service.ts",
+      "line": 101,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/trie/trie-service.ts",
+      "line": 108,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "catch",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/trie/trie-service.ts",
+      "line": 116,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/trie/trie-service.ts",
+      "line": 131,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/trie/trie-service.ts",
+      "line": 133,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/trie/trie-service.ts",
+      "line": 139,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/trie/trie-service.ts",
+      "line": 157,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/trie/trie-service.ts",
+      "line": 169,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/trie/trie-service.ts",
+      "line": 188,
+      "exported": false
+    },
+    {
+      "type": "constant",
+      "name": "WORDLE_CONFIG",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/wordle/config.ts",
+      "line": 5,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "checkGuess",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/wordle/engine.ts",
+      "line": 14,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "validateGuess",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/wordle/engine.ts",
+      "line": 47,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "generateDailyWord",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/wordle/engine.ts",
+      "line": 57,
+      "exported": true
+    },
+    {
+      "type": "function",
+      "name": "getRandomCommonWord",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/wordle/engine.ts",
+      "line": 113,
+      "exported": true
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/wordle/engine.ts",
+      "line": 15,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/wordle/engine.ts",
+      "line": 25,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/wordle/engine.ts",
+      "line": 59,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "for",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/wordle/engine.ts",
+      "line": 69,
+      "exported": false
+    },
+    {
+      "type": "method",
+      "name": "if",
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/wordle/engine.ts",
+      "line": 115,
+      "exported": false
+    },
+    {
+      "type": "component",
+      "name": "GameIcon",
+      "file": "C:/Users/willh/Desktop/games/lib/game-icons.tsx",
+      "line": 48,
+      "exported": true
+    },
+    {
+      "type": "component",
+      "name": "Icon",
+      "file": "C:/Users/willh/Desktop/games/lib/game-icons.tsx",
+      "line": 49,
+      "exported": false
+    },
+    {
+      "type": "function",
+      "name": "getGameIcon",
+      "file": "C:/Users/willh/Desktop/games/lib/game-icons.tsx",
+      "line": 44,
+      "exported": true
+    },
+    {
+      "type": "constant",
+      "name": "GAMES_REGISTRY",
+      "file": "C:/Users/willh/Desktop/games/lib/games-registry.tsx",
+      "line": 14,
+      "exported": true
+    },
+    {
+      "type": "function",
       "name": "cn",
       "file": "C:/Users/willh/Desktop/games/lib/utils.ts",
       "line": 4,
-      "exported": false
+      "exported": true
     }
   ]
 }

@@ -1,62 +1,63 @@
 {
   "version": "2.0.0",
-  "generatedAt": "2026-01-11T20:02:31.536Z",
+  "generatedAt": "2026-01-20T17:59:45.302Z",
   "projectPath": "C:\\Users\\willh\\Desktop\\games",
   "statistics": {
-    "totalElements": 541,
-    "totalFiles": 77,
+    "totalElements": 780,
+    "totalFiles": 121,
     "elementsByType": {
-      "component": 322,
-      "method": 145,
-      "function": 43,
-      "constant": 19,
-      "hook": 12
+      "component": 350,
+      "method": 306,
+      "function": 77,
+      "constant": 27,
+      "hook": 16,
+      "class": 4
     },
     "filesByExtension": {
-      ".tsx": 503,
-      ".ts": 38
+      ".tsx": 574,
+      ".ts": 206
     }
   },
   "topFiles": [
-    {
-      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
-      "elementCount": 77
-    },
     {
       "file": "C:/Users/willh/Desktop/games/components/ui/sidebar.tsx",
       "elementCount": 43
     },
     {
-      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
+      "file": "C:/Users/willh/Desktop/games/components/games/boggle.tsx",
       "elementCount": 40
     },
     {
-      "file": "C:/Users/willh/Desktop/games/components/ui/chart.tsx",
+      "file": "C:/Users/willh/Desktop/games/components/games/tetris.tsx",
+      "elementCount": 31
+    },
+    {
+      "file": "C:/Users/willh/Desktop/games/lib/reflex-tapper/utils.ts",
+      "elementCount": 30
+    },
+    {
+      "file": "C:/Users/willh/Desktop/games/components/games/fishing.tsx",
+      "elementCount": 27
+    },
+    {
+      "file": "C:/Users/willh/Desktop/games/lib/tetris/engine.ts",
+      "elementCount": 25
+    },
+    {
+      "file": "C:/Users/willh/Desktop/games/components/games/wordle.tsx",
+      "elementCount": 23
+    },
+    {
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/boggle/engine.ts",
+      "elementCount": 22
+    },
+    {
+      "file": "C:/Users/willh/Desktop/games/lib/word-games/trie/trie-service.ts",
+      "elementCount": 19
+    },
+    {
+      "file": "C:/Users/willh/Desktop/games/components/games/reflex-tapper.tsx",
       "elementCount": 18
-    },
-    {
-      "file": "C:/Users/willh/Desktop/games/components/ui/menubar.tsx",
-      "elementCount": 16
-    },
-    {
-      "file": "C:/Users/willh/Desktop/games/components/ui/context-menu.tsx",
-      "elementCount": 15
-    },
-    {
-      "file": "C:/Users/willh/Desktop/games/components/ui/dropdown-menu.tsx",
-      "elementCount": 15
-    },
-    {
-      "file": "C:/Users/willh/Desktop/games/components/ui/field.tsx",
-      "elementCount": 14
-    },
-    {
-      "file": "C:/Users/willh/Desktop/games/components/ui/use-toast.ts",
-      "elementCount": 13
-    },
-    {
-      "file": "C:/Users/willh/Desktop/games/hooks/use-toast.ts",
-      "elementCount": 13
     }
   ]
 }
