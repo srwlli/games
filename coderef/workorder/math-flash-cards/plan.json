@@ -1,0 +1,118 @@
+{
+  "META_DOCUMENTATION": {
+    "workorder_id": "WO-MATH-FC-001",
+    "feature_name": "math-flash-cards",
+    "title": "Implementation Plan: Math Flash Cards Game",
+    "version": "1.0.0",
+    "status": "approved",
+    "timestamp": "2026-01-20T13:10:00Z"
+  },
+  "EXECUTIVE_SUMMARY": {
+    "goal": "Build a fast-paced, arcade-style math flash card game for 4th-grade mastery of multiplication and division.",
+    "key_benefits": [
+      "Gamified learning with high-pressure sprints",
+      "Adaptive difficulty that focuses on 'tricky' facts",
+      "Mobile-optimized input system",
+      "Seamless integration with platform session tracking"
+    ]
+  },
+  "TECHNICAL_ARCHITECTURE": {
+    "logic_layer": "lib/math-games/flash-cards/ - Pure TypeScript logic for engine and generation",
+    "ui_layer": "components/games/math-flash-cards.tsx - React component with Framer Motion animations",
+    "state_management": "Custom hook use-flash-cards.ts for bridging engine and UI"
+  },
+  "IMPLEMENTATION_PHASES": [
+    {
+      "phase": "Phase 1: Logic Foundation",
+      "tasks": [
+        {
+          "id": "LOGIC-001",
+          "description": "Create lib/math-games/flash-cards/types.ts - Define Problem, GameState, and SessionStats interfaces",
+          "files": ["lib/math-games/flash-cards/types.ts"]
+        },
+        {
+          "id": "LOGIC-002",
+          "description": "Create lib/math-games/flash-cards/config.ts - Define constants (60s timer, combo thresholds, fact ranges)",
+          "files": ["lib/math-games/flash-cards/config.ts"]
+        },
+        {
+          "id": "LOGIC-003",
+          "description": "Create lib/math-games/flash-cards/generator.ts - Implement 'Smart Generator' with fact weighting",
+          "files": ["lib/math-games/flash-cards/generator.ts"]
+        },
+        {
+          "id": "LOGIC-004",
+          "description": "Create lib/math-games/flash-cards/engine.ts - Implement game loop, combo tracking, and score calculation",
+          "files": ["lib/math-games/flash-cards/engine.ts"]
+        }
+      ]
+    },
+    {
+      "phase": "Phase 2: UI Components",
+      "tasks": [
+        {
+          "id": "UI-001",
+          "description": "Create components/games/shared/math-keypad.tsx - 3x3 mobile-optimized number pad",
+          "files": ["components/games/shared/math-keypad.tsx"]
+        },
+        {
+          "id": "UI-002",
+          "description": "Create components/games/math-flash-cards.tsx - Main game container with Framer Motion",
+          "files": ["components/games/math-flash-cards.tsx"]
+        },
+        {
+          "id": "UI-003",
+          "description": "Implement Flash Card visual component with 'flip' and 'shake' animations",
+          "files": ["components/games/math-flash-cards.tsx"]
+        }
+      ]
+    },
+    {
+      "phase": "Phase 3: Platform Integration",
+      "tasks": [
+        {
+          "id": "INT-001",
+          "description": "Update lib/games-registry.tsx - Register 'math-flash-cards' in category 'Math Game'",
+          "files": ["lib/games-registry.tsx"]
+        },
+        {
+          "id": "INT-002",
+          "description": "Integrate with use-game-session hook for session lifecycle and scoring",
+          "files": ["components/games/math-flash-cards.tsx"]
+        }
+      ]
+    },
+    {
+      "phase": "Phase 4: Polish & Feedback",
+      "tasks": [
+        {
+          "id": "POL-001",
+          "description": "Implement 'Heat Mode' visual effects (glow, screen shake)",
+          "files": ["components/games/math-flash-cards.tsx"]
+        },
+        {
+          "id": "POL-002",
+          "description": "Add sound effects for correct/incorrect answers and combo triggers",
+          "files": ["lib/math-games/flash-cards/sounds.ts"]
+        }
+      ]
+    }
+  ],
+  "TEST_PLAN": {
+    "unit_tests": [
+      "Test fact generator weights correctly after missed answers",
+      "Validate division problems always have integer solutions",
+      "Verify combo multiplier logic"
+    ],
+    "manual_tests": [
+      "Verify keypad responsiveness on mobile",
+      "Confirm session ends correctly after 60s"
+    ]
+  },
+  "GAPS_AND_RISKS": {
+    "risks": [
+      "Input speed vs animation timing - need to ensure UI doesn't lag behind fast tappers"
+    ],
+    "mitigation": "Use lightweight Framer Motion variants and pre-calculate next problem in background"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "feature_name": "math-flash-cards",
+  "description": "A high-energy arcade math drill game for 4th-grade level focused on multiplication and division mastery.",
+  "goal": "Improve multiplication and division fluency through a gamified 60-second sprint with adaptive difficulty.",
+  "requirements": [
+    "60-second game timer with high-pressure feel",
+    "Combo system: 5 correct answers triggers 'Heat Mode' multiplier",
+    "Smart problem generation: adaptive weighting for frequently missed facts",
+    "Multiplication facts (0-12) and related division facts",
+    "On-screen 3x3 keypad or multiple-choice input (mobile-optimized)",
+    "Post-game report showing accuracy and 'Tricky Facts'",
+    "Integration with platform's use-game-session and localStorage for high scores"
+  ],
+  "out_of_scope": [
+    "Advanced geometry or word problems",
+    "Multi-player mode",
+    "Cloud-based leaderboard (local only)"
+  ],
+  "constraints": [
+    "Must follow existing game architecture (lib/ logic layer + UI layer)",
+    "No breaking changes to existing game registry or session context",
+    "Responsive design for mobile/tablet"
+  ]
+}
