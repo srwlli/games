@@ -1,9 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-"use client"
-
-import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useFlashCards } from "@/hooks/use-flash-cards"
 import MathKeypad from "./shared/math-keypad"
