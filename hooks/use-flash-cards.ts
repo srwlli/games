@@ -11,7 +11,7 @@ export function useFlashCards() {
   const [input, setInput] = useState('');
   const [countdown, setCountdown] = useState<number | null>(null);
 
-  // Initialize engine on first use
+  // Initialize engine once
   if (!engineRef.current) {
     engineRef.current = new FlashCardsEngine();
   }

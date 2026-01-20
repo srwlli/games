@@ -24,9 +24,6 @@ export default function MathFlashCards() {
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-between p-6 bg-zinc-950 text-white font-sans overflow-hidden">
-      {/* Countdown Overlay */}
-      <CountdownOverlay count={countdown} accentColor="emerald" />
-
       {/* HUD */}
       <div className="w-full max-w-md">
         <StatsBar
@@ -39,7 +36,7 @@ export default function MathFlashCards() {
       </div>
 
       <AnimatePresence mode="wait">
-        {state.status === "idle" && (
+        {state.status === "idle" && countdown === null && (
           <StartScreen
             key="start"
             title="Fast-Track Flash Cards"
@@ -121,6 +118,9 @@ export default function MathFlashCards() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Countdown Overlay - Rendered LAST to be on top */}
+      <CountdownOverlay count={countdown} accentColor="emerald" />
 
       <GameOverModal
         isOpen={state.status === "gameover"}
