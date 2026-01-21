@@ -7,6 +7,18 @@ import { Home, Settings } from "lucide-react"
 export default function FooterTabBar() {
   const pathname = usePathname()
 
+  // Hide tab bar on game-specific routes
+  const segments = pathname.split("/").filter(Boolean)
+  const isGamePage = segments.length >= 2 && (
+    segments[0] === "games" || 
+    segments[0] === "word-games" || 
+    segments[0] === "math-games" || 
+    segments[0] === "classics" || 
+    segments[0] === "work-in-progress"
+  )
+
+  if (isGamePage) return null
+
   return (
     <footer 
       className="sticky bottom-0 z-50 bg-zinc-950/80 backdrop-blur-md border-t border-zinc-800"

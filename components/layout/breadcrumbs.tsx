@@ -17,8 +17,17 @@ const ROUTE_METADATA: Record<string, { label: string }> = {
 export default function Breadcrumbs() {
   const pathname = usePathname()
   
-  // Parse pathname into segments
+  // Hide breadcrumbs on game-specific routes (anything with a slug)
   const segments = pathname.split("/").filter(Boolean)
+  const isGamePage = segments.length >= 2 && (
+    segments[0] === "games" || 
+    segments[0] === "word-games" || 
+    segments[0] === "math-games" || 
+    segments[0] === "classics" || 
+    segments[0] === "work-in-progress"
+  )
+
+  if (isGamePage) return null
   
   // Get current page title (could be a game name from registry)
   const currentPageTitle = (() => {
