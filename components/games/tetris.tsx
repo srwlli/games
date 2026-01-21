@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useEffect, useCallback, useRef, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { GameOverModal, StartScreen, CountdownOverlay, UnifiedHUD } from "@/components/games/shared"
@@ -28,16 +27,13 @@ export default function Tetris() {
   const [scorePopup, setScorePopup] = useState<{ score: number; x: number; y: number } | null>(null)
   const [lastScore, setLastScore] = useState(0)
   const { countdown, startCountdown, resetCountdown } = useStartCountdown({
-    onComplete: () => {
-      // Game already started logic-wise, but engine loop was waiting for countdown === null
-    },
+    onComplete: () => {},
   })
   const { updateScore, endGameSession, setTimerPaused, liveTime } = useGameSessionIntegration("tetris")
 
   const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null)
   const touchMoveRef = useRef<{ lastX: number; lastY: number; lastTime: number } | null>(null)
 
-  // Use Tetris engine hook - all game logic is here (must be defined before useEffects that use it)
   const engine = useTetrisEngine({
     isPlaying,
     onGameOver: () => {
@@ -48,12 +44,10 @@ export default function Tetris() {
     },
   })
 
-  // Track score changes for popups and sound effects
   useEffect(() => {
     if (engine.score > lastScore) {
       const increase = engine.score - lastScore
       if (increase > 0) {
-        // Show score popup (positioned near board center)
         setScorePopup({ score: increase, x: 200, y: 300 })
         setTimeout(() => setScorePopup(null), 600)
       }
@@ -61,7 +55,6 @@ export default function Tetris() {
     }
   }, [engine.score, lastScore])
 
-  // Sound effects
   useEffect(() => {
     if (engine.lastClearedLines.length > 0) {
       soundManager.clear(engine.lastClearedLines.length)
@@ -81,39 +74,31 @@ export default function Tetris() {
     }
   }, [isGameOver, engine.score, engine.level, engine.linesCleared, endGameSession])
 
-  // Sync session timer with game pause state
   useEffect(() => {
     setTimerPaused(isPaused || countdown !== null)
   }, [isPaused, countdown, setTimerPaused])
 
-  // Update session score
   useEffect(() => {
     updateScore(engine.score)
   }, [engine.score, updateScore])
 
-  // Game loop - automatically pauses/resumes with game state (only when countdown is done)
   useInterval(engine.tick, engine.fallSpeed, isPlaying && countdown === null)
 
-  // Level up animation - hide after 2 seconds
   useDelayedAction(() => {
     setShowLevelUp(false)
   }, 2000, showLevelUp)
 
-  // Handle restart
   const handleRestart = useCallback(() => {
     engine.reset()
     reset()
     resetCountdown()
-    // Do not auto-start - user must click "Start Game" again
   }, [engine, reset, resetCountdown])
 
-  // Start game with countdown
   const handleStart = useCallback(() => {
     engine.reset()
     start()
     startCountdown()
   }, [engine, start, startCountdown])
-
 
   const togglePause = useCallback(() => {
     if (isPlaying) {
@@ -123,10 +108,8 @@ export default function Tetris() {
     }
   }, [isPlaying, isPaused, pause, resume])
 
-  // Keyboard handlers
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Handle idle state - allow Enter or Space to start
       if (gameState === "idle") {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault()
@@ -197,7 +180,6 @@ export default function Tetris() {
     return () => window.removeEventListener("keydown", handleKeyDown)
   }, [gameState, isPlaying, isPaused, isGameOver, engine, handleRestart, togglePause, resume, handleStart])
 
-  // Touch handlers with continuous movement support
   const handleTouchStart = (e: React.TouchEvent) => {
     const touch = e.touches[0]
     touchStartRef.current = { x: touch.clientX, y: touch.clientY, time: Date.now() }
@@ -206,20 +188,13 @@ export default function Tetris() {
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!touchMoveRef.current || !isPlaying) return
-
     const touch = e.touches[0]
     const deltaX = touch.clientX - touchMoveRef.current.lastX
-    const deltaY = touch.clientY - touchMoveRef.current.lastY
     const deltaTime = Date.now() - touchMoveRef.current.lastTime
-
-    // Continuous horizontal movement (every 100ms)
     if (deltaTime > 100) {
       if (Math.abs(deltaX) > 20) {
-        if (deltaX > 0) {
-          engine.moveRight()
-        } else {
-          engine.moveLeft()
-        }
+        if (deltaX > 0) engine.moveRight()
+        else engine.moveLeft()
         touchMoveRef.current.lastX = touch.clientX
         touchMoveRef.current.lastTime = Date.now()
       }
@@ -228,44 +203,25 @@ export default function Tetris() {
 
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (!touchStartRef.current) return
-
     const touch = e.changedTouches[0]
     const deltaX = touch.clientX - touchStartRef.current.x
     const deltaY = touch.clientY - touchStartRef.current.y
     const deltaTime = Date.now() - touchStartRef.current.time
-
     const absX = Math.abs(deltaX)
     const absY = Math.abs(deltaY)
-
-    // Tap to rotate
-    if (absX < 30 && absY < 30 && deltaTime < 200) {
-      engine.rotate()
-    }
-    // Swipe left/right (if not already handled by touchmove)
+    if (absX < 30 && absY < 30 && deltaTime < 200) engine.rotate()
     else if (absX > absY && absX > 50 && deltaTime < 300) {
-      if (deltaX > 0) {
-        engine.moveRight()
-      } else {
-        engine.moveLeft()
-      }
-    }
-    // Swipe down for hard drop
-    else if (absY > absX && deltaY > 50) {
-      engine.hardDrop()
-    }
-
+      if (deltaX > 0) engine.moveRight()
+      else engine.moveLeft()
+    } else if (absY > absX && deltaY > 50) engine.hardDrop()
     touchStartRef.current = null
     touchMoveRef.current = null
   }
 
-  // Memoized ghost piece calculation (already computed in engine)
   const ghostY = useMemo(() => engine.ghostY, [engine.ghostY])
 
-  // Memoized board with current piece
   const displayBoard = useMemo(() => {
     const board = engine.board.map((row) => [...row])
-
-    // Draw current piece on display board
     for (let y = 0; y < engine.currentPiece.shape.length; y++) {
       for (let x = 0; x < engine.currentPiece.shape[y].length; x++) {
         if (engine.currentPiece.shape[y][x]) {
@@ -277,29 +233,18 @@ export default function Tetris() {
         }
       }
     }
-
     return board
   }, [engine.board, engine.currentPiece])
 
-  // Render board with memoized rows
   const renderBoard = () => {
     return displayBoard.map((row, y) => (
-      <BoardRow
-        key={y}
-        row={row}
-        rowIndex={y}
-        currentPiece={engine.currentPiece}
-        ghostY={ghostY}
-      />
+      <BoardRow key={y} row={row} rowIndex={y} currentPiece={engine.currentPiece} ghostY={ghostY} />
     ))
   }
 
-  // Render next piece preview
   const renderNextPiece = () => {
     if (!engine.nextPiece || !engine.nextPiece.shape) return null
-
     const nextPieceStyle = getCellStyle(engine.nextPiece.cellType)
-
     return (
       <div className="flex flex-col">
         {engine.nextPiece.shape.map((row, y) => (
@@ -315,8 +260,8 @@ export default function Tetris() {
 
   if (!engine.currentPiece || !engine.board) {
     return (
-      <div className="h-full w-full bg-gradient-to-b from-purple-950 to-zinc-950 flex items-center justify-center">
-        <div className="text-white">Loading...</div>
+      <div className="h-full w-full bg-gradient-to-b from-purple-950 to-zinc-950 flex items-center justify-center text-white">
+        Loading...
       </div>
     )
   }
@@ -329,10 +274,7 @@ export default function Tetris() {
       onTouchEnd={handleTouchEnd}
       role="application"
       aria-label="Tetris game"
-      aria-live="polite"
-      aria-atomic="true"
     >
-      {/* Unified HUD */}
       <UnifiedHUD
         stats={[
           { label: "Score", value: engine.score, color: "emerald" },
@@ -342,27 +284,18 @@ export default function Tetris() {
         className="w-full max-w-md"
       />
 
-      {/* Main Game Area */}
       <div className="flex-grow flex items-center justify-center w-full min-h-0 py-4">
         <div className="flex gap-4 items-start max-h-full">
-          {/* Game Board */}
           <div
             className="bg-zinc-900/50 p-2 rounded-lg border border-zinc-700 backdrop-blur-sm h-full flex flex-col justify-center"
             role="grid"
             aria-label="Game board"
-            aria-rowcount={20}
-            aria-colcount={10}
-            style={{ 
-              height: "min(60vh, 500px)",
-              aspectRatio: "10/20"
-            }}
+            style={{ height: "min(60vh, 500px)", aspectRatio: "10/20" }}
           >
             {renderBoard()}
           </div>
 
-          {/* Sidebar */}
           <div className="flex flex-col gap-4">
-            {/* Hold Piece */}
             {engine.heldPiece && (
               <div className="bg-zinc-900/50 p-3 rounded-lg border border-zinc-700 backdrop-blur-sm">
                 <div className="text-xs text-zinc-400 mb-2 text-center">Hold</div>
@@ -372,9 +305,7 @@ export default function Tetris() {
                       <div key={y} className="flex">
                         {row.map((cell, x) => {
                           const cellStyle = getCellStyle(engine.heldPiece!.cellType)
-                          return (
-                            <div key={x} className={`w-4 h-4 border border-zinc-800 ${cell ? cellStyle : ""}`} />
-                          )
+                          return <div key={x} className={`w-4 h-4 border border-zinc-800 ${cell ? cellStyle : ""}`} />
                         })}
                       </div>
                     ))}
@@ -383,17 +314,14 @@ export default function Tetris() {
               </div>
             )}
 
-            {/* Next Piece */}
             <div className="bg-zinc-900/50 p-3 rounded-lg border border-zinc-700 backdrop-blur-sm">
               <div className="text-xs text-zinc-400 mb-2 text-center">Next</div>
               <div className="flex justify-center items-center min-h-[64px]">{renderNextPiece()}</div>
             </div>
 
-            {/* Controls */}
             <button
               onClick={togglePause}
               className="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg text-sm font-medium border border-zinc-700"
-              aria-label={isPlaying ? "Pause game" : "Resume game"}
             >
               {isPlaying ? "Pause" : "Resume"}
             </button>
@@ -401,15 +329,9 @@ export default function Tetris() {
         </div>
       </div>
 
-      {/* Line Clear Animation */}
       <LineClearAnimation lines={engine.lastClearedLines} isVisible={engine.lastClearedLines.length > 0} />
+      {scorePopup && <ScorePopup score={scorePopup.score} x={scorePopup.x} y={scorePopup.y} isVisible={true} />}
 
-      {/* Score Popup */}
-      {scorePopup && (
-        <ScorePopup score={scorePopup.score} x={scorePopup.x} y={scorePopup.y} isVisible={true} />
-      )}
-
-      {/* Mobile Controls */}
       <MobileControls
         onMoveLeft={engine.moveLeft}
         onMoveRight={engine.moveRight}
@@ -419,7 +341,6 @@ export default function Tetris() {
         isPlaying={isPlaying}
       />
 
-      {/* Touch Guide */}
       <div className="mt-4 text-xs text-zinc-500 text-center max-w-md hidden md:block">
         <div className="space-y-1">
           <div>Tap to rotate • Swipe left/right to move</div>
@@ -428,7 +349,6 @@ export default function Tetris() {
         </div>
       </div>
 
-      {/* Level Up Animation */}
       <AnimatePresence>
         {showLevelUp && (
           <motion.div
@@ -437,17 +357,14 @@ export default function Tetris() {
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.2 }}
             className="fixed inset-0 flex items-center justify-center pointer-events-none"
-            role="alert"
-            aria-live="assertive"
           >
-            <div className="bg-purple-500 text-white px-8 py-4 rounded-xl text-2xl font-bold motion-safe:animate-pulse">
+            <div className="bg-purple-500 text-white px-8 py-4 rounded-xl text-2xl font-bold">
               Level {engine.level}!
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Start Screen (Idle State) */}
       {gameState === "idle" && (
         <StartScreen
           title="TETRIS"
@@ -458,10 +375,8 @@ export default function Tetris() {
         />
       )}
 
-      {/* Countdown Overlay */}
       <CountdownOverlay count={countdown} accentColor="purple" />
 
-      {/* Pause Overlay */}
       <AnimatePresence>
         {isPaused && (
           <motion.div
@@ -469,18 +384,12 @@ export default function Tetris() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black/80 flex items-center justify-center"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="pause-title"
           >
-            <div id="pause-title" className="text-white text-3xl font-bold">
-              Paused
-            </div>
+            <div className="text-white text-3xl font-bold">Paused</div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Game Over Overlay */}
       <GameOverModal
         isOpen={isGameOver}
         title="Game Over"
