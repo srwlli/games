@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { StatsBar, GameOverModal, StartScreen } from "@/components/games/shared"
+import { GameOverModal, StartScreen, UnifiedHUD } from "@/components/games/shared"
 import { useGameState } from "@/hooks/use-game-state"
 import { useGameSessionIntegration } from "@/hooks/use-game-session-integration"
 import { DictionaryService } from "@/lib/word-games/trie/trie-service"
@@ -265,14 +265,14 @@ export default function Wordle() {
         paddingBottom: "env(safe-area-inset-bottom, 0px)"
       }}
     >
-      {/* Stats Bar */}
+      {/* Unified HUD */}
       {isPlaying && (
-        <StatsBar
+        <UnifiedHUD
           stats={[
             {
               label: "Attempts",
               value: `${guesses.length}/${WORDLE_CONFIG.MAX_ATTEMPTS}`,
-              color: "green",
+              color: "emerald",
             },
             {
               label: "Status",
@@ -280,8 +280,7 @@ export default function Wordle() {
               color: isWon ? "emerald" : guesses.length >= WORDLE_CONFIG.MAX_ATTEMPTS ? "red" : "white",
             },
           ]}
-          layout="absolute"
-          position="top"
+          className="absolute top-20 left-0 right-0 z-10"
         />
       )}
 

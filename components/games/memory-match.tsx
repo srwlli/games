@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react"
 import { motion } from "framer-motion"
-import { StatsBar, GameOverModal, StartScreen, CountdownOverlay } from "@/components/games/shared"
+import { GameOverModal, StartScreen, CountdownOverlay, UnifiedHUD } from "@/components/games/shared"
 import { useGameState } from "@/hooks/use-game-state"
 import { useDelayedAction } from "@/hooks/use-delayed-action"
 import { getGameIcon } from "@/lib/game-icons"
@@ -173,14 +173,13 @@ export default function MemoryMatch() {
         </div>
       )}
 
-      {/* Stats */}
-      <StatsBar
+      {/* Unified HUD */}
+      <UnifiedHUD
         stats={[
           { label: "Moves", value: moves, color: "purple" },
           { label: "Pairs", value: `${cards.filter((c) => c.matched).length / 2}/${MEMORY_MATCH_ICONS.length}`, color: "purple" },
         ]}
-        layout="absolute"
-        position="top"
+        className="absolute top-20 left-0 right-0 z-10"
       />
 
       {/* Card Grid */}

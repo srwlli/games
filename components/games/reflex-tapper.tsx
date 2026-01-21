@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef, useMemo } from "react"
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
-import { StatsBar, GameOverModal, StartScreen, CountdownOverlay } from "@/components/games/shared"
+import { GameOverModal, StartScreen, CountdownOverlay, UnifiedHUD } from "@/components/games/shared"
 import { useGameState } from "@/hooks/use-game-state"
 import { useInterval } from "@/hooks/use-interval"
 import { useCountdown } from "@/hooks/use-countdown"
@@ -445,6 +445,18 @@ export default function ReflexTapper() {
       {/* Countdown Overlay */}
       <CountdownOverlay count={showCountdown && countdown !== null ? countdown : null} accentColor="orange" />
 
+      {/* Unified HUD */}
+      {isPlaying && countdown === null && (
+        <UnifiedHUD
+          stats={[
+            { label: "Score", value: score, color: "white" },
+            { label: "Streak", value: streak.current, color: "emerald" },
+            { label: "Time", value: `${timeLeft}s`, color: timeLeft < 5 ? "red" : "white" },
+          ]}
+          className="absolute top-0 left-0 right-0 p-4 z-20"
+        />
+      )}
+
       {/* Start Screen */}
       {!isPlaying && !isGameOver && (
         <StartScreen
@@ -493,41 +505,6 @@ export default function ReflexTapper() {
             </button>
           </div>
         </StartScreen>
-      )}
-
-      {/* Custom Minimal HUD */}
-      {isPlaying && countdown === null && (
-        <div className="absolute top-0 left-0 right-0 p-4 z-20 flex justify-between items-center pointer-events-none">
-          {/* Left Side */}
-          <div className="flex flex-col gap-0.5">
-            <div className="flex items-center gap-3">
-              <div className="flex flex-col">
-                <span className="text-zinc-600 text-[9px] font-black uppercase tracking-widest leading-none mb-1">Score</span>
-                <motion.span 
-                  key={score}
-                  className="text-2xl font-black tabular-nums text-white leading-none"
-                >
-                  {score}
-                </motion.span>
-              </div>
-              <div className="w-[1px] h-6 bg-zinc-800" />
-              <div className="flex flex-col">
-                <span className="text-emerald-500/50 text-[9px] font-black uppercase tracking-widest leading-none mb-1">Streak</span>
-                <span className="text-xl font-black text-emerald-400 leading-none">{streak.current}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Side */}
-          <div className="flex flex-col items-end">
-            <span className="text-zinc-600 text-[9px] font-black uppercase tracking-widest leading-none mb-1">Time</span>
-            <motion.span 
-              className={`text-2xl font-black tabular-nums leading-none ${timeLeft < 5 ? 'text-red-500' : 'text-white'}`}
-            >
-              {timeLeft}s
-            </motion.span>
-          </div>
-        </div>
       )}
 
       {/* Modern Progress Line */}

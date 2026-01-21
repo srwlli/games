@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState, useEffect, useCallback, useRef, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { StatsBar, GameOverModal, StartScreen, CountdownOverlay } from "@/components/games/shared"
+import { GameOverModal, StartScreen, CountdownOverlay, UnifiedHUD } from "@/components/games/shared"
 import { useGameState } from "@/hooks/use-game-state"
 import { useInterval } from "@/hooks/use-interval"
 import { useDelayedAction } from "@/hooks/use-delayed-action"
@@ -332,14 +332,13 @@ export default function Tetris() {
       aria-live="polite"
       aria-atomic="true"
     >
-      {/* Stats Bar */}
-      <StatsBar
+      {/* Unified HUD */}
+      <UnifiedHUD
         stats={[
-          { label: "Score", value: engine.score, color: "emerald", size: "simple" },
-          { label: "Time", value: Math.floor(liveTime / 1000) + "s", color: "orange", size: "simple" },
-          { label: "Level", value: engine.level, color: "purple", size: "simple" },
+          { label: "Score", value: engine.score, color: "emerald" },
+          { label: "Time", value: Math.floor(liveTime / 1000) + "s", color: "orange" },
+          { label: "Level", value: engine.level, color: "purple" },
         ]}
-        layout="inline"
         className="w-full max-w-md mb-4 text-white"
       />
 

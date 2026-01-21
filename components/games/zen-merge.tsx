@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { StatsBar, GameOverModal } from "@/components/games/shared"
+import { GameOverModal, UnifiedHUD } from "@/components/games/shared"
 import { useGameState } from "@/hooks/use-game-state"
 import { useGameSessionIntegration } from "@/hooks/use-game-session-integration"
 
@@ -167,14 +167,13 @@ export default function ZenMerge() {
 
     return (
         <div className="w-full h-full bg-gradient-to-br from-zinc-950 to-indigo-950 flex flex-col items-center justify-center relative overflow-hidden select-none">
-            <StatsBar
+            <UnifiedHUD
                 stats={[
                     { label: "Score", value: score, color: "cyan" },
                     { label: "High Score", value: highScore, color: "amber" },
                     { label: "Time", value: Math.floor(liveTime / 1000) + "s", color: "orange" },
                 ]}
-                layout="absolute"
-                position="top"
+                className="absolute top-20 left-0 right-0 z-10"
             />
 
             <div className="w-full max-w-md p-6 space-y-6">

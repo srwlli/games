@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useFlashCards } from "@/hooks/use-flash-cards"
 import MathKeypad from "./shared/math-keypad"
-import { StatsBar, GameOverModal, StartScreen, CountdownOverlay } from "./shared"
+import { GameOverModal, StartScreen, CountdownOverlay, UnifiedHUD } from "./shared"
 import { Calculator, Zap } from "lucide-react"
 
 export default function MathFlashCards() {
@@ -22,16 +22,15 @@ export default function MathFlashCards() {
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-between p-4 sm:p-6 bg-zinc-950 text-white font-sans overflow-hidden">
-      {/* HUD */}
-      <div className="w-full max-w-md">
-        <StatsBar
-          stats={[
-            { label: "Score", value: state.score, color: "emerald" },
-            { label: "Combo", value: state.combo, color: "purple" },
-            { label: "Time", value: state.timeLeft, color: state.timeLeft < 10 ? "red" : "white" },
-          ]}
-        />
-      </div>
+      {/* Unified HUD */}
+      <UnifiedHUD
+        stats={[
+          { label: "Score", value: state.score, color: "emerald" },
+          { label: "Combo", value: state.combo, color: "purple" },
+          { label: "Time", value: state.timeLeft, color: state.timeLeft < 10 ? "red" : "white" },
+        ]}
+        className="w-full max-w-md"
+      />
 
       <AnimatePresence mode="wait">
         {state.status === "idle" && (

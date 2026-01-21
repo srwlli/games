@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { StatsBar, GameOverModal } from "@/components/games/shared"
+import { GameOverModal, UnifiedHUD } from "@/components/games/shared"
 import { useGameState } from "@/hooks/use-game-state"
 import { useInterval } from "@/hooks/use-interval"
 import { useGameSessionIntegration } from "@/hooks/use-game-session-integration"
@@ -277,15 +277,15 @@ export default function Fishing() {
       onTouchStart={handleInteractionStart}
       onTouchEnd={handleInteractionEnd}
     >
-      <StatsBar
+      {/* Unified HUD */}
+      <UnifiedHUD
         stats={[
           { label: "Score", value: score, color: "cyan" },
           { label: "Time", value: Math.floor(liveTime / 1000) + "s", color: "orange" },
           { label: "Caught", value: fishCaught.length, color: "white" },
           { label: "Combo", value: `x${combo}`, color: combo > 0 ? "amber" : "white" },
         ]}
-        layout="absolute"
-        position="top"
+        className="absolute top-20 left-0 right-0 z-10"
       />
 
       <div className="w-full h-full flex items-center justify-center p-8">

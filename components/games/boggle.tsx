@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { StatsBar, GameOverModal, StartScreen, CountdownOverlay } from "@/components/games/shared"
+import { GameOverModal, StartScreen, CountdownOverlay, UnifiedHUD } from "@/components/games/shared"
 import { useGameState } from "@/hooks/use-game-state"
 import { useCountdown } from "@/hooks/use-countdown"
 import { useGameSessionIntegration } from "@/hooks/use-game-session-integration"
@@ -557,9 +557,9 @@ export default function Boggle() {
         paddingBottom: "env(safe-area-inset-bottom, 0px)"
       }}
     >
-      {/* Stats Bar */}
+      {/* Unified HUD */}
       {isPlaying && (
-        <StatsBar
+        <UnifiedHUD
           stats={[
             { label: "Score", value: score, color: "blue" },
             {
@@ -570,8 +570,7 @@ export default function Boggle() {
             { label: "Play Time", value: Math.floor(liveTime / 1000) + "s", color: "orange" },
             { label: "Words", value: foundWords.size, color: "emerald" },
           ]}
-          layout="absolute"
-          position="top"
+          className="absolute top-20 left-0 right-0 z-10"
         />
       )}
 
