@@ -258,12 +258,7 @@ export default function Wordle() {
 
   return (
     <div 
-      className="relative w-full h-full flex flex-col items-center justify-center bg-black" 
-      style={{ 
-        height: "100svh",
-        paddingTop: "env(safe-area-inset-top, 0px)",
-        paddingBottom: "env(safe-area-inset-bottom, 0px)"
-      }}
+      className="relative w-full h-full flex flex-col items-center justify-between bg-black p-4 sm:p-6 overflow-hidden"
     >
       {/* Unified HUD */}
       {isPlaying && (
@@ -280,17 +275,19 @@ export default function Wordle() {
               color: isWon ? "emerald" : guesses.length >= WORDLE_CONFIG.MAX_ATTEMPTS ? "red" : "white",
             },
           ]}
-          className="absolute top-20 left-0 right-0 z-10"
+          className="w-full max-w-md"
         />
       )}
 
-      {/* Game Grid - 6 rows x 5 columns */}
-      <div className="flex flex-col items-center gap-6 mt-20" style={{ maxHeight: "calc(100svh - 200px)", overflowY: "auto" }}>
+      {/* Game Content Container */}
+      <div className="flex-grow flex flex-col items-center justify-center w-full min-h-0 gap-4">
+        {/* Game Grid - 6 rows x 5 columns */}
         <div 
-          className="grid gap-2 w-full max-w-md px-4"
+          className="grid gap-2 w-full max-w-[280px] sm:max-w-md px-4"
           style={{ 
             gridTemplateColumns: `repeat(${WORDLE_CONFIG.WORD_LENGTH}, minmax(0, 1fr))`,
-            gridAutoRows: "1fr"
+            gridAutoRows: "1fr",
+            maxHeight: "45vh"
           }}
         >
           {Array.from({ length: WORDLE_CONFIG.MAX_ATTEMPTS }).flatMap((_, rowIdx) => 
@@ -324,7 +321,7 @@ export default function Wordle() {
         </div>
 
         {/* On-screen Keyboard */}
-        <div className="flex flex-col gap-2 mt-4">
+        <div className="flex flex-col gap-1 sm:gap-2 w-full max-w-lg">
           {KEYBOARD_ROWS.map((row, rowIdx) => (
             <div key={rowIdx} className="flex gap-1 justify-center">
               {row.map((key) => {
@@ -340,11 +337,11 @@ export default function Wordle() {
                       else handleLetter(key)
                     }}
                     className={`
-                      ${isSpecial ? "px-3 text-xs" : "px-3 text-sm"}
-                      py-2 font-bold rounded
+                      ${isSpecial ? "px-2 sm:px-3 text-[10px] sm:text-xs min-w-[40px] sm:min-w-[60px]" : "px-1.5 sm:px-3 text-xs sm:text-sm flex-1"}
+                      py-3 sm:py-4 font-bold rounded
                       ${letterState ? getStateColor(letterState) : "bg-zinc-700"}
-                      text-white hover:bg-zinc-600
-                      transition-colors
+                      text-white hover:bg-zinc-600 active:scale-95
+                      transition-all
                     `}
                   >
                     {key === "BACKSPACE" ? "⌫" : key}
@@ -353,26 +350,6 @@ export default function Wordle() {
               })}
             </div>
           ))}
-        </div>
-
-        {/* Controls */}
-        <div className="flex gap-4 mt-4">
-          {!isPlaying && (
-            <button
-              onClick={startGame}
-              className="bg-green-500 hover:bg-green-600 text-white font-black py-3 px-6 rounded-xl transition-colors"
-            >
-              Start Game
-            </button>
-          )}
-          {(isPlaying || isPaused) && (
-            <button
-              onClick={togglePause}
-              className="bg-zinc-700 hover:bg-zinc-600 text-white font-bold py-2 px-4 rounded-lg transition-colors"
-            >
-              {isPaused ? "Resume" : "Pause"}
-            </button>
-          )}
         </div>
       </div>
 

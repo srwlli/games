@@ -550,12 +550,7 @@ export default function Boggle() {
 
   return (
     <div
-      className="relative w-full h-full flex flex-col items-center justify-center bg-black touch-none"
-      style={{
-        height: "100svh",
-        paddingTop: "env(safe-area-inset-top, 0px)",
-        paddingBottom: "env(safe-area-inset-bottom, 0px)"
-      }}
+      className="relative w-full h-full flex flex-col items-center justify-between bg-black touch-none p-4 sm:p-6 overflow-hidden"
     >
       {/* Unified HUD */}
       {isPlaying && (
@@ -570,217 +565,187 @@ export default function Boggle() {
             { label: "Play Time", value: Math.floor(liveTime / 1000) + "s", color: "orange" },
             { label: "Words", value: foundWords.size, color: "emerald" },
           ]}
-          className="absolute top-20 left-0 right-0 z-10"
+          className="w-full max-w-md"
         />
       )}
 
-      {/* Game Board */}
-      {board.length > 0 && (
-        <div className="flex flex-col items-center gap-6 mt-20">
-          <div
-            className="relative grid gap-2 p-4 bg-zinc-900 rounded-2xl select-none"
-            style={{
-              gridTemplateColumns: `repeat(${BOGGLE_CONFIG.GRID_SIZE}, minmax(0, 1fr))`,
-              width: "min(90vw, 400px)",
-              aspectRatio: "1",
-              userSelect: "none",
-              WebkitUserSelect: "none",
-              MozUserSelect: "none",
-              msUserSelect: "none",
-            }}
-            onTouchStart={(e) => {
-              e.preventDefault()
-              handleStart(e, e.currentTarget)
-            }}
-            onTouchMove={(e) => {
-              e.preventDefault()
-              handleMove(e, e.currentTarget)
-            }}
-            onTouchEnd={(e) => {
-              e.preventDefault()
-              handleEnd()
-            }}
-            onMouseDown={(e) => {
-              e.preventDefault()
-              handleStart(e, e.currentTarget)
-            }}
-            onMouseMove={(e) => {
-              e.preventDefault()
-              if (e.buttons === 1) handleMove(e, e.currentTarget)
-            }}
-            onMouseUp={(e) => {
-              e.preventDefault()
-              handleEnd()
-            }}
-            onMouseLeave={(e) => {
-              e.preventDefault()
-              handleEnd()
-            }}
-            onDragStart={(e) => {
-              e.preventDefault()
-            }}
-          >
-            {/* Board Cells */}
-            {board.map((row, rowIdx) =>
-              row.map((letter, colIdx) => {
-                const isInCurrentPath = currentPath.some((p) => p.row === rowIdx && p.col === colIdx)
-                const pathIndex = currentPath.findIndex((p) => p.row === rowIdx && p.col === colIdx)
-                const isHovered = hoveredCell?.row === rowIdx && hoveredCell?.col === colIdx && !isInCurrentPath
-                const isLastInPath = pathIndex === currentPath.length - 1
-                const isAccepted = acceptedPath?.some((p) => p.row === rowIdx && p.col === colIdx) ?? false
+      {/* Game Content */}
+      <div className="flex-grow flex flex-col items-center justify-center w-full min-h-0 gap-4">
+        {board.length > 0 && (
+          <div className="flex flex-col items-center gap-4 w-full">
+            <div
+              className="relative grid gap-2 p-4 bg-zinc-900 rounded-2xl select-none mx-auto"
+              style={{
+                gridTemplateColumns: `repeat(${BOGGLE_CONFIG.GRID_SIZE}, minmax(0, 1fr))`,
+                width: "min(85vw, 350px)",
+                aspectRatio: "1",
+                userSelect: "none",
+                WebkitUserSelect: "none",
+                MozUserSelect: "none",
+                msUserSelect: "none",
+              }}
+              onTouchStart={(e) => {
+                e.preventDefault()
+                handleStart(e, e.currentTarget)
+              }}
+              onTouchMove={(e) => {
+                e.preventDefault()
+                handleMove(e, e.currentTarget)
+              }}
+              onTouchEnd={(e) => {
+                e.preventDefault()
+                handleEnd()
+              }}
+              onMouseDown={(e) => {
+                e.preventDefault()
+                handleStart(e, e.currentTarget)
+              }}
+              onMouseMove={(e) => {
+                e.preventDefault()
+                if (e.buttons === 1) handleMove(e, e.currentTarget)
+              }}
+              onMouseUp={(e) => {
+                e.preventDefault()
+                handleEnd()
+              }}
+              onMouseLeave={(e) => {
+                e.preventDefault()
+                handleEnd()
+              }}
+              onDragStart={(e) => {
+                e.preventDefault()
+              }}
+            >
+              {/* Board Cells */}
+              {board.map((row, rowIdx) =>
+                row.map((letter, colIdx) => {
+                  const isInCurrentPath = currentPath.some((p) => p.row === rowIdx && p.col === colIdx)
+                  const pathIndex = currentPath.findIndex((p) => p.row === rowIdx && p.col === colIdx)
+                  const isHovered = hoveredCell?.row === rowIdx && hoveredCell?.col === colIdx && !isInCurrentPath
+                  const isAccepted = acceptedPath?.some((p) => p.row === rowIdx && p.col === colIdx) ?? false
 
-                return (
-                  <motion.div
-                    key={`${rowIdx}-${colIdx}`}
-                    className={`
-                      flex items-center justify-center
-                      text-2xl font-black text-white
-                      rounded-lg border-2 cursor-pointer
-                      ${isAccepted
-                        ? "bg-emerald-500 border-emerald-300"
-                        : isInCurrentPath
-                          ? "bg-blue-500 border-blue-300"
-                          : isHovered
-                            ? "bg-blue-500/30 border-blue-400/50"
-                            : "bg-zinc-800 border-zinc-700"}
-                      transition-all
-                    `}
-                    animate={
-                      isAccepted
-                        ? { scale: [1, 1.15, 1.1] }
-                        : isInCurrentPath
-                          ? { scale: 1.1 }
-                          : isHovered
-                            ? { scale: 1.05 }
-                            : { scale: 1 }
-                    }
-                    transition={isAccepted ? { duration: 0.3 } : {}}
-                    onClick={(e) => {
-                      // Handle individual cell click
-                      e.stopPropagation()
-                      if (!isPlaying || isPaused) return
-
-                      const clickedCell = { row: rowIdx, col: colIdx }
-                      setCurrentPath((prev) => {
-                        if (prev.length === 0) {
-                          // Start new path
-                          return [clickedCell]
-                        } else if (isAdjacent(prev[prev.length - 1], clickedCell)) {
-                          // Add to existing path if adjacent
-                          if (!isInPath(prev, clickedCell)) {
-                            return [...prev, clickedCell]
-                          }
-                        } else if (isInPath(prev, clickedCell)) {
-                          // Allow backtracking on click
-                          const index = prev.findIndex((p) => p.row === rowIdx && p.col === colIdx)
-                          if (index >= 0 && index < prev.length - 1) {
-                            return prev.slice(0, index + 1)
-                          }
-                        }
-                        return prev
-                      })
-
-                      // Haptic feedback
-                      if ("vibrate" in navigator) {
-                        navigator.vibrate(10)
+                  return (
+                    <motion.div
+                      key={`${rowIdx}-${colIdx}`}
+                      className={`
+                        flex items-center justify-center
+                        text-2xl font-black text-white
+                        rounded-lg border-2 cursor-pointer
+                        ${isAccepted
+                          ? "bg-emerald-500 border-emerald-300"
+                          : isInCurrentPath
+                            ? "bg-blue-500 border-blue-300"
+                            : isHovered
+                              ? "bg-blue-500/30 border-blue-400/50"
+                              : "bg-zinc-800 border-zinc-700"}
+                        transition-all
+                      `}
+                      animate={
+                        isAccepted
+                          ? { scale: [1, 1.15, 1.1] }
+                          : isInCurrentPath
+                            ? { scale: 1.1 }
+                            : isHovered
+                              ? { scale: 1.05 }
+                              : { scale: 1 }
                       }
-                    }}
-                  >
-                    {letter}
-                  </motion.div>
-                )
-              }),
-            )}
+                      transition={isAccepted ? { duration: 0.3 } : {}}
+                    >
+                      {letter}
+                    </motion.div>
+                  )
+                }),
+              )}
 
-            {/* Path SVG Overlay */}
-            {((currentPath.length > 1) || (acceptedPath && acceptedPath.length > 1)) && (
-              <svg className="absolute inset-0 pointer-events-none" style={{ width: "100%", height: "100%" }} viewBox="0 0 100 100" preserveAspectRatio="none">
-                {/* Accepted path (green/emerald) */}
-                {acceptedPath && acceptedPath.length > 1 && (
-                  <motion.polyline
-                    points={acceptedPath
-                      .map((pos) => {
-                        const cellSize = 100 / BOGGLE_CONFIG.GRID_SIZE
-                        const x = (pos.col + 0.5) * cellSize
-                        const y = (pos.row + 0.5) * cellSize
-                        return `${x},${y}`
-                      })
-                      .join(" ")}
-                    fill="none"
-                    stroke="#10b981"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: [0, 1, 1, 0] }}
-                    transition={{ duration: 0.3 }}
-                  />
-                )}
-                {/* Current path (blue) */}
-                {currentPath.length > 1 && !acceptedPath && (
-                  <motion.polyline
-                    points={currentPath
-                      .map((pos) => {
-                        const cellSize = 100 / BOGGLE_CONFIG.GRID_SIZE
-                        const x = (pos.col + 0.5) * cellSize
-                        const y = (pos.row + 0.5) * cellSize
-                        return `${x},${y}`
-                      })
-                      .join(" ")}
-                    fill="none"
-                    stroke="#3b82f6"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                )}
-              </svg>
-            )}
-          </div>
+              {/* Path SVG Overlay */}
+              {((currentPath.length > 1) || (acceptedPath && acceptedPath.length > 1)) && (
+                <svg className="absolute inset-0 pointer-events-none" style={{ width: "100%", height: "100%" }} viewBox="0 0 100 100" preserveAspectRatio="none">
+                  {/* ... polyline logic remains same ... */}
+                  {acceptedPath && acceptedPath.length > 1 && (
+                    <motion.polyline
+                      points={acceptedPath
+                        .map((pos) => {
+                          const cellSize = 100 / BOGGLE_CONFIG.GRID_SIZE
+                          const x = (pos.col + 0.5) * cellSize
+                          const y = (pos.row + 0.5) * cellSize
+                          return `${x},${y}`
+                        })
+                        .join(" ")}
+                      fill="none"
+                      stroke="#10b981"
+                      strokeWidth="4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: [0, 1, 1, 0] }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  )}
+                  {currentPath.length > 1 && !acceptedPath && (
+                    <motion.polyline
+                      points={currentPath
+                        .map((pos) => {
+                          const cellSize = 100 / BOGGLE_CONFIG.GRID_SIZE
+                          const x = (pos.col + 0.5) * cellSize
+                          const y = (pos.row + 0.5) * cellSize
+                          return `${x},${y}`
+                        })
+                        .join(" ")}
+                      fill="none"
+                      stroke="#3b82f6"
+                      strokeWidth="4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  )}
+                </svg>
+              )}
+            </div>
 
-          {/* Found Words List */}
-          <div className="w-full max-w-md">
-            <div className="text-sm font-bold text-zinc-400 uppercase mb-2">Found Words ({foundWords.size})</div>
-            <div className="bg-zinc-900 rounded-lg p-4 max-h-32 overflow-y-auto">
-              <div className="flex flex-wrap gap-2">
-                {Array.from(foundWords).map((word) => (
-                  <span key={word} className="text-white font-bold text-sm">
-                    {word}
-                  </span>
-                ))}
+            {/* Found Words List - Compact for Mobile */}
+            <div className="w-full max-w-md px-4">
+              <div className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1">Found Words ({foundWords.size})</div>
+              <div className="bg-zinc-900/50 rounded-xl p-3 max-h-20 sm:max-h-32 overflow-y-auto border border-zinc-800">
+                <div className="flex flex-wrap gap-2">
+                  {Array.from(foundWords).map((word) => (
+                    <span key={word} className="text-white font-bold text-xs">
+                      {word}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
+        )}
+      </div>
 
-          {/* Controls */}
-          <div className="flex gap-4">
-            {!isPlaying && (
-              <button
-                onClick={startGame}
-                className="bg-blue-500 hover:bg-blue-600 text-white font-black py-3 px-6 rounded-xl transition-colors"
-              >
-                Start Game
-              </button>
-            )}
-            {isPlaying && (
-              <>
-                <button
-                  onClick={togglePause}
-                  className="bg-zinc-700 hover:bg-zinc-600 text-white font-bold py-2 px-4 rounded-lg transition-colors"
-                >
-                  {isPaused ? "Resume" : "Pause"}
-                </button>
-                <button
-                  onClick={handleShowWordsMissed}
-                  className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-lg transition-colors"
-                >
-                  Words You Missed
-                </button>
-              </>
-            )}
-          </div>
-        </div>
-      )}
+      {/* Bottom Controls */}
+      <div className="w-full max-w-md p-4 flex gap-4">
+        {!isPlaying && (
+          <button
+            onClick={startGame}
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-black py-4 rounded-xl transition-colors shadow-lg active:scale-95"
+          >
+            START GAME
+          </button>
+        )}
+        {isPlaying && (
+          <>
+            <button
+              onClick={togglePause}
+              className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-3 rounded-xl transition-colors border border-zinc-700 active:scale-95"
+            >
+              {isPaused ? "Resume" : "Pause"}
+            </button>
+            <button
+              onClick={handleShowWordsMissed}
+              className="flex-1 bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 rounded-xl transition-colors shadow-lg active:scale-95"
+            >
+              Words Missed
+            </button>
+          </>
+        )}
+      </div>
 
       {/* Start Screen */}
       {!isPlaying && !isGameOver && (

@@ -271,7 +271,7 @@ export default function Fishing() {
 
   return (
     <div
-      className="w-full h-full bg-gradient-to-br from-cyan-950 to-blue-950 flex flex-col items-center justify-center relative overflow-hidden select-none touch-none"
+      className="w-full h-full bg-gradient-to-br from-cyan-950 to-blue-950 flex flex-col items-center justify-between relative overflow-hidden select-none touch-none p-4 sm:p-6"
       onMouseDown={handleInteractionStart}
       onMouseUp={handleInteractionEnd}
       onTouchStart={handleInteractionStart}
@@ -285,10 +285,10 @@ export default function Fishing() {
           { label: "Caught", value: fishCaught.length, color: "white" },
           { label: "Combo", value: `x${combo}`, color: combo > 0 ? "amber" : "white" },
         ]}
-        className="absolute top-20 left-0 right-0 z-10"
+        className="w-full max-w-md"
       />
 
-      <div className="w-full h-full flex items-center justify-center p-8">
+      <div className="flex-grow flex items-center justify-center w-full min-h-0 py-4">
         <AnimatePresence mode="wait">
           {phase === "idle" && (
             <motion.div
@@ -296,11 +296,11 @@ export default function Fishing() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="text-center p-12 bg-zinc-900/90 border-2 border-cyan-500/50 rounded-3xl max-w-sm w-full shadow-2xl"
+              className="text-center p-8 sm:p-12 bg-zinc-900/90 border-2 border-cyan-500/50 rounded-3xl max-w-sm w-full shadow-2xl"
             >
-              <div className="text-8xl mb-6">🎣</div>
-              <h2 className="text-5xl font-black text-white mb-2 tracking-tighter">FISHING</h2>
-              <p className="text-zinc-400 mb-8">Tap or Space to cast!</p>
+              <div className="text-6xl sm:text-8xl mb-4 sm:mb-6">🎣</div>
+              <h2 className="text-4xl sm:text-5xl font-black text-white mb-2 tracking-tighter">FISHING</h2>
+              <p className="text-zinc-400 mb-6 sm:mb-8 text-sm">Tap or Space to cast!</p>
               <button
                 className="w-full py-4 bg-cyan-500 hover:bg-cyan-600 text-white font-black rounded-2xl transition-all shadow-lg active:scale-95"
                 onClick={(e) => {
@@ -314,7 +314,7 @@ export default function Fishing() {
           )}
 
           {phase === "casting" && (
-            <motion.div key="casting" className="w-full max-w-md h-96 flex flex-col items-center justify-between relative bg-black/20 rounded-3xl p-8 backdrop-blur-sm border border-white/5">
+            <motion.div key="casting" className="w-full max-w-md aspect-square max-h-[400px] flex flex-col items-center justify-between relative bg-black/20 rounded-3xl p-6 sm:p-8 backdrop-blur-sm border border-white/5 mx-4">
               <div className="flex w-full h-full gap-8">
                 {/* Visual Label */}
                 <div className="flex-1 flex flex-col justify-center items-center">

@@ -323,7 +323,7 @@ export default function Tetris() {
 
   return (
     <div
-      className="h-full w-full bg-gradient-to-b from-purple-950 to-zinc-950 flex flex-col items-center justify-center p-4 touch-none select-none"
+      className="h-full w-full bg-gradient-to-b from-purple-950 to-zinc-950 flex flex-col items-center justify-between p-4 sm:p-6 touch-none select-none overflow-hidden"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -339,21 +339,26 @@ export default function Tetris() {
           { label: "Time", value: Math.floor(liveTime / 1000) + "s", color: "orange" },
           { label: "Level", value: engine.level, color: "purple" },
         ]}
-        className="w-full max-w-md mb-4 text-white"
+        className="w-full max-w-md"
       />
 
       {/* Main Game Area */}
-      <div className="flex gap-4 items-start">
-        {/* Game Board */}
-        <div
-          className="bg-zinc-900/50 p-2 rounded-lg border border-zinc-700 backdrop-blur-sm"
-          role="grid"
-          aria-label="Game board"
-          aria-rowcount={20}
-          aria-colcount={10}
-        >
-          {renderBoard()}
-        </div>
+      <div className="flex-grow flex items-center justify-center w-full min-h-0 py-4">
+        <div className="flex gap-4 items-start max-h-full">
+          {/* Game Board */}
+          <div
+            className="bg-zinc-900/50 p-2 rounded-lg border border-zinc-700 backdrop-blur-sm h-full flex flex-col justify-center"
+            role="grid"
+            aria-label="Game board"
+            aria-rowcount={20}
+            aria-colcount={10}
+            style={{ 
+              height: "min(60vh, 500px)",
+              aspectRatio: "10/20"
+            }}
+          >
+            {renderBoard()}
+          </div>
 
         {/* Sidebar */}
         <div className="flex flex-col gap-4">

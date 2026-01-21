@@ -166,32 +166,32 @@ export default function ZenMerge() {
     }
 
     return (
-        <div className="w-full h-full bg-gradient-to-br from-zinc-950 to-indigo-950 flex flex-col items-center justify-center relative overflow-hidden select-none">
+        <div className="w-full h-full bg-gradient-to-br from-zinc-950 to-indigo-950 flex flex-col items-center justify-between relative overflow-hidden select-none p-4 sm:p-6">
             <UnifiedHUD
                 stats={[
                     { label: "Score", value: score, color: "cyan" },
                     { label: "High Score", value: highScore, color: "amber" },
                     { label: "Time", value: Math.floor(liveTime / 1000) + "s", color: "orange" },
                 ]}
-                className="absolute top-20 left-0 right-0 z-10"
+                className="w-full max-w-md"
             />
 
-            <div className="w-full max-w-md p-6 space-y-6">
+            <div className="flex-grow flex flex-col items-center justify-center w-full min-h-0 space-y-4 sm:space-y-6">
                 <div className="text-center">
-                    <h2 className="text-4xl font-black text-white italic tracking-tighter uppercase mb-1">ZEN MERGE</h2>
-                    <p className="text-zinc-500 text-xs font-bold tracking-widest uppercase">Merge shards to reach Infinity</p>
+                    <h2 className="text-3xl sm:text-4xl font-black text-white italic tracking-tighter uppercase mb-1">ZEN MERGE</h2>
+                    <p className="text-zinc-500 text-[10px] font-bold tracking-widest uppercase">Merge shards to reach Infinity</p>
                 </div>
 
                 {/* Grid Container */}
-                <div className="aspect-square w-full bg-zinc-900/50 backdrop-blur-xl rounded-[2rem] p-4 border-4 border-zinc-800/50 shadow-2xl relative">
-                    <div className="grid grid-cols-4 grid-rows-4 gap-3 w-full h-full">
+                <div className="aspect-square w-full max-w-[320px] sm:max-w-md bg-zinc-900/50 backdrop-blur-xl rounded-[1.5rem] sm:rounded-[2rem] p-3 sm:p-4 border-4 border-zinc-800/50 shadow-2xl relative">
+                    <div className="grid grid-cols-4 grid-rows-4 gap-2 sm:gap-3 w-full h-full">
                         {grid.map((crystal, i) => (
                             <div
                                 key={i}
                                 onDragOver={(e) => e.preventDefault()}
                                 onDrop={() => handleDrop(i)}
                                 onClick={() => handleTileClick(i)}
-                                className={`relative rounded-2xl flex items-center justify-center transition-all duration-200 border-2 ${crystal ? "bg-zinc-800 border-zinc-700 shadow-lg" : "bg-zinc-900/30 border-zinc-800 cursor-pointer hover:bg-zinc-800/50"
+                                className={`relative rounded-xl sm:rounded-2xl flex items-center justify-center transition-all duration-200 border-2 ${crystal ? "bg-zinc-800 border-zinc-700 shadow-lg" : "bg-zinc-900/30 border-zinc-800 cursor-pointer hover:bg-zinc-800/50"
                                     } ${draggedIndex === i ? "opacity-0" : "opacity-100"}`}
                             >
                                 <AnimatePresence>
@@ -203,15 +203,15 @@ export default function ZenMerge() {
                                             exit={{ scale: 1.5, opacity: 0 }}
                                             draggable
                                             onDragStart={(e) => handleDragStart(e as unknown as React.DragEvent, i)}
-                                            className="w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing p-2"
+                                            className="w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing p-1.5 sm:p-2"
                                         >
-                                            <div className={`w-full h-full rounded-xl bg-gradient-to-br ${CRYSTAL_TIERS[crystal.level - 1].color} flex items-center justify-center text-3xl shadow-lg relative group`}>
+                                            <div className={`w-full h-full rounded-lg sm:rounded-xl bg-gradient-to-br ${CRYSTAL_TIERS[crystal.level - 1].color} flex items-center justify-center text-2xl sm:text-3xl shadow-lg relative group`}>
                                                 {/* Glow effect */}
-                                                <div className="absolute inset-0 bg-white/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                                                <div className="absolute inset-0 bg-white/20 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
                                                 {CRYSTAL_TIERS[crystal.level - 1].emoji}
 
                                                 {/* Level Badge */}
-                                                <div className="absolute -bottom-1 -right-1 bg-black/60 text-[10px] px-1.5 rounded-md font-black text-white border border-white/20">
+                                                <div className="absolute -bottom-1 -right-1 bg-black/60 text-[8px] sm:text-[10px] px-1 rounded-md font-black text-white border border-white/20">
                                                     {crystal.level}
                                                 </div>
                                             </div>
@@ -238,30 +238,30 @@ export default function ZenMerge() {
                     </AnimatePresence>
                     {!notification && (
                         <p className="text-zinc-500 text-[10px] font-black uppercase tracking-[0.2em]">
-                            {grid.filter(c => c === null).length > 0 ? "Tap empty tile to spawn shard" : "OUT OF SPACE! Merge items!"}
+                            {grid.filter(c => c === null).length > 0 ? "Tap tile to spawn" : "OUT OF SPACE!"}
                         </p>
                     )}
                 </div>
+            </div>
 
-                {/* Discovered Tiers Progress */}
-                <div className="pt-4 border-t border-zinc-800/50">
-                    <div className="flex justify-between items-center mb-4 px-2">
-                        <span className="text-zinc-600 text-[10px] font-black uppercase tracking-widest">Discovery Progress</span>
-                        <span className="text-zinc-400 text-[10px] font-black">{Math.round((discoveredLevels / 10) * 100)}%</span>
-                    </div>
-                    <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar px-2">
-                        {CRYSTAL_TIERS.map((tier) => (
-                            <div
-                                key={tier.level}
-                                className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center text-xl transition-all duration-500 ${discoveredLevels >= tier.level
-                                    ? `bg-gradient-to-br ${tier.color} shadow-lg opacity-100`
-                                    : "bg-zinc-900 border border-zinc-800 opacity-20 grayscale"
-                                    }`}
-                            >
-                                {tier.emoji}
-                            </div>
-                        ))}
-                    </div>
+            {/* Discovered Tiers Progress - Compact for mobile */}
+            <div className="w-full max-w-md pt-4 border-t border-zinc-800/50">
+                <div className="flex justify-between items-center mb-2 px-2">
+                    <span className="text-zinc-600 text-[9px] font-black uppercase tracking-widest">Discovery</span>
+                    <span className="text-zinc-400 text-[9px] font-black">{Math.round((discoveredLevels / 10) * 100)}%</span>
+                </div>
+                <div className="flex gap-1.5 overflow-x-auto pb-2 no-scrollbar px-2">
+                    {CRYSTAL_TIERS.map((tier) => (
+                        <div
+                            key={tier.level}
+                            className={`flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center text-lg transition-all duration-500 ${discoveredLevels >= tier.level
+                                ? `bg-gradient-to-br ${tier.color} shadow-lg opacity-100`
+                                : "bg-zinc-900 border border-zinc-800 opacity-20 grayscale"
+                                }`}
+                        >
+                            {tier.emoji}
+                        </div>
+                    ))}
                 </div>
             </div>
 
