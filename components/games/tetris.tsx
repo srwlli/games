@@ -360,43 +360,44 @@ export default function Tetris() {
             {renderBoard()}
           </div>
 
-        {/* Sidebar */}
-        <div className="flex flex-col gap-4">
-          {/* Hold Piece */}
-          {engine.heldPiece && (
-            <div className="bg-zinc-900/50 p-3 rounded-lg border border-zinc-700 backdrop-blur-sm">
-              <div className="text-xs text-zinc-400 mb-2 text-center">Hold</div>
-              <div className="flex justify-center items-center min-h-[64px]">
-                <div className="flex flex-col">
-                  {engine.heldPiece.shape.map((row, y) => (
-                    <div key={y} className="flex">
-                      {row.map((cell, x) => {
-                        const cellStyle = getCellStyle(engine.heldPiece!.cellType)
-                        return (
-                          <div key={x} className={`w-4 h-4 border border-zinc-800 ${cell ? cellStyle : ""}`} />
-                        )
-                      })}
-                    </div>
-                  ))}
+          {/* Sidebar */}
+          <div className="flex flex-col gap-4">
+            {/* Hold Piece */}
+            {engine.heldPiece && (
+              <div className="bg-zinc-900/50 p-3 rounded-lg border border-zinc-700 backdrop-blur-sm">
+                <div className="text-xs text-zinc-400 mb-2 text-center">Hold</div>
+                <div className="flex justify-center items-center min-h-[64px]">
+                  <div className="flex flex-col">
+                    {engine.heldPiece.shape.map((row, y) => (
+                      <div key={y} className="flex">
+                        {row.map((cell, x) => {
+                          const cellStyle = getCellStyle(engine.heldPiece!.cellType)
+                          return (
+                            <div key={x} className={`w-4 h-4 border border-zinc-800 ${cell ? cellStyle : ""}`} />
+                          )
+                        })}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
+            )}
+
+            {/* Next Piece */}
+            <div className="bg-zinc-900/50 p-3 rounded-lg border border-zinc-700 backdrop-blur-sm">
+              <div className="text-xs text-zinc-400 mb-2 text-center">Next</div>
+              <div className="flex justify-center items-center min-h-[64px]">{renderNextPiece()}</div>
             </div>
-          )}
 
-          {/* Next Piece */}
-          <div className="bg-zinc-900/50 p-3 rounded-lg border border-zinc-700 backdrop-blur-sm">
-            <div className="text-xs text-zinc-400 mb-2 text-center">Next</div>
-            <div className="flex justify-center items-center min-h-[64px]">{renderNextPiece()}</div>
+            {/* Controls */}
+            <button
+              onClick={togglePause}
+              className="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg text-sm font-medium border border-zinc-700"
+              aria-label={isPlaying ? "Pause game" : "Resume game"}
+            >
+              {isPlaying ? "Pause" : "Resume"}
+            </button>
           </div>
-
-          {/* Controls */}
-          <button
-            onClick={togglePause}
-            className="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg text-sm font-medium border border-zinc-700"
-            aria-label={isPlaying ? "Pause game" : "Resume game"}
-          >
-            {isPlaying ? "Pause" : "Resume"}
-          </button>
         </div>
       </div>
 
