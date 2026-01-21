@@ -1,0 +1,26 @@
+{
+  "feature_name": "wordscape-clone",
+  "description": "A crossword-style word puzzle game where players connect letters from a circular hub to fill a crossword grid.",
+  "goal": "Implement a high-fidelity 'Wordscape' style game that follows the platform's standardized patterns and leverages the existing dictionary infrastructure.",
+  "requirements": [
+    "Crossword-style grid that displays correctly on all screen sizes",
+    "Circular word wheel input with touch gesture support for swiping between letters",
+    "Game logic to differentiate between words in the grid and 'bonus' dictionary words",
+    "Level system with increasing complexity (shuffled from a level data set)",
+    "Standardized HUD integration (Score, Level, High Score)",
+    "Visual feedback for valid words, invalid attempts, and bonus word discovery",
+    "Hint mechanism to reveal letters in the grid",
+    "No external assets - use emojis and Tailwind gradients"
+  ],
+  "out_of_scope": [
+    "Multi-player mode",
+    "Global leaderboards",
+    "Custom level editor"
+  ],
+  "constraints": [
+    "Must use existing DictionaryService (Trie) for word validation",
+    "Must follow Logic Layer + UI Layer separation pattern",
+    "Must adhere to 'no-scroll' mobile viewport requirements",
+    "Must integrate with use-game-session and standardized headers"
+  ]
+}

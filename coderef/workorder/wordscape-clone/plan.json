@@ -1,0 +1,160 @@
+{
+  "workorder_id": "WO-WORDSCAPE-001",
+  "META_DOCUMENTATION": {
+    "feature_name": "wordscape-clone",
+    "title": "Implementation Plan: Wordscape Clone",
+    "version": "1.0.0",
+    "status": "planning",
+    "timestamp": "2026-01-21T14:45:00Z"
+  },
+  "UNIVERSAL_PLANNING_STRUCTURE": {
+    "0_preparation": {
+      "review_context": "Deep research conducted on platform architecture (Logic+UI), existing dictionary system (Trie), and Wordscape mechanics (Circular wheel + Crossword grid).",
+      "prerequisites": [
+        "DictionaryService must be initialized",
+        "GAMES_REGISTRY needs update for new route"
+      ]
+    },
+    "1_executive_summary": {
+      "purpose": "Create a high-fidelity Wordscape-style game featuring a circular letter wheel and crossword-style grid.",
+      "value_proposition": "Expands the word games category with a visually engaging, gesture-driven puzzle experience.",
+      "real_world_analogy": "A digital crossword where you 'draw' the words from a pool of letters.",
+      "use_case": "User selects Wordscape -> swipes letters on wheel -> valid words fill grid -> level complete on full grid.",
+      "output": "Fully functional Wordscape clone with gesture support and crossword logic."
+    },
+    "2_risk_assessment": {
+      "overall_risk": "medium",
+      "complexity": "high",
+      "scope": "Requires complex gesture handling and crossword layout algorithm.",
+      "dependencies": [
+        "Framer Motion for wheel animations",
+        "DictionaryService for word validation"
+      ],
+      "performance_concerns": [
+        "Grid layout calculation for large levels",
+        "Gesture tracking frequency"
+      ],
+      "security_considerations": [
+        "Standard client-side game logic"
+      ],
+      "breaking_changes": "none"
+    },
+    "3_current_state_analysis": {
+      "affected_files": [
+        "lib/games-registry.tsx",
+        "lib/game-icons.tsx"
+      ],
+      "dependencies": {
+        "existing_internal": [
+          "lib/word-games/trie/trie-service.ts",
+          "hooks/use-game-session-integration.ts",
+          "components/games/shared/"
+        ],
+        "existing_external": [
+          "framer-motion",
+          "lucide-react"
+        ],
+        "new_internal": [
+          "lib/word-games/wordscape/engine.ts",
+          "components/games/wordscape.tsx"
+        ]
+      },
+      "architecture_context": "Following Logic Layer + UI Layer separation. Leveraging existing word game infrastructure."
+    },
+    "4_key_features": {
+      "primary_features": [
+        "Circular Letter Wheel with swipe-to-connect gesture",
+        "Crossword Grid with flexible layout (supports different word lengths and overlaps)",
+        "Word Validation (Grid words vs. Bonus words)",
+        "Hint Mechanism (reveals random empty tile)",
+        "Level System (pre-defined or procedurally generated from dictionary)"
+      ],
+      "secondary_features": [
+        "Shuffle button for wheel letters",
+        "Satisfying connect animations (curved lines)",
+        "Bonus word collection tracker"
+      ],
+      "edge_case_handling": [
+        "Invalid swipes (non-adjacent letters, duplicate letters)",
+        "Words already found",
+        "Grid fitting on ultra-small mobile screens"
+      ]
+    },
+    "5_task_id_system": {
+      "tasks": [
+        "LOGIC-001: Create lib/word-games/wordscape/types.ts - Define Level, Grid, and Session types",
+        "LOGIC-002: Implement lib/word-games/wordscape/levels.ts - Define initial level data set",
+        "LOGIC-003: Implement lib/word-games/wordscape/engine.ts - Grid validation and bonus word logic",
+        "UI-001: Create components/games/wordscape/word-wheel.tsx - SVG-based circular input hub",
+        "UI-002: Create components/games/wordscape/crossword-grid.tsx - Dynamic CSS Grid layout",
+        "UI-003: Create main components/games/wordscape.tsx container with UnifiedHUD integration",
+        "INT-001: Update lib/game-icons.tsx and register 'wordscape' in lib/games-registry.tsx",
+        "TEST-001: Manual verification of swipe gestures and grid filling"
+      ]
+    },
+    "6_implementation_phases": {
+      "phases": [
+        {
+          "phase": 1,
+          "name": "Phase 1: Logic & Data",
+          "description": "Establish level data and core game state logic.",
+          "tasks": ["LOGIC-001", "LOGIC-002", "LOGIC-003"],
+          "deliverables": ["Functional engine with level support"]
+        },
+        {
+          "phase": 2,
+          "name": "Phase 2: Input System",
+          "description": "Build the circular word wheel and gesture handling.",
+          "tasks": ["UI-001"],
+          "deliverables": ["Interactive SVG letter wheel"]
+        },
+        {
+          "phase": 3,
+          "name": "Phase 3: Visual Grid",
+          "description": "Build the dynamic crossword grid and animations.",
+          "tasks": ["UI-002", "UI-003"],
+          "deliverables": ["Playable game with crossword grid"]
+        },
+        {
+          "phase": 4,
+          "name": "Phase 4: Integration",
+          "description": "Register game and finalize platform hooks.",
+          "tasks": ["INT-001", "TEST-001"],
+          "deliverables": ["Game live on dashboard"]
+        }
+      ]
+    },
+    "7_testing_strategy": {
+      "unit_tests": [
+        "Verify bonus word detection",
+        "Test level completion trigger"
+      ],
+      "manual_tests": [
+        "Swipe across all letters in wheel",
+        "Test hint button functionality",
+        "Verify mobile viewport scaling"
+      ]
+    },
+    "8_success_criteria": {
+      "functional_requirements": [
+        {
+          "requirement": "Perfect Mechanics",
+          "target": "Swipe paths follow finger smoothly and snap to letters",
+          "validation": "Manual testing"
+        }
+      ],
+      "quality_requirements": [
+        {
+          "requirement": "Zero Scrolled View",
+          "target": "Game fits 100% in viewport on iPhone SE",
+          "validation": "DevTools mobile simulation"
+        }
+      ]
+    },
+    "9_implementation_checklist": {
+      "pre_implementation": ["Check dictionary availability", "Verify shared component versions"],
+      "phase_1": ["Types defined", "Levels loaded", "Engine logic verified"],
+      "finalization": ["Tests pass", "Game registered", "Documentation updated"]
+    }
+  }
+}
