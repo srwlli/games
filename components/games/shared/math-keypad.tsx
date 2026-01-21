@@ -20,7 +20,7 @@ export default function MathKeypad({ onNumber, onDelete, onSubmit, className = "
         <Button
           key={num}
           variant="outline"
-          className="h-16 text-2xl font-black bg-zinc-950/50 hover:bg-emerald-500 hover:text-zinc-950 transition-colors border-zinc-800"
+          className="h-12 sm:h-16 text-xl sm:text-2xl font-black bg-zinc-950/50 hover:bg-emerald-500 hover:text-zinc-950 transition-colors border-zinc-800"
           onClick={() => onNumber(num)}
         >
           {num}
@@ -28,24 +28,24 @@ export default function MathKeypad({ onNumber, onDelete, onSubmit, className = "
       ))}
       <Button
         variant="outline"
-        className="h-16 text-zinc-400 hover:text-red-500 hover:bg-red-500/10 border-zinc-800"
+        className="h-12 sm:h-16 text-zinc-400 hover:text-red-500 hover:bg-red-500/10 border-zinc-800"
         onClick={onDelete}
       >
-        <Delete size={24} />
+        <Delete size={20} className="sm:w-6 sm:h-6" />
       </Button>
       <Button
         variant="outline"
-        className="h-16 text-2xl font-black bg-zinc-950/50 hover:bg-emerald-500 hover:text-zinc-950 transition-colors border-zinc-800"
+        className="h-12 sm:h-16 text-xl sm:text-2xl font-black bg-zinc-950/50 hover:bg-emerald-500 hover:text-zinc-950 transition-colors border-zinc-800"
         onClick={() => onNumber("0")}
       >
         0
       </Button>
       <Button
         variant="outline"
-        className="h-16 text-emerald-500 hover:bg-emerald-500 hover:text-zinc-950 border-zinc-800"
+        className="h-12 sm:h-16 text-emerald-500 hover:bg-emerald-500 hover:text-zinc-950 border-zinc-800"
         onClick={onSubmit}
       >
-        <Check size={24} />
+        <Check size={20} className="sm:w-6 sm:h-6" />
       </Button>
     </div>
   )

@@ -23,7 +23,7 @@ export default function MathFlashCards() {
   if (!state) return null
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-between p-6 bg-zinc-950 text-white font-sans overflow-hidden">
+    <div className="w-full h-full flex flex-col items-center justify-between p-4 sm:p-6 bg-zinc-950 text-white font-sans overflow-hidden">
       {/* HUD */}
       <div className="w-full max-w-md">
         <StatsBar
@@ -51,7 +51,7 @@ export default function MathFlashCards() {
             key="playing"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="flex-grow w-full max-w-md flex flex-col items-center justify-around py-8"
+            className="flex-grow w-full max-w-md flex flex-col items-center justify-around py-4 sm:py-8"
           >
             {/* Type Banner */}
             <AnimatePresence>
@@ -60,7 +60,7 @@ export default function MathFlashCards() {
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.9 }}
-                  className="absolute top-24 z-50 bg-emerald-500/10 border border-emerald-500/20 px-6 py-2 rounded-full backdrop-blur-md"
+                  className="absolute top-20 sm:top-24 z-50 bg-emerald-500/10 border border-emerald-500/20 px-6 py-2 rounded-full backdrop-blur-md"
                 >
                   <span className="text-emerald-500 font-black text-xs uppercase tracking-[0.3em]">
                     {state.currentProblem?.type.replace("_", " ")}
@@ -74,7 +74,7 @@ export default function MathFlashCards() {
               key={state.currentProblem?.id}
               initial={{ rotateY: 90, opacity: 0 }}
               animate={{ rotateY: 0, opacity: 1 }}
-              className="relative w-full aspect-[4/3] bg-zinc-900 rounded-[2rem] border-2 border-zinc-800 flex flex-col items-center justify-center shadow-2xl overflow-hidden"
+              className="relative w-full aspect-[4/3] max-h-[30vh] sm:max-h-none bg-zinc-900 rounded-[1.5rem] sm:rounded-[2rem] border-2 border-zinc-800 flex flex-col items-center justify-center shadow-2xl overflow-hidden"
             >
               {/* Heat Mode Background */}
               {state.multiplier > 1 && (
@@ -85,13 +85,13 @@ export default function MathFlashCards() {
                 />
               )}
 
-              <div className="text-7xl font-black italic tracking-tighter mb-4">
+              <div className="text-5xl sm:text-7xl font-black italic tracking-tighter mb-2 sm:mb-4">
                 {state.currentProblem?.display}
               </div>
               
               {/* Input Display */}
-              <div className="h-16 flex items-center justify-center">
-                <div className="text-4xl font-mono text-white bg-zinc-800 px-6 py-2 rounded-xl border border-zinc-700 min-w-[3ch] text-center">
+              <div className="h-12 sm:h-16 flex items-center justify-center">
+                <div className="text-3xl sm:text-4xl font-mono text-white bg-zinc-800 px-4 sm:px-6 py-1 sm:py-2 rounded-xl border border-zinc-700 min-w-[3ch] text-center">
                   {input || "?"}
                 </div>
               </div>
@@ -101,7 +101,7 @@ export default function MathFlashCards() {
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  className="absolute top-6 right-6 bg-emerald-500 text-zinc-950 text-xs font-black px-3 py-1 rounded-full uppercase italic"
+                  className="absolute top-4 right-4 sm:top-6 sm:right-6 bg-emerald-500 text-zinc-950 text-[10px] sm:text-xs font-black px-2 sm:px-3 py-1 rounded-full uppercase italic"
                 >
                   {state.multiplier}x Multiplier
                 </motion.div>
@@ -113,7 +113,7 @@ export default function MathFlashCards() {
               onNumber={addDigit}
               onDelete={deleteDigit}
               onSubmit={submitAnswer}
-              className="w-full mt-8"
+              className="w-full mt-4 sm:mt-8"
             />
           </motion.div>
         )}
