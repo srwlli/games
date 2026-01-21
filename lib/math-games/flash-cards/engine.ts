@@ -24,6 +24,10 @@ export class FlashCardsEngine {
     };
   }
 
+  public reset() {
+    this.state = this.getInitialState();
+  }
+
   public startGame() {
     this.state = this.getInitialState();
     this.state.status = 'playing';

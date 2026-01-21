@@ -13,14 +13,12 @@ export default function MathFlashCards() {
 
   // Show a banner when the problem type changes
   useEffect(() => {
-    if (state?.currentProblem?.type) {
+    if (state.currentProblem?.type) {
       setShowTypeBanner(true)
       const timer = setTimeout(() => setShowTypeBanner(false), 1500)
       return () => clearTimeout(timer)
     }
-  }, [state?.currentProblem?.type])
-
-  if (!state) return null
+  }, [state.currentProblem?.type])
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-between p-4 sm:p-6 bg-zinc-950 text-white font-sans overflow-hidden">
@@ -36,7 +34,7 @@ export default function MathFlashCards() {
       </div>
 
       <AnimatePresence mode="wait">
-        {state.status === "idle" && countdown === null && (
+        {state.status === "idle" && (
           <StartScreen
             key="start"
             title="Fast-Track Flash Cards"
@@ -123,7 +121,7 @@ export default function MathFlashCards() {
       <CountdownOverlay count={countdown} accentColor="emerald" />
 
       <GameOverModal
-        isOpen={state.status === "gameover"}
+        isOpen={state.status === "gameover" && countdown === null}
         title="Sprint Complete!"
         score={state.score}
         accentColor="emerald"

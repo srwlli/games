@@ -6,15 +6,16 @@ import { GameState, SessionStats } from '@/lib/math-games/flash-cards/types';
 
 export function useFlashCards() {
   const engineRef = useRef<FlashCardsEngine | null>(null);
-  const [state, setState] = useState<GameState | null>(null);
-  const [stats, setStats] = useState<SessionStats | null>(null);
-  const [input, setInput] = useState('');
-  const [countdown, setCountdown] = useState<number | null>(null);
 
   // Initialize engine once
   if (!engineRef.current) {
     engineRef.current = new FlashCardsEngine();
   }
+
+  const [state, setState] = useState<GameState>(() => engineRef.current!.getState());
+  const [stats, setStats] = useState<SessionStats>(() => engineRef.current!.getStats());
+  const [input, setInput] = useState('');
+  const [countdown, setCountdown] = useState<number | null>(null);
 
   const syncState = useCallback(() => {
     if (engineRef.current) {
@@ -23,6 +24,7 @@ export function useFlashCards() {
     }
   }, []);
 
+  // Initial sync
   useEffect(() => {
     syncState();
   }, [syncState]);
@@ -55,9 +57,11 @@ export function useFlashCards() {
   }, [state?.status, countdown, syncState]);
 
   const startCountdown = useCallback(() => {
+    engineRef.current?.reset();
+    syncState();
     setInput('');
     setCountdown(3);
-  }, []);
+  }, [syncState]);
 
   const startGame = useCallback(() => {
     engineRef.current?.startGame();
