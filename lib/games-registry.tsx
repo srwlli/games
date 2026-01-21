@@ -11,6 +11,7 @@ import Fishing from "@/components/games/fishing"
 import Boggle from "@/components/games/boggle"
 import Wordle from "@/components/games/wordle"
 import MathFlashCards from "@/components/games/math-flash-cards"
+import Wordscape from "@/components/games/wordscape"
 
 export const GAMES_REGISTRY = {
   "math-flash-cards": {
@@ -21,6 +22,15 @@ export const GAMES_REGISTRY = {
     color: "bg-emerald-600",
     component: MathFlashCards,
     thumbnail: "Calculator",
+  },
+  wordscape: {
+    id: "wordscape",
+    title: "Wordscape",
+    description: "Connect letters to fill the crossword puzzle.",
+    category: "Word Game",
+    color: "bg-emerald-500",
+    component: Wordscape,
+    thumbnail: "Puzzle",
   },
   "zen-merge": {
     id: "zen-merge",

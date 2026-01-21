@@ -19,6 +19,7 @@ import {
   Guitar,
   Music4,
   Calculator,
+  Puzzle,
   type LucideIcon,
 } from "lucide-react"
 
@@ -39,6 +40,7 @@ const iconMap: Record<string, LucideIcon> = {
   Guitar,
   Music4,
   Calculator,
+  Puzzle,
 }
 
 export function getGameIcon(iconName: string): LucideIcon {
